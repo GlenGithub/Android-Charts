@@ -22,59 +22,58 @@
 
 package cn.limc.androidcharts.common;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/24 17:19:47 
- *  
+ * @author limc
+ * @version v1.0 2014/06/24 17:19:47
  */
 public interface IQuadrant {
-    
-	 static final float DEFAULT_PADDING_TOP = 10f;
-	 static final float DEFAULT_PADDING_BOTTOM = 10f;
-	 static final float DEFAULT_PADDING_LEFT = 10f;
-	 static final float DEFAULT_PADDING_RIGHT = 10f;
-	
-	float getPaddingTop();
 
-	float getPaddingLeft();
+    float DEFAULT_PADDING_TOP = 10f;
+    float DEFAULT_PADDING_BOTTOM = 10f;
+    float DEFAULT_PADDING_LEFT = 10f;
+    float DEFAULT_PADDING_RIGHT = 10f;
 
-	float getPaddingBottom();
+    float getPaddingTop();
 
-	float getPaddingRight();
-	
-	void setPaddingTop(float value);
+    float getPaddingLeft();
 
-	void setPaddingLeft(float value);
+    float getPaddingBottom();
 
-	void setPaddingBottom(float value);
+    float getPaddingRight();
 
-	void setPaddingRight(float value);
+    void setPaddingTop(float value);
 
-	float getWidth();
+    void setPaddingLeft(float value);
 
-	float getHeight();
+    void setPaddingBottom(float value);
 
-	float getStartX();
+    void setPaddingRight(float value);
 
-	float getStartY();
+    float getWidth();
 
-	float getEndX();
+    float getHeight();
 
-	float getEndY();
+    float getStartX();
 
-	float getPaddingStartX();
+    float getStartY();
 
-	float getPaddingEndX();
+    float getEndX();
 
-	float getPaddingStartY();
+    float getEndY();
 
-	float getPaddingEndY();
+    float getPaddingStartX();
 
-	float getPaddingWidth();
+    float getPaddingEndX();
 
-	float getPaddingHeight();
+    float getPaddingStartY();
+
+    float getPaddingEndY();
+
+    float getPaddingWidth();
+
+    float getPaddingHeight();
 }

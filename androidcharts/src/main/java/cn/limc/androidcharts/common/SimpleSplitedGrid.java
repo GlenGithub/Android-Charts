@@ -25,27 +25,22 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Path;
-import android.graphics.PathEffect;
-
-import java.util.List;
 
 import cn.limc.androidcharts.view.DataGridChart;
-import cn.limc.androidcharts.view.GridChart;
 
 
 /**
  * SimpleGrid
  * Description: <br>
- *   <p>add description here </p>
+ * <p>add description here </p>
  * Tags: <br>
- *   <p> </p>
+ * <p> </p>
  *
  * @author limc
- * @version v1.0 
- * 
- * History: <br>
- * 2014/09/01 limc create v1.0 <br>
- *
+ * @version v1.0
+ *          <p>
+ *          History: <br>
+ *          2014/09/01 limc create v1.0 <br>
  */
 public class SimpleSplitedGrid extends SimpleGrid {
 
@@ -55,7 +50,7 @@ public class SimpleSplitedGrid extends SimpleGrid {
     /**
      *
      */
-    public SimpleSplitedGrid (DataGridChart inChart) {
+    public SimpleSplitedGrid(DataGridChart inChart) {
         super(inChart);
     }
 
@@ -92,10 +87,10 @@ public class SimpleSplitedGrid extends SimpleGrid {
         if (longitudeTitles.size() <= 1) {
             return;
         }
-        if(longitudeSplitor == null){
+        if (longitudeSplitor == null) {
             return;
         }
-        if(longitudeSplitor.length == 0){
+        if (longitudeSplitor.length == 0) {
             return;
         }
 
@@ -104,40 +99,40 @@ public class SimpleSplitedGrid extends SimpleGrid {
         mPaintFont.setTextSize(longitudeFontSize);
         mPaintFont.setAntiAlias(true);
 
-        DataGridChart chart = (DataGridChart)this.inChart;
+        DataGridChart chart = (DataGridChart) this.inChart;
         float lineLength = (chart.getDataQuadrant().getPaddingWidth() / chart.getDisplayNumber());
         float offset = longitudeOffset() + lineLength / 2;
 
         int counter = 0;
         int titleIndex = 0;
-        do{
-            for(int i=0; i < longitudeSplitor.length && titleIndex< this.longitudeTitles.size() ;i++){
-                String str = this.longitudeTitles.get(i);
+        do {
+            for (int i = 0; i < longitudeSplitor.length && titleIndex < this.longitudeTitles.size(); i++) {
+                String str = this.longitudeTitles.get(titleIndex);
 
                 float postOffset = counter * lineLength;
                 float titleLength = mPaintFont.measureText(str);
 
                 if (titleIndex > 0) {
-                    float titleX= offset + postOffset - titleLength / 2.0f;
+                    float titleX = offset + postOffset - titleLength / 2.0f;
                     //处理最后一条轴线越线问题
                     if (titleX + titleLength > inChart.getDataQuadrant().getEndX()) {
-                        titleX= inChart.getDataQuadrant().getEndX() -  titleLength;
+                        titleX = inChart.getDataQuadrant().getEndX() - titleLength;
                     }
-                    canvas.drawText(str,titleX,inChart.getHeight() - inChart.getAxisX().getHeight()
-                            + longitudeFontSize,mPaintFont);
-                }else{
+                    canvas.drawText(str, titleX, inChart.getHeight() - inChart.getAxisX().getHeight()
+                            + longitudeFontSize, mPaintFont);
+                } else {
 
-                    canvas.drawText(str,inChart.getDataQuadrant().getStartX(), inChart.getHeight() - inChart.getAxisX().getHeight()
-                            + longitudeFontSize ,mPaintFont);
+                    canvas.drawText(str, inChart.getDataQuadrant().getStartX(), inChart.getHeight() - inChart.getAxisX().getHeight()
+                            + longitudeFontSize, mPaintFont);
                 }
                 //计数器重新设置
                 counter = counter + longitudeSplitor[i];
                 titleIndex = titleIndex + 1;
             }
-            if (titleIndex ==  this.longitudeTitles.size()){
+            if (titleIndex == this.longitudeTitles.size()) {
                 break;
             }
-        }while(counter < chart.getDisplayNumber());
+        } while (counter < chart.getDisplayNumber());
     }
 
     @Override
@@ -148,10 +143,10 @@ public class SimpleSplitedGrid extends SimpleGrid {
         if (!displayLongitude) {
             return;
         }
-        if(longitudeSplitor == null){
+        if (longitudeSplitor == null) {
             return;
         }
-        if(longitudeSplitor.length == 0){
+        if (longitudeSplitor.length == 0) {
             return;
         }
         int counts = longitudeTitles.size();
@@ -166,13 +161,13 @@ public class SimpleSplitedGrid extends SimpleGrid {
             mPaintLine.setPathEffect(dashEffect);
         }
 
-        DataGridChart chart = (DataGridChart)this.inChart;
+        DataGridChart chart = (DataGridChart) this.inChart;
         float lineLength = (chart.getDataQuadrant().getPaddingWidth() / chart.getDisplayNumber());
         float offset = longitudeOffset() + lineLength / 2;
 
         int counter = 0;
-        do{
-            for(int i=0; i < longitudeSplitor.length ;i++){
+        do {
+            for (int i = 0; i < longitudeSplitor.length; i++) {
 
                 float postOffset = counter * lineLength;
 
@@ -185,6 +180,6 @@ public class SimpleSplitedGrid extends SimpleGrid {
                 counter = counter + longitudeSplitor[i];
             }
 
-        }while(counter < chart.getDisplayNumber());
+        } while (counter < chart.getDisplayNumber());
     }
 }

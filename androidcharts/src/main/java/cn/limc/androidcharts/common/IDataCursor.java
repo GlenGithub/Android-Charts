@@ -23,37 +23,45 @@
 package cn.limc.androidcharts.common;
 
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/18 15:54:24 
- *  
+ * @author limc
+ * @version v1.0 2014/06/18 15:54:24
  */
 public interface IDataCursor {
 
-	static final int MIN_DISPLAY_NUM = 20;
-	static final int MAX_DISPLAY_NUM = 20;
+    int MIN_DISPLAY_NUM = 20;
+    int MAX_DISPLAY_NUM = 20;
 
-	int getDisplayFrom();
-	int getDisplayNumber();
-	int getDisplayTo();
-	int getMinDisplayNumber();
-	int getMaxDisplayNumber();
+    int getDisplayFrom();
 
-	int getDataDisplayNumber();
+    int getDisplayNumber();
 
-	void setDisplayFrom(int displayFrom);
-	void setDisplayNumber(int displayNumber);
-	 //void setDisplayTo(int displayTo);
+    int getDisplayTo();
 
-	void setMinDisplayNumber(int minDisplayNumber);
-	void setMaxDisplayNumber(int maxDisplayNumber);
+    int getMinDisplayNumber();
 
-	boolean forward(int step);
-	boolean backward(int step);
-	boolean stretch(int step);
-	boolean shrink(int step);
+    int getMaxDisplayNumber();
+
+    int getDataDisplayNumber();
+
+    void setDisplayFrom(int displayFrom);
+
+    void setDisplayNumber(int displayNumber);
+    //void setDisplayTo(int displayTo);
+
+    void setMinDisplayNumber(int minDisplayNumber);
+
+    void setMaxDisplayNumber(int maxDisplayNumber);
+
+    boolean forward(int step);
+
+    boolean backward(int step);
+
+    boolean stretch(int step);
+
+    boolean shrink(int step);
 }

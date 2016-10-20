@@ -42,263 +42,262 @@ import android.util.AttributeSet;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/01/21 11:37:51
- * 
  */
 public class SlipCandleStickChart extends SlipStickChart {
 
-	/**
-	 * <p>
-	 * Default price up stick's border color
-	 * </p>
-	 * <p>
-	 * 値上がりローソクのボーダー色のデフォルト値
-	 * </p>
-	 * <p>
-	 * 默认阳线的边框颜色
-	 * </p>
-	 */
-	public static final int DEFAULT_POSITIVE_STICK_BORDER_COLOR = Color.parseColor("#ed4d4d");
+    /**
+     * <p>
+     * Default price up stick's border color
+     * </p>
+     * <p>
+     * 値上がりローソクのボーダー色のデフォルト値
+     * </p>
+     * <p>
+     * 默认阳线的边框颜色
+     * </p>
+     */
+    public static final int DEFAULT_POSITIVE_STICK_BORDER_COLOR = Color.parseColor("#ed4d4d");
 
-	/**
-	 * <p>
-	 * Default price up stick's fill color
-	 * </p>
-	 * <p>
-	 * 値上がりローソクの色のデフォルト値
-	 * </p>
-	 * <p>
-	 * 默认阳线的填充颜色
-	 * </p>
-	 */
-	public static final int DEFAULT_POSITIVE_STICK_FILL_COLOR = Color.parseColor("#ed4d4d");
+    /**
+     * <p>
+     * Default price up stick's fill color
+     * </p>
+     * <p>
+     * 値上がりローソクの色のデフォルト値
+     * </p>
+     * <p>
+     * 默认阳线的填充颜色
+     * </p>
+     */
+    public static final int DEFAULT_POSITIVE_STICK_FILL_COLOR = Color.parseColor("#ed4d4d");
 
-	/**
-	 * <p>
-	 * Default price down stick's border color
-	 * </p>
-	 * <p>
-	 * 値下りローソクのボーダー色のデフォルト値
-	 * </p>
-	 * <p>
-	 * 默认阴线的边框颜色
-	 * </p>
-	 */
-	public static final int DEFAULT_NEGATIVE_STICK_BORDER_COLOR = Color.parseColor("#52ba27");
+    /**
+     * <p>
+     * Default price down stick's border color
+     * </p>
+     * <p>
+     * 値下りローソクのボーダー色のデフォルト値
+     * </p>
+     * <p>
+     * 默认阴线的边框颜色
+     * </p>
+     */
+    public static final int DEFAULT_NEGATIVE_STICK_BORDER_COLOR = Color.parseColor("#52ba27");
 
-	/**
-	 * <p>
-	 * Default price down stick's fill color
-	 * </p>
-	 * <p>
-	 * 値下りローソクの色のデフォルト値
-	 * </p>
-	 * <p>
-	 * 默认阴线的填充颜色
-	 * </p>
-	 */
-	public static final int DEFAULT_NEGATIVE_STICK_FILL_COLOR = Color.parseColor("#52ba27");
+    /**
+     * <p>
+     * Default price down stick's fill color
+     * </p>
+     * <p>
+     * 値下りローソクの色のデフォルト値
+     * </p>
+     * <p>
+     * 默认阴线的填充颜色
+     * </p>
+     */
+    public static final int DEFAULT_NEGATIVE_STICK_FILL_COLOR = Color.parseColor("#52ba27");
 
-	/**
-	 * <p>
-	 * Default price no change stick's color (cross-star,T-like etc.)
-	 * </p>
-	 * <p>
-	 * クローススターの色のデフォルト値
-	 * </p>
-	 * <p>
-	 * 默认十字线显示颜色
-	 * </p>
-	 */
-	public static final int DEFAULT_CROSS_STAR_COLOR = Color.LTGRAY;
+    /**
+     * <p>
+     * Default price no change stick's color (cross-star,T-like etc.)
+     * </p>
+     * <p>
+     * クローススターの色のデフォルト値
+     * </p>
+     * <p>
+     * 默认十字线显示颜色
+     * </p>
+     */
+    public static final int DEFAULT_CROSS_STAR_COLOR = Color.LTGRAY;
 
-	/**
-	 * <p>
-	 * Price up stick's border color
-	 * </p>
-	 * <p>
-	 * 値上がりローソクのボーダー色
-	 * </p>
-	 * <p>
-	 * 阳线的边框颜色
-	 * </p>
-	 */
-	private int positiveStickBorderColor = DEFAULT_POSITIVE_STICK_BORDER_COLOR;
+    /**
+     * <p>
+     * Price up stick's border color
+     * </p>
+     * <p>
+     * 値上がりローソクのボーダー色
+     * </p>
+     * <p>
+     * 阳线的边框颜色
+     * </p>
+     */
+    private int positiveStickBorderColor = DEFAULT_POSITIVE_STICK_BORDER_COLOR;
 
-	/**
-	 * <p>
-	 * Price up stick's fill color
-	 * </p>
-	 * <p>
-	 * 値上がりローソクの色
-	 * </p>
-	 * <p>
-	 * 阳线的填充颜色
-	 * </p>
-	 */
-	private int positiveStickFillColor = DEFAULT_POSITIVE_STICK_FILL_COLOR;
+    /**
+     * <p>
+     * Price up stick's fill color
+     * </p>
+     * <p>
+     * 値上がりローソクの色
+     * </p>
+     * <p>
+     * 阳线的填充颜色
+     * </p>
+     */
+    private int positiveStickFillColor = DEFAULT_POSITIVE_STICK_FILL_COLOR;
 
-	/**
-	 * <p>
-	 * Price down stick's border color
-	 * </p>
-	 * <p>
-	 * 値下りローソクのボーダー色
-	 * </p>
-	 * <p>
-	 * 阴线的边框颜色
-	 * </p>
-	 */
+    /**
+     * <p>
+     * Price down stick's border color
+     * </p>
+     * <p>
+     * 値下りローソクのボーダー色
+     * </p>
+     * <p>
+     * 阴线的边框颜色
+     * </p>
+     */
 
-	private int negativeStickBorderColor = DEFAULT_NEGATIVE_STICK_BORDER_COLOR;
+    private int negativeStickBorderColor = DEFAULT_NEGATIVE_STICK_BORDER_COLOR;
 
-	/**
-	 * <p>
-	 * Price down stick's fill color
-	 * </p>
-	 * <p>
-	 * 値下りローソクの色
-	 * </p>
-	 * <p>
-	 * 阴线的填充颜色
-	 * </p>
-	 */
-	private int negativeStickFillColor = DEFAULT_NEGATIVE_STICK_FILL_COLOR;
+    /**
+     * <p>
+     * Price down stick's fill color
+     * </p>
+     * <p>
+     * 値下りローソクの色
+     * </p>
+     * <p>
+     * 阴线的填充颜色
+     * </p>
+     */
+    private int negativeStickFillColor = DEFAULT_NEGATIVE_STICK_FILL_COLOR;
 
-	/**
-	 * <p>
-	 * Price no change stick's color (cross-star,T-like etc.)
-	 * </p>
-	 * <p>
-	 * クローススターの色（価格変動無し）
-	 * </p>
-	 * <p>
-	 * 十字线显示颜色（十字星,一字平线,T形线的情况）
-	 * </p>
-	 */
-	private int crossStarColor = DEFAULT_CROSS_STAR_COLOR;
+    /**
+     * <p>
+     * Price no change stick's color (cross-star,T-like etc.)
+     * </p>
+     * <p>
+     * クローススターの色（価格変動無し）
+     * </p>
+     * <p>
+     * 十字线显示颜色（十字星,一字平线,T形线的情况）
+     * </p>
+     */
+    private int crossStarColor = DEFAULT_CROSS_STAR_COLOR;
 
-	/**
-	 * <p>
-	 * Constructor of SlipCandleStickChart
-	 * </p>
-	 * <p>
-	 * SlipCandleStickChart类对象的构造函数
-	 * </p>
-	 * <p>
-	 * SlipCandleStickChartのコンストラクター
-	 * </p>
-	 * 
-	 * @param context
-	 * @param attrs
-	 * @param defStyle
-	 */
-	public SlipCandleStickChart(Context context, AttributeSet attrs,
-			int defStyle) {
-		super(context, attrs, defStyle);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * <p>
+     * Constructor of SlipCandleStickChart
+     * </p>
+     * <p>
+     * SlipCandleStickChart类对象的构造函数
+     * </p>
+     * <p>
+     * SlipCandleStickChartのコンストラクター
+     * </p>
+     *
+     * @param context
+     * @param attrs
+     * @param defStyle
+     */
+    public SlipCandleStickChart(Context context, AttributeSet attrs,
+                                int defStyle) {
+        super(context, attrs, defStyle);
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * <p>
-	 * Constructor of SlipCandleStickChart
-	 * </p>
-	 * <p>
-	 * SlipCandleStickChart类对象的构造函数
-	 * </p>
-	 * <p>
-	 * SlipCandleStickChartのコンストラクター
-	 * </p>
-	 * 
-	 * @param context
-	 * @param attrs
-	 */
-	public SlipCandleStickChart(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * <p>
+     * Constructor of SlipCandleStickChart
+     * </p>
+     * <p>
+     * SlipCandleStickChart类对象的构造函数
+     * </p>
+     * <p>
+     * SlipCandleStickChartのコンストラクター
+     * </p>
+     *
+     * @param context
+     * @param attrs
+     */
+    public SlipCandleStickChart(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * <p>
-	 * Constructor of SlipCandleStickChart
-	 * </p>
-	 * <p>
-	 * SlipCandleStickChart类对象的构造函数
-	 * </p>
-	 * <p>
-	 * SlipCandleStickChartのコンストラクター
-	 * </p>
-	 * 
-	 * @param context
-	 */
-	public SlipCandleStickChart(Context context) {
-		super(context);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * <p>
+     * Constructor of SlipCandleStickChart
+     * </p>
+     * <p>
+     * SlipCandleStickChart类对象的构造函数
+     * </p>
+     * <p>
+     * SlipCandleStickChartのコンストラクター
+     * </p>
+     *
+     * @param context
+     */
+    public SlipCandleStickChart(Context context) {
+        super(context);
+        // TODO Auto-generated constructor stub
+    }
 
-	@Override
-	protected void calcDataValueRange() {
-		double maxValue = Double.MIN_VALUE;
-		double minValue = Double.MAX_VALUE;
+    @Override
+    protected void calcDataValueRange() {
+        double maxValue = Double.MIN_VALUE;
+        double minValue = Double.MAX_VALUE;
 
-		IMeasurable first = this.stickData.get(getDisplayFrom());
-		// 第一个stick为停盘的情况
-		if (first.getHigh() == 0 && first.getLow() == 0) {
+        IMeasurable first = this.stickData.get(getDisplayFrom());
+        // 第一个stick为停盘的情况
+        if (first.getHigh() == 0 && first.getLow() == 0) {
 
-		} else {
-			maxValue = first.getHigh();
-			minValue = first.getLow();
-		}
-		for (int i = getDisplayFrom(); i < getDisplayTo(); i++) {
-			OHLCEntity stick = (OHLCEntity) this.stickData.get(i);
+        } else {
+            maxValue = first.getHigh();
+            minValue = first.getLow();
+        }
+        for (int i = getDisplayFrom(); i < getDisplayTo(); i++) {
+            OHLCEntity stick = (OHLCEntity) this.stickData.get(i);
 
-			if (stick.getOpen() == 0 && stick.getHigh() == 0
-					&& stick.getLow() == 0) {
-				// 停盘期间计算收盘价
-				if (stick.getClose() > 0) {
-					if (stick.getClose() < minValue) {
-						minValue = stick.getClose();
-					}
+            if (stick.getOpen() == 0 && stick.getHigh() == 0
+                    && stick.getLow() == 0) {
+                // 停盘期间计算收盘价
+                if (stick.getClose() > 0) {
+                    if (stick.getClose() < minValue) {
+                        minValue = stick.getClose();
+                    }
 
-					if (stick.getClose() > maxValue) {
-						maxValue = stick.getClose();
-					}
-				}
-			} else {
-				if (stick.getLow() < minValue) {
-					minValue = stick.getLow();
-				}
+                    if (stick.getClose() > maxValue) {
+                        maxValue = stick.getClose();
+                    }
+                }
+            } else {
+                if (stick.getLow() < minValue) {
+                    minValue = stick.getLow();
+                }
 
-				if (stick.getHigh() > maxValue) {
-					maxValue = stick.getHigh();
-				}
-			}
-		}
+                if (stick.getHigh() > maxValue) {
+                    maxValue = stick.getHigh();
+                }
+            }
+        }
 
-		this.maxDataValue = maxValue;
-		this.minDataValue = minValue;
+        this.maxDataValue = maxValue;
+        this.minDataValue = minValue;
 
-		this.maxValue = maxValue;
-		this.minValue = minValue;
-	}
+        this.maxValue = maxValue;
+        this.minValue = minValue;
+    }
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * <p>Called when is going to draw this chart<p> <p>チャートを書く前、メソッドを呼ぶ<p>
-	 * <p>绘制图表时调用<p>
-	 * 
-	 * @param canvas
-	 * 
-	 * @see android.view.View#onDraw(android.graphics.Canvas)
-	 */
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * <p>Called when is going to draw this chart<p> <p>チャートを書く前、メソッドを呼ぶ<p>
+     * <p>绘制图表时调用<p>
+     *
+     * @param canvas
+     *
+     * @see android.view.View#onDraw(android.graphics.Canvas)
+     */
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
 
 //	@Override
 //	public void drawData(Canvas canvas){
@@ -310,394 +309,409 @@ public class SlipCandleStickChart extends SlipStickChart {
 //		}
 //	}
 
-	/**
-	 * <p>
-	 * draw sticks
-	 * </p>
-	 * <p>
-	 * スティックを書く
-	 * </p>
-	 * <p>
-	 * 绘制柱条
-	 * </p>
-	 * 
-	 * @param canvas
-	 */
-	@Override
-	protected void drawSticks(Canvas canvas) {
-		if (null == stickData) {
-			return;
-		}
-		if (stickData.size() <= 0) {
-			return;
-		}
+    /**
+     * <p>
+     * draw sticks
+     * </p>
+     * <p>
+     * スティックを書く
+     * </p>
+     * <p>
+     * 绘制柱条
+     * </p>
+     *
+     * @param canvas
+     */
+    @Override
+    protected void drawSticks(Canvas canvas) {
+        if (null == stickData) {
+            return;
+        }
+        if (stickData.size() <= 0) {
+            return;
+        }
 
-		float stickWidth = dataQuadrant.getPaddingWidth() / getDataDisplayNumber()
-				- stickSpacing;
-		float stickX = dataQuadrant.getPaddingStartX();
+        float stickWidth = dataQuadrant.getPaddingWidth() / getDataDisplayNumber()
+                - stickSpacing;
+        float stickX = dataQuadrant.getPaddingStartX();
 
-		Paint mPaintPositiveFill = new Paint();
-		mPaintPositiveFill.setColor(positiveStickFillColor);
-		mPaintPositiveFill.setStyle(Paint.Style.FILL);
+        Paint mPaintPositiveFill = new Paint();
+        mPaintPositiveFill.setColor(positiveStickFillColor);
+        mPaintPositiveFill.setStyle(Paint.Style.FILL);
 
-		Paint mPaintPositiveBorder = new Paint();
-		mPaintPositiveBorder.setColor(positiveStickBorderColor);
-		mPaintPositiveBorder.setStyle(Paint.Style.STROKE);
+        Paint mPaintPositiveBorder = new Paint();
+        mPaintPositiveBorder.setColor(positiveStickBorderColor);
+        mPaintPositiveBorder.setStyle(Paint.Style.STROKE);
 
-		Paint mPaintNegativeFill = new Paint();
-		mPaintNegativeFill.setColor(negativeStickFillColor);
-		mPaintNegativeFill.setStyle(Paint.Style.FILL);
+        Paint mPaintNegativeFill = new Paint();
+        mPaintNegativeFill.setColor(negativeStickFillColor);
+        mPaintNegativeFill.setStyle(Paint.Style.FILL);
 
-		Paint mPaintNegativeBorder = new Paint();
-		mPaintNegativeBorder.setColor(negativeStickBorderColor);
-		mPaintNegativeBorder.setStyle(Paint.Style.STROKE);
+        Paint mPaintNegativeBorder = new Paint();
+        mPaintNegativeBorder.setColor(negativeStickBorderColor);
+        mPaintNegativeBorder.setStyle(Paint.Style.STROKE);
 
-		Paint mPaintCross = new Paint();
-		mPaintCross.setColor(crossStarColor);
+        Paint mPaintCross = new Paint();
+        mPaintCross.setColor(crossStarColor);
 
-		boolean maxValueDrawn = false;
-		boolean minValueDrawn = false;
+        boolean maxValueDrawn = false;
+        boolean minValueDrawn = false;
 
-		for (int i = getDisplayFrom(); i < getDisplayTo(); i++) {
-			OHLCEntity ohlc = (OHLCEntity) stickData.get(i);
-			float openY = (float) ((1f - (ohlc.getOpen() - minValue)
-					/ (maxValue - minValue))
-					* (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
-			float highY = (float) ((1f - (ohlc.getHigh() - minValue)
-					/ (maxValue - minValue))
-					* (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
-			float lowY = (float) ((1f - (ohlc.getLow() - minValue)
-					/ (maxValue - minValue))
-					* (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
-			float closeY = (float) ((1f - (ohlc.getClose() - minValue)
-					/ (maxValue - minValue))
-					* (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
+        for (int i = getDisplayFrom(); i < getDisplayTo(); i++) {
+            OHLCEntity ohlc = (OHLCEntity) stickData.get(i);
+            float openY = (float) ((1f - (ohlc.getOpen() - minValue)
+                    / (maxValue - minValue))
+                    * (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
+            float highY = (float) ((1f - (ohlc.getHigh() - minValue)
+                    / (maxValue - minValue))
+                    * (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
+            float lowY = (float) ((1f - (ohlc.getLow() - minValue)
+                    / (maxValue - minValue))
+                    * (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
+            float closeY = (float) ((1f - (ohlc.getClose() - minValue)
+                    / (maxValue - minValue))
+                    * (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
 
-			float stickCenterX = stickX + stickWidth / 2;
+            float stickCenterX = stickX + stickWidth / 2;
 
-			if (ohlc.getOpen() < ohlc.getClose()) {
-				// stick or line
-				if (stickWidth >= 2f) {
-					canvas.drawRect(stickX, closeY, stickX + stickWidth, openY,
-							mPaintPositiveFill);
-					canvas.drawRect(stickX, closeY, stickX + stickWidth, openY,
-							mPaintPositiveBorder);
-				}
-				canvas.drawLine(stickCenterX, highY, stickX
-						+ stickWidth / 2f, closeY, mPaintPositiveBorder);
-				canvas.drawLine(stickCenterX, openY, stickX
-						+ stickWidth / 2f, lowY, mPaintPositiveBorder);
-			} else if (ohlc.getOpen() > ohlc.getClose()) {
-				// stick or line
-				if (stickWidth >= 2f) {
-					canvas.drawRect(stickX, openY, stickX + stickWidth, closeY,
-							mPaintNegativeFill);
-					canvas.drawRect(stickX, openY, stickX + stickWidth, closeY,
-							mPaintNegativeBorder);
-				}
-				canvas.drawLine(stickCenterX, highY, stickX
-						+ stickWidth / 2f, openY, mPaintNegativeBorder);
-				canvas.drawLine(stickCenterX, closeY, stickX
-						+ stickWidth / 2f, lowY, mPaintNegativeBorder);
-			} else {
-				// line or point
-				if (stickWidth >= 2f) {
-					canvas.drawLine(stickX, closeY, stickX + stickWidth, openY,
-							mPaintCross);
-				}
-				canvas.drawLine(stickCenterX, highY, stickX
-						+ stickWidth / 2f, lowY, mPaintCross);
-			}
+            if (ohlc.getOpen() < ohlc.getClose()) {
+                // stick or line
+                if (stickWidth >= 2f) {
+                    canvas.drawRect(stickX, closeY, stickX + stickWidth, openY,
+                            mPaintPositiveFill);
+                    canvas.drawRect(stickX, closeY, stickX + stickWidth, openY,
+                            mPaintPositiveBorder);
+                }
+                canvas.drawLine(stickCenterX, highY, stickX
+                        + stickWidth / 2f, closeY, mPaintPositiveBorder);
+                canvas.drawLine(stickCenterX, openY, stickX
+                        + stickWidth / 2f, lowY, mPaintPositiveBorder);
+            } else if (ohlc.getOpen() > ohlc.getClose()) {
+                // stick or line
+                if (stickWidth >= 2f) {
+                    canvas.drawRect(stickX, openY, stickX + stickWidth, closeY,
+                            mPaintNegativeFill);
+                    canvas.drawRect(stickX, openY, stickX + stickWidth, closeY,
+                            mPaintNegativeBorder);
+                }
+                canvas.drawLine(stickCenterX, highY, stickX
+                        + stickWidth / 2f, openY, mPaintNegativeBorder);
+                canvas.drawLine(stickCenterX, closeY, stickX
+                        + stickWidth / 2f, lowY, mPaintNegativeBorder);
+            } else {
+                // line or point
+                if (stickWidth >= 2f) {
+                    canvas.drawLine(stickX, closeY, stickX + stickWidth, openY,
+                            mPaintCross);
+                }
+                canvas.drawLine(stickCenterX, highY, stickX
+                        + stickWidth / 2f, lowY, mPaintCross);
+            }
 
-			if (ohlc.getHigh() - this.maxDataValue == 0 && maxValueDrawn == false) {
-				this.drawMaxLabel(canvas, ohlc.getHigh(), new PointF(stickCenterX, highY));
-				maxValueDrawn = true;
-			}
+            if (ohlc.getHigh() - this.maxDataValue == 0 && !maxValueDrawn) {
+                this.drawMaxLabel(canvas, ohlc.getHigh(), new PointF(stickCenterX, highY));
+                maxValueDrawn = true;
+            }
 
-			if (ohlc.getLow() - this.minDataValue == 0 && minValueDrawn == false) {
-				this.drawMinLabel(canvas, ohlc.getLow(), new PointF(stickCenterX, lowY));
-				minValueDrawn = true;
-			}
+            if (ohlc.getLow() - this.minDataValue == 0 && !minValueDrawn) {
+                this.drawMinLabel(canvas, ohlc.getLow(), new PointF(stickCenterX, lowY));
+                minValueDrawn = true;
+            }
 
 
-			// next x
-			stickX = stickX + stickSpacing + stickWidth;
-		}
-	}
+            // next x
+            stickX = stickX + stickSpacing + stickWidth;
+        }
+    }
 
-	protected void drawMaxLabel(Canvas canvas, double value , PointF point){
-		String valueStr = this.formatAxisYDegree(value);
+    protected void drawMaxLabel(Canvas canvas, double value, PointF point) {
+        if (!this.displayMaxLabel) {
+            return;
+        }
 
-		int textFontSize = 28;
+        String valueStr = this.formatAxisYDegree(value);
 
-		Paint mPaintBoxLine = new Paint();
-		mPaintBoxLine.setColor(Color.LTGRAY);
-		// mPaintBoxLine.setAlpha(80);
-		mPaintBoxLine.setStyle(Paint.Style.FILL);
+        int textFontSize = maxLabelFontSize;
 
-		Paint mPaintBoxText = new Paint();
-		mPaintBoxText.setColor(Color.BLACK);
-		mPaintBoxText.setAntiAlias(true);
-		mPaintBoxText.setTextSize(textFontSize);
+        Paint mPaintBoxLine = new Paint();
+        mPaintBoxLine.setColor(maxLabelStrokeColor);
+        mPaintBoxLine.setStyle(Paint.Style.STROKE);
 
-		Rect textSize = new Rect();
-		mPaintBoxText.getTextBounds(valueStr, 0, valueStr.length(), textSize);
+        Paint mPaintBoxFill = new Paint();
+        mPaintBoxFill.setColor(maxLabelFillColor);
+        mPaintBoxFill.setStyle(Paint.Style.FILL);
 
-		float spaceToTopBottom = textFontSize ;
-		float spaceToRect = textFontSize * 1.48f;
+        Paint mPaintBoxText = new Paint();
+        mPaintBoxText.setColor(maxLabelFontColor);
+        mPaintBoxText.setAntiAlias(true);
+        mPaintBoxText.setTextSize(textFontSize);
 
-		if(point.x > dataQuadrant.getStartX() + textSize.width() + spaceToRect){
-			//画左边
-			//向上画
-			canvas.drawLine(point.x, point.y, point.x, point.y - spaceToTopBottom, mPaintBoxLine);
-			canvas.drawLine(point.x, point.y - spaceToTopBottom, point.x - spaceToRect, point.y - spaceToTopBottom, mPaintBoxLine);
+        Rect textSize = new Rect();
+        mPaintBoxText.getTextBounds(valueStr, 0, valueStr.length(), textSize);
 
-			PointF boxHS = new PointF(point.x - textSize.width() - spaceToRect, point.y - textSize.height() / 2.f - spaceToTopBottom - 4);
-			PointF boxHE = new PointF(point.x - spaceToRect, point.y + textSize.height() / 2.f - spaceToTopBottom + 4);
+        float spaceToTopBottom = textFontSize;
+        float spaceToRect = textFontSize * 1.48f; // golden section
 
-			// draw a rectangle
-			canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
-			// draw text
-			canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
+        if (point.x > dataQuadrant.getStartX() + textSize.width() + spaceToRect) {
+            //画左边
+            //向上画
+            canvas.drawLine(point.x, point.y, point.x, point.y - spaceToTopBottom, mPaintBoxLine);
+            canvas.drawLine(point.x, point.y - spaceToTopBottom, point.x - spaceToRect, point.y - spaceToTopBottom, mPaintBoxLine);
 
-		}else{
+            PointF boxHS = new PointF(point.x - textSize.width() - spaceToRect, point.y - textSize.height() / 2.f - spaceToTopBottom - 4);
+            PointF boxHE = new PointF(point.x - spaceToRect, point.y + textSize.height() / 2.f - spaceToTopBottom + 4);
 
-			// 画左边
-			if(point.x > dataQuadrant.getEndX() - textSize.width() - spaceToRect){
-				canvas.drawLine(point.x, point.y, point.x, point.y - spaceToTopBottom, mPaintBoxLine);
-				canvas.drawLine(point.x, point.y - spaceToTopBottom, point.x - spaceToRect, point.y - spaceToTopBottom, mPaintBoxLine);
+            // draw a rectangle
+            canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxFill);
+            canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
 
-				PointF boxHS = new PointF(point.x - textSize.width() - spaceToRect, point.y - textSize.height() / 2.f - spaceToTopBottom - 4);
-				PointF boxHE = new PointF(point.x - spaceToRect, point.y + textSize.height() / 2.f - spaceToTopBottom + 4);
+            // draw text
+            canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
 
-				// draw a rectangle
-				canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
-				// draw text
-				canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
+        } else {
 
-			}else{
-				canvas.drawLine(point.x, point.y, point.x, point.y - spaceToTopBottom, mPaintBoxLine);
-				canvas.drawLine(point.x, point.y - spaceToTopBottom, point.x + spaceToRect, point.y - spaceToTopBottom, mPaintBoxLine);
+            // 画左边
+            if (point.x > dataQuadrant.getEndX() - textSize.width() - spaceToRect) {
+                canvas.drawLine(point.x, point.y, point.x, point.y - spaceToTopBottom, mPaintBoxLine);
+                canvas.drawLine(point.x, point.y - spaceToTopBottom, point.x - spaceToRect, point.y - spaceToTopBottom, mPaintBoxLine);
 
-				//画右边
+                PointF boxHS = new PointF(point.x - textSize.width() - spaceToRect, point.y - textSize.height() / 2.f - spaceToTopBottom - 4);
+                PointF boxHE = new PointF(point.x - spaceToRect, point.y + textSize.height() / 2.f - spaceToTopBottom + 4);
+
+                // draw a rectangle
+                canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxFill);
+                canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
+
+                // draw text
+                canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
+
+            } else {
+                canvas.drawLine(point.x, point.y, point.x, point.y - spaceToTopBottom, mPaintBoxLine);
+                canvas.drawLine(point.x, point.y - spaceToTopBottom, point.x + spaceToRect, point.y - spaceToTopBottom, mPaintBoxLine);
+
+                //画右边
 //				CGRect textRect = CGRectMake(pt.x + spaceToRect, pt.y - textSize.height / 2.f - spaceToTopBottom, textSize.width, textSize.height);
 
-				PointF boxHS = new PointF(point.x + spaceToRect, point.y - textSize.height() / 2.f - spaceToTopBottom - 4);
-				PointF boxHE = new PointF(point.x + textSize.width() + spaceToRect, point.y + textSize.height() / 2.f - spaceToTopBottom + 4);
+                PointF boxHS = new PointF(point.x + spaceToRect, point.y - textSize.height() / 2.f - spaceToTopBottom - 4);
+                PointF boxHE = new PointF(point.x + textSize.width() + spaceToRect, point.y + textSize.height() / 2.f - spaceToTopBottom + 4);
 
-				// draw a rectangle
-				canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
-				// draw text
-				canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
-			}
-		}
-	}
+                // draw a rectangle
+                canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxFill);
+                canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
 
-	protected void drawMinLabel(Canvas canvas, double value , PointF point){
-		String valueStr = this.formatAxisYDegree(value);
+                // draw text
+                canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
+            }
+        }
+    }
 
-		int textFontSize = 28;
+    protected void drawMinLabel(Canvas canvas, double value, PointF point) {
+        if (!this.displayMinLabel) {
+            return;
+        }
 
-		Paint mPaintBoxLine = new Paint();
-		mPaintBoxLine.setColor(Color.LTGRAY);
-		// mPaintBoxLine.setAlpha(80);
-		mPaintBoxLine.setStyle(Paint.Style.FILL);
+        String valueStr = this.formatAxisYDegree(value);
 
-		Paint mPaintBoxText = new Paint();
-		mPaintBoxText.setColor(Color.BLACK);
-		mPaintBoxText.setAntiAlias(true);
-		mPaintBoxText.setTextSize(textFontSize);
+        int textFontSize = minLabelFontSize;
 
-		Rect textSize = new Rect();
-		mPaintBoxText.getTextBounds(valueStr, 0, valueStr.length(), textSize);
+        Paint mPaintBoxLine = new Paint();
+        mPaintBoxLine.setColor(minLabelStrokeColor);
+        mPaintBoxLine.setStyle(Paint.Style.STROKE);
 
-		float spaceToTopBottom = textFontSize ;
-		float spaceToRect = textFontSize * 1.48f;
+        Paint mPaintBoxFill = new Paint();
+        mPaintBoxFill.setColor(minLabelFillColor);
+        mPaintBoxFill.setStyle(Paint.Style.FILL);
 
-		if(point.x > dataQuadrant.getStartX() + textSize.width() + spaceToRect){
-			//画左边
-			//向上画
-			canvas.drawLine(point.x, point.y, point.x, point.y + spaceToTopBottom, mPaintBoxLine);
-			canvas.drawLine(point.x, point.y + spaceToTopBottom, point.x - spaceToRect, point.y + spaceToTopBottom, mPaintBoxLine);
+        Paint mPaintBoxText = new Paint();
+        mPaintBoxText.setColor(minLabelFontColor);
+        mPaintBoxText.setAntiAlias(true);
+        mPaintBoxText.setTextSize(textFontSize);
 
-			PointF boxHS = new PointF(point.x - textSize.width() - spaceToRect, point.y - textSize.height() / 2.f + spaceToTopBottom - 4);
-			PointF boxHE = new PointF(point.x - spaceToRect, point.y + textSize.height() / 2.f + spaceToTopBottom + 4);
+        Rect textSize = new Rect();
+        mPaintBoxText.getTextBounds(valueStr, 0, valueStr.length(), textSize);
 
-			// draw a rectangle
-			canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
-			// draw text
-			canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
+        float spaceToTopBottom = textFontSize;
+        float spaceToRect = textFontSize * 1.48f; // golden section
 
-		}else{
+        if (point.x > dataQuadrant.getStartX() + textSize.width() + spaceToRect) {
+            //画左边
+            //向上画
+            canvas.drawLine(point.x, point.y, point.x, point.y + spaceToTopBottom, mPaintBoxLine);
+            canvas.drawLine(point.x, point.y + spaceToTopBottom, point.x - spaceToRect, point.y + spaceToTopBottom, mPaintBoxLine);
 
-			// 画左边
-			if(point.x > dataQuadrant.getEndX() - textSize.width() - spaceToRect){
-				canvas.drawLine(point.x, point.y, point.x, point.y + spaceToTopBottom, mPaintBoxLine);
-				canvas.drawLine(point.x, point.y + spaceToTopBottom, point.x - spaceToRect, point.y + spaceToTopBottom, mPaintBoxLine);
+            PointF boxHS = new PointF(point.x - textSize.width() - spaceToRect, point.y - textSize.height() / 2.f + spaceToTopBottom - 4);
+            PointF boxHE = new PointF(point.x - spaceToRect, point.y + textSize.height() / 2.f + spaceToTopBottom + 4);
 
-				PointF boxHS = new PointF(point.x - textSize.width() - spaceToRect, point.y - textSize.height() / 2.f + spaceToTopBottom - 4);
-				PointF boxHE = new PointF(point.x - spaceToRect, point.y + textSize.height() / 2.f + spaceToTopBottom + 4);
+            // draw a rectangle
+            canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxFill);
+            // draw a rectangle
+            canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
+            // draw text
+            canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
 
-				// draw a rectangle
-				canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
-				// draw text
-				canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
+        } else {
 
-			}else{
-				canvas.drawLine(point.x, point.y, point.x, point.y + spaceToTopBottom, mPaintBoxLine);
-				canvas.drawLine(point.x, point.y + spaceToTopBottom, point.x + spaceToRect, point.y + spaceToTopBottom, mPaintBoxLine);
+            // 画左边
+            if (point.x > dataQuadrant.getEndX() - textSize.width() - spaceToRect) {
+                canvas.drawLine(point.x, point.y, point.x, point.y + spaceToTopBottom, mPaintBoxLine);
+                canvas.drawLine(point.x, point.y + spaceToTopBottom, point.x - spaceToRect, point.y + spaceToTopBottom, mPaintBoxLine);
 
-				//画右边
-				PointF boxHS = new PointF(point.x + spaceToRect, point.y - textSize.height() / 2.f + spaceToTopBottom - 4);
-				PointF boxHE = new PointF(point.x + textSize.width() + spaceToRect, point.y + textSize.height() / 2.f + spaceToTopBottom + 4);
+                PointF boxHS = new PointF(point.x - textSize.width() - spaceToRect, point.y - textSize.height() / 2.f + spaceToTopBottom - 4);
+                PointF boxHE = new PointF(point.x - spaceToRect, point.y + textSize.height() / 2.f + spaceToTopBottom + 4);
 
-				// draw a rectangle
-				canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
-				// draw text
-				canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
-			}
-		}
-	}
+                // draw a rectangle
+                canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxFill);
+                canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
+                // draw text
+                canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
 
-	protected void drawSticksAsLine(Canvas canvas) {
-		if (null == stickData) {
-			return;
-		}
-		if (stickData.size() <= 0) {
-			return;
-		}
+            } else {
+                canvas.drawLine(point.x, point.y, point.x, point.y + spaceToTopBottom, mPaintBoxLine);
+                canvas.drawLine(point.x, point.y + spaceToTopBottom, point.x + spaceToRect, point.y + spaceToTopBottom, mPaintBoxLine);
 
-		float lineLength = dataQuadrant.getPaddingWidth() / getDisplayNumber()
-				- stickSpacing;
-		float startX = dataQuadrant.getPaddingStartX() + lineLength / 2;
+                //画右边
+                PointF boxHS = new PointF(point.x + spaceToRect, point.y - textSize.height() / 2.f + spaceToTopBottom - 4);
+                PointF boxHE = new PointF(point.x + textSize.width() + spaceToRect, point.y + textSize.height() / 2.f + spaceToTopBottom + 4);
 
-		Paint mPaintStroke = new Paint();
-		mPaintStroke.setStyle(Paint.Style.STROKE);
-		mPaintStroke.setStrokeWidth(2.0f);
-		mPaintStroke.setColor(displayStickAsLineColor);
+                // draw a rectangle
+                canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxFill);
+                canvas.drawRect(boxHS.x, boxHS.y, boxHE.x, boxHE.y, mPaintBoxLine);
 
-		// start point
-		PointF ptFirst = null;
+                // draw text
+                canvas.drawText(valueStr, boxHS.x, boxHS.y + textFontSize, mPaintBoxText);
+            }
+        }
+    }
 
-		for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
+    protected void drawSticksAsLine(Canvas canvas) {
+        if (null == stickData) {
+            return;
+        }
+        if (stickData.size() <= 0) {
+            return;
+        }
 
-			OHLCEntity ohlc = (OHLCEntity) stickData.get(j);
-			double value = ohlc.getClose();
+        float lineLength = dataQuadrant.getPaddingWidth() / getDisplayNumber()
+                - stickSpacing;
+        float startX = dataQuadrant.getPaddingStartX() + lineLength / 2;
 
-			if(isNoneDisplayValue((float)value)){
+        Paint mPaintStroke = new Paint();
+        mPaintStroke.setStyle(Paint.Style.STROKE);
+        mPaintStroke.setStrokeWidth(displayStickAsLineWidth);
+        mPaintStroke.setColor(displayStickAsLineColor);
 
-			}else {
-//				// calculate Y
-//				float valueY = (float) ((1f - (value - minValue)
-//						/ (maxValue - minValue)) * dataQuadrant.getPaddingHeight())
-//						+ dataQuadrant.getPaddingStartY();
+        // start point
+        PointF ptFirst = null;
 
-				float closeY = (float) ((1f - (ohlc.getClose() - minValue)
-						/ (maxValue - minValue))
-						* (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
+        for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
 
-				// if is not last point connect to previous point
-				if (j > getDisplayFrom() && ptFirst!=null) {
-					canvas.drawLine(ptFirst.x, ptFirst.y, startX, closeY,
-							mPaintStroke);
-				}
-				// reset
-				ptFirst = new PointF(startX, closeY);
-			}
-			startX = startX + stickSpacing + lineLength;
-		}
-	}
-	
-	@Override
-	protected PointF calcBindPoint(float x ,float y) {
-		float calcX = 0;
-		float calcY = 0;
-		int index = calcSelectedIndex(x,y);
+            OHLCEntity ohlc = (OHLCEntity) stickData.get(j);
+            double value = ohlc.getClose();
 
-		float stickWidth = dataQuadrant.getPaddingWidth() / getDataDisplayNumber();
+            if (isNoneDisplayValue((float) value)) {
 
-		if (index >= getDisplayFrom() && index <= getDisplayTo() - 1) {
-			OHLCEntity stick = (OHLCEntity) stickData.get(index);
-			calcY = (float) ((1f - (stick.getClose() - minValue)
-					/ (maxValue - minValue))
-					* (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
-			calcX = dataQuadrant.getPaddingStartX() + stickWidth * (index - getDisplayFrom()) + stickWidth / 2;
-		}
-		return new PointF(calcX,calcY);
-	}
+            } else {
+                float closeY = (float) ((1f - (ohlc.getClose() - minValue)
+                        / (maxValue - minValue))
+                        * (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
 
-	/**
-	 * @return the positiveStickBorderColor
-	 */
-	public int getPositiveStickBorderColor() {
-		return positiveStickBorderColor;
-	}
+                // if is not last point connect to previous point
+                if (j > getDisplayFrom() && ptFirst != null) {
+                    canvas.drawLine(ptFirst.x, ptFirst.y, startX, closeY,
+                            mPaintStroke);
+                }
+                // reset
+                ptFirst = new PointF(startX, closeY);
+            }
+            startX = startX + stickSpacing + lineLength;
+        }
+    }
 
-	/**
-	 * @param positiveStickBorderColor
-	 *            the positiveStickBorderColor to set
-	 */
-	public void setPositiveStickBorderColor(int positiveStickBorderColor) {
-		this.positiveStickBorderColor = positiveStickBorderColor;
-	}
+    @Override
+    protected PointF calcBindPoint(float x, float y) {
+        float calcX = 0;
+        float calcY = 0;
+        int index = calcSelectedIndex(x, y);
 
-	/**
-	 * @return the positiveStickFillColor
-	 */
-	public int getPositiveStickFillColor() {
-		return positiveStickFillColor;
-	}
+        float stickWidth = dataQuadrant.getPaddingWidth() / getDataDisplayNumber();
 
-	/**
-	 * @param positiveStickFillColor
-	 *            the positiveStickFillColor to set
-	 */
-	public void setPositiveStickFillColor(int positiveStickFillColor) {
-		this.positiveStickFillColor = positiveStickFillColor;
-	}
+        if (index >= getDisplayFrom() && index <= getDisplayTo() - 1) {
+            OHLCEntity stick = (OHLCEntity) stickData.get(index);
+            calcY = (float) ((1f - (stick.getClose() - minValue)
+                    / (maxValue - minValue))
+                    * (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
+            calcX = dataQuadrant.getPaddingStartX() + stickWidth * (index - getDisplayFrom()) + stickWidth / 2;
+        }
+        return new PointF(calcX, calcY);
+    }
 
-	/**
-	 * @return the negativeStickBorderColor
-	 */
-	public int getNegativeStickBorderColor() {
-		return negativeStickBorderColor;
-	}
+    /**
+     * @return the positiveStickBorderColor
+     */
+    public int getPositiveStickBorderColor() {
+        return positiveStickBorderColor;
+    }
 
-	/**
-	 * @param negativeStickBorderColor
-	 *            the negativeStickBorderColor to set
-	 */
-	public void setNegativeStickBorderColor(int negativeStickBorderColor) {
-		this.negativeStickBorderColor = negativeStickBorderColor;
-	}
+    /**
+     * @param positiveStickBorderColor the positiveStickBorderColor to set
+     */
+    public void setPositiveStickBorderColor(int positiveStickBorderColor) {
+        this.positiveStickBorderColor = positiveStickBorderColor;
+    }
 
-	/**
-	 * @return the negativeStickFillColor
-	 */
-	public int getNegativeStickFillColor() {
-		return negativeStickFillColor;
-	}
+    /**
+     * @return the positiveStickFillColor
+     */
+    public int getPositiveStickFillColor() {
+        return positiveStickFillColor;
+    }
 
-	/**
-	 * @param negativeStickFillColor
-	 *            the negativeStickFillColor to set
-	 */
-	public void setNegativeStickFillColor(int negativeStickFillColor) {
-		this.negativeStickFillColor = negativeStickFillColor;
-	}
+    /**
+     * @param positiveStickFillColor the positiveStickFillColor to set
+     */
+    public void setPositiveStickFillColor(int positiveStickFillColor) {
+        this.positiveStickFillColor = positiveStickFillColor;
+    }
 
-	/**
-	 * @return the crossStarColor
-	 */
-	public int getCrossStarColor() {
-		return crossStarColor;
-	}
+    /**
+     * @return the negativeStickBorderColor
+     */
+    public int getNegativeStickBorderColor() {
+        return negativeStickBorderColor;
+    }
 
-	/**
-	 * @param crossStarColor
-	 *            the crossStarColor to set
-	 */
-	public void setCrossStarColor(int crossStarColor) {
-		this.crossStarColor = crossStarColor;
-	}
+    /**
+     * @param negativeStickBorderColor the negativeStickBorderColor to set
+     */
+    public void setNegativeStickBorderColor(int negativeStickBorderColor) {
+        this.negativeStickBorderColor = negativeStickBorderColor;
+    }
+
+    /**
+     * @return the negativeStickFillColor
+     */
+    public int getNegativeStickFillColor() {
+        return negativeStickFillColor;
+    }
+
+    /**
+     * @param negativeStickFillColor the negativeStickFillColor to set
+     */
+    public void setNegativeStickFillColor(int negativeStickFillColor) {
+        this.negativeStickFillColor = negativeStickFillColor;
+    }
+
+    /**
+     * @return the crossStarColor
+     */
+    public int getCrossStarColor() {
+        return crossStarColor;
+    }
+
+    /**
+     * @param crossStarColor the crossStarColor to set
+     */
+    public void setCrossStarColor(int crossStarColor) {
+        this.crossStarColor = crossStarColor;
+    }
 }

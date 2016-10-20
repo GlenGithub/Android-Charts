@@ -24,26 +24,25 @@ package cn.limc.androidcharts.event;
 
 import android.view.MotionEvent;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/23 15:53:37 
- *  
+ * @author limc
+ * @version v1.0 2014/06/23 15:53:37
  */
 public class OnSlipGestureListener {
-	
-	public void onMoveLeft(ISlipable slipable,MotionEvent event) {
-		if (slipable != null) {
-			slipable.moveLeft();
-		}
-	}
-	
-	public void onMoveRight(ISlipable slipable,MotionEvent event) {
-		if (slipable != null) {
-			slipable.moveRight();
-		}
-	}
+
+    public void onMoveLeft(ISlipable slipable, MotionEvent event) {
+        if (slipable != null) {
+            slipable.moveLeft();
+        }
+    }
+
+    public void onMoveRight(ISlipable slipable, MotionEvent event) {
+        if (slipable != null) {
+            slipable.moveRight();
+        }
+    }
 }

@@ -21,27 +21,16 @@
 
 package cn.limc.androidcharts.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PointF;
 import android.util.AttributeSet;
-import android.util.FloatMath;
 import android.view.MotionEvent;
 
-import cn.limc.androidcharts.common.IFlexableGrid;
-import cn.limc.androidcharts.entity.DateValueEntity;
-import cn.limc.androidcharts.entity.LineEntity;
 import cn.limc.androidcharts.event.IGestureDetector;
 import cn.limc.androidcharts.event.ISlipable;
 import cn.limc.androidcharts.event.IZoomable;
 import cn.limc.androidcharts.event.LongPressSlipGestureDetector;
 import cn.limc.androidcharts.event.OnSlipGestureListener;
 import cn.limc.androidcharts.event.OnZoomGestureListener;
-import cn.limc.androidcharts.event.SlipGestureDetector;
 
 
 /**
@@ -54,13 +43,12 @@ import cn.limc.androidcharts.event.SlipGestureDetector;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/01/21 14:20:35
- * 
  */
-public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
-	
+public class SlipLineChart extends LineChart implements IZoomable, ISlipable {
+
 //	public static final int DEFAULT_LINE_ALIGN_TYPE = IFlexableGrid.ALIGN_TYPE_CENTER;
 
 //	public static final int DEFAULT_DISPLAY_FROM = 0;
@@ -73,17 +61,17 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //	protected int mingetDisplayNumber() = DEFAULT_MIN_DISPLAY_NUMBER;
 //	protected int zoomBaseLine = DEFAULT_ZOOM_BASE_LINE;
 
-	/**
-	 * <p>
-	 * data to draw lines
-	 * </p>
-	 * <p>
-	 * ラインを書く用データ
-	 * </p>
-	 * <p>
-	 * 绘制线条用的数据
-	 * </p>
-	 */
+    /**
+     * <p>
+     * data to draw lines
+     * </p>
+     * <p>
+     * ラインを書く用データ
+     * </p>
+     * <p>
+     * 绘制线条用的数据
+     * </p>
+     */
 //	protected List<LineEntity<DateValueEntity>> linesData;
 
 //	/**
@@ -111,57 +99,58 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //	 * </p>
 //	 */
 //	protected double maxValue;
-	
+
 //	protected int lineAlignType = DEFAULT_LINE_ALIGN_TYPE;
 
-	protected OnSlipGestureListener onSlipGestureListener = new OnSlipGestureListener();
-	
-	protected IGestureDetector slipGestureDetector = new LongPressSlipGestureDetector<ISlipable>(this);
+    protected OnSlipGestureListener onSlipGestureListener = new OnSlipGestureListener();
 
-	protected boolean detectSlipEvent = true;
+    protected IGestureDetector slipGestureDetector = new LongPressSlipGestureDetector<ISlipable>(this);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param context
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#GridChart(Context)
-	 */
-	public SlipLineChart(Context context) {
-		super(context);
-	}
+    protected boolean detectSlipEvent = true;
+    protected boolean enableSlip = true;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param context
-	 * 
-	 * @param attrs
-	 * 
-	 * @param defStyle
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
-	 * AttributeSet, int)
-	 */
-	public SlipLineChart(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @param context
+     *
+     * @see cn.limc.androidcharts.view.GridChart#GridChart(Context)
+     */
+    public SlipLineChart(Context context) {
+        super(context);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param context
-	 * 
-	 * @param attrs
-	 * 
-	 * 
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
-	 * AttributeSet)
-	 */
-	public SlipLineChart(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @param context
+     *
+     * @param attrs
+     *
+     * @param defStyle
+     *
+     * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
+     * AttributeSet, int)
+     */
+    public SlipLineChart(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @param context
+     *
+     * @param attrs
+     *
+     *
+     *
+     * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
+     * AttributeSet)
+     */
+    public SlipLineChart(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
 //	protected void calcDataValueRange() {
 //		double maxValue = Double.MIN_VALUE;
@@ -394,7 +383,7 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //			return dataQuadrant.getPaddingStartX();
 //		}
 //	}
-	
+
 //	/**
 //	 * <p>
 //	 * initialize degrees on Y axis
@@ -559,66 +548,69 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //		return slipGestureDetector.onTouchEvent(event);
 //	}
 
-	/**
-	 * <p>
-	 * calculate the distance between two touch points
-	 * </p>
-	 * <p>
-	 * 複数タッチしたポイントの距離
-	 * </p>
-	 * <p>
-	 * 计算两点触控时两点之间的距离
-	 * </p>
-	 * 
-	 * @param event
-	 * @return float
-	 *         <p>
-	 *         distance
-	 *         </p>
-	 *         <p>
-	 *         距離
-	 *         </p>
-	 *         <p>
-	 *         距离
-	 *         </p>
-	 */
-	protected float calcDistance(MotionEvent event) {
-		if(event.getPointerCount() <= 1) {
-			return 0f;
-		}else{
-			float x = event.getX(0) - event.getX(1);
-			float y = event.getY(0) - event.getY(1);
-			return (float) Math.sqrt(x * x + y * y);
-		}
-	}
+    /**
+     * <p>
+     * calculate the distance between two touch points
+     * </p>
+     * <p>
+     * 複数タッチしたポイントの距離
+     * </p>
+     * <p>
+     * 计算两点触控时两点之间的距离
+     * </p>
+     *
+     * @param event
+     * @return float
+     * <p>
+     * distance
+     * </p>
+     * <p>
+     * 距離
+     * </p>
+     * <p>
+     * 距离
+     * </p>
+     */
+    protected float calcDistance(MotionEvent event) {
+        if (event.getPointerCount() <= 1) {
+            return 0f;
+        } else {
+            float x = event.getX(0) - event.getX(1);
+            float y = event.getY(0) - event.getY(1);
+            return (float) Math.sqrt(x * x + y * y);
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @param event
-	 * @return
-	 * @see cn.limc.androidcharts.view.StickChart#onTouchEvent(android.view.MotionEvent)
-	 */
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		// valid
-		if (!isValidTouchPoint(event.getX(), event.getY())) {
-			return false;
-		}
-		if (null == linesData || linesData.size() == 0) {
-			return false;
-		}
-		if (detectSlipEvent) {
-			return slipGestureDetector.onTouchEvent(event);
-		}else{
-			return true;
-		}
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @param event
+     * @return
+     * @see cn.limc.androidcharts.view.StickChart#onTouchEvent(android.view.MotionEvent)
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // valid
+        if (!isValidTouchPoint(event.getX(), event.getY())) {
+            return false;
+        }
+        if (null == linesData || linesData.size() == 0) {
+            return false;
+        }
+        if (detectSlipEvent) {
+            return slipGestureDetector.onTouchEvent(event);
+        } else {
+            return super.onTouchEvent(event);
+        }
+    }
 
-	public void moveRight() {
-		if(this.forward(SLIP_STEP)) {
-			this.postInvalidate();
-		}
+    public void moveRight() {
+        if (!this.enableSlip) {
+            return;
+        }
+        if (this.forward(SLIP_STEP)) {
+            this.postInvalidate();
+        }
 //		int dataSize = linesData.get(0).getLineData().size();
 //		if (getDisplayTo() < dataSize - SLIP_STEP) {
 //			getDisplayFrom() = getDisplayFrom() + SLIP_STEP;
@@ -632,23 +624,26 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //		}
 //
 //		this.postInvalidate();
-		
+
 //		//Listener
 //		if (onSlipGestureListener != null) {
 //			onSlipGestureListener.onSlip(SLIP_DIRECTION_RIGHT, getDisplayFrom(), getDisplayNumber());
 //		}
 
-		if (onDisplayCursorListener != null) {
-			onDisplayCursorListener.onCursorChanged(this,getDisplayFrom(), getDisplayNumber());
-		}
-	}
+        if (onDisplayCursorListener != null) {
+            onDisplayCursorListener.onCursorChanged(this, getDisplayFrom(), getDisplayNumber());
+        }
+    }
 
-	public void moveLeft() {
-		if(this.backward(SLIP_STEP)) {
-			this.postInvalidate();
-		}
+    public void moveLeft() {
+        if (!this.enableSlip) {
+            return;
+        }
+        if (this.backward(SLIP_STEP)) {
+            this.postInvalidate();
+        }
 //		int dataSize = linesData.get(0).getLineData().size();
-		
+
 //		if (getDisplayFrom() <= SLIP_STEP) {
 //			getDisplayFrom() = 0;
 //		} else if (getDisplayFrom() > SLIP_STEP) {
@@ -661,30 +656,30 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //		if (getDisplayTo() >= dataSize) {
 //			getDisplayFrom() = dataSize - getDisplayNumber();
 //		}
-		
+
 //		this.postInvalidate();
-		
+
 //		//Listener
 //		if (onSlipGestureListener != null) {
 //			onSlipGestureListener.onSlip(SLIP_DIRECTION_LEFT, getDisplayFrom(), getDisplayNumber());
 //		}
 
-		if (onDisplayCursorListener != null) {
-			onDisplayCursorListener.onCursorChanged(this,getDisplayFrom(), getDisplayNumber());
-		}
-	}
+        if (onDisplayCursorListener != null) {
+            onDisplayCursorListener.onCursorChanged(this, getDisplayFrom(), getDisplayNumber());
+        }
+    }
 
-	/**
-	 * <p>
-	 * Zoom in the graph
-	 * </p>
-	 * <p>
-	 * 拡大表示する。
-	 * </p>
-	 * <p>
-	 * 放大表示
-	 * </p>
-	 */
+    /**
+     * <p>
+     * Zoom in the graph
+     * </p>
+     * <p>
+     * 拡大表示する。
+     * </p>
+     * <p>
+     * 放大表示
+     * </p>
+     */
 //	public void zoomIn() {
 //		if (getDisplayNumber() > mingetDisplayNumber()) {
 //			// 区分缩放方向
@@ -709,9 +704,9 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //				getDisplayFrom() = linesData.get(0).getLineData().size()
 //						- getDisplayNumber();
 //			}
-			
+
 //			this.postInvalidate();
-			
+
 //			//Listener
 //			if (onZoomGestureListener != null) {
 //				onZoomGestureListener.onZoom(ZOOM_IN, getDisplayFrom(), getDisplayNumber());
@@ -719,20 +714,20 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //		}
 //	}
 
-	/**
-	 * <p>
-	 * Zoom out the grid
-	 * </p>
-	 * <p>
-	 * 縮小表示する。
-	 * </p>
-	 * <p>
-	 * 缩小
-	 * </p>
-	 */
+    /**
+     * <p>
+     * Zoom out the grid
+     * </p>
+     * <p>
+     * 縮小表示する。
+     * </p>
+     * <p>
+     * 缩小
+     * </p>
+     */
 //	public void zoomOut() {
 //		int dataSize = linesData.get(0).getLineData().size();
-		
+
 //		if (getDisplayNumber() < dataSize - 1) {
 //			if (getDisplayNumber() + ZOOM_STEP > dataSize - 1) {
 //				getDisplayNumber() = dataSize - 1;
@@ -761,9 +756,9 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //			if (getDisplayTo() >= dataSize) {
 //				getDisplayNumber() = dataSize - getDisplayFrom();
 //			}
-			
+
 //			this.postInvalidate();
-			
+
 //			//Listener
 //			if (onZoomGestureListener != null) {
 //				onZoomGestureListener.onZoom(ZOOM_OUT, getDisplayFrom(), getDisplayNumber());
@@ -898,50 +893,57 @@ public class SlipLineChart extends LineChart implements IZoomable,ISlipable {
 //	public void setLineAlignType(int lineAlignType) {
 //		this.lineAlignType = lineAlignType;
 //	}
+    public boolean isDetectSlipEvent() {
+        return detectSlipEvent;
+    }
 
-	public boolean isDetectSlipEvent() {
-		return detectSlipEvent;
-	}
+    public void setDetectSlipEvent(boolean detectSlipEvent) {
+        this.detectSlipEvent = detectSlipEvent;
+    }
 
-	public void setDetectSlipEvent(boolean detectSlipEvent) {
-		this.detectSlipEvent = detectSlipEvent;
-	}
+    public boolean isEnableSlip() {
+        return enableSlip;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param listener 
-	 * @see cn.limc.androidcharts.event.IZoomable#setOnZoomGestureListener(cn.limc.androidcharts.event.OnZoomGestureListener)
-	 */
-	public void setOnZoomGestureListener(OnZoomGestureListener listener) {
-		this.onZoomGestureListener = listener;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param listener 
-	 * @see cn.limc.androidcharts.event.ISlipable#setOnSlipGestureListener(cn.limc.androidcharts.event.OnSlipGestureListener)
-	 */
-	public void setOnSlipGestureListener(OnSlipGestureListener listener) {
-		this.onSlipGestureListener = listener;
-	}
-	
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.event.ISlipable#getOnSlipGestureListener() 
-	 */
-	public OnSlipGestureListener getOnSlipGestureListener() {
-		return onSlipGestureListener;
-	}
+    public void setEnableSlip(boolean enableSlip) {
+        this.enableSlip = enableSlip;
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.event.IZoomable#getOnZoomGestureListener() 
-	 */
-	public OnZoomGestureListener getOnZoomGestureListener() {
-		return onZoomGestureListener;
-	}
+    /*
+         * (non-Javadoc)
+         *
+         * @param listener
+         * @see cn.limc.androidcharts.event.IZoomable#setOnZoomGestureListener(cn.limc.androidcharts.event.OnZoomGestureListener)
+         */
+    public void setOnZoomGestureListener(OnZoomGestureListener listener) {
+        this.onZoomGestureListener = listener;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @param listener
+     * @see cn.limc.androidcharts.event.ISlipable#setOnSlipGestureListener(cn.limc.androidcharts.event.OnSlipGestureListener)
+     */
+    public void setOnSlipGestureListener(OnSlipGestureListener listener) {
+        this.onSlipGestureListener = listener;
+    }
+
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.event.ISlipable#getOnSlipGestureListener()
+     */
+    public OnSlipGestureListener getOnSlipGestureListener() {
+        return onSlipGestureListener;
+    }
+
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.event.IZoomable#getOnZoomGestureListener()
+     */
+    public OnZoomGestureListener getOnZoomGestureListener() {
+        return onZoomGestureListener;
+    }
 }

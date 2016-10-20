@@ -21,6 +21,7 @@
 package cn.limc.androidcharts.view;
 
 import cn.limc.androidcharts.entity.TitleValueColorEntity;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -31,16 +32,15 @@ import android.util.AttributeSet;
 /**
  * RoseChart
  * Description: <br>
- *   <p>add description here </p>
+ * <p>add description here </p>
  * Tags: <br>
- *   <p> </p>
+ * <p> </p>
  *
  * @author limc
- * @version v1.0 
- * 
- * History: <br>
- * 2014/08/26 limc create v1.0 <br>
- *
+ * @version v1.0
+ *          <p>
+ *          History: <br>
+ *          2014/08/26 limc create v1.0 <br>
  */
 public class RoseChart extends PieChart {
 
@@ -70,13 +70,13 @@ public class RoseChart extends PieChart {
         super(context, attrs);
         // TODO Auto-generated constructor stub
     }
-    
-    
+
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
     }
-    
+
     /**
      * <p>
      * Draw a circle
@@ -87,7 +87,7 @@ public class RoseChart extends PieChart {
      * <p>
      * 绘制一个圆
      * </p>
-     * 
+     *
      * @param canvas
      */
     @Override
@@ -104,7 +104,7 @@ public class RoseChart extends PieChart {
      * <p>
      * 将数据绘制在图表上
      * </p>
-     * 
+     *
      * @param canvas
      */
     @Override
@@ -113,7 +113,7 @@ public class RoseChart extends PieChart {
             // data's value max
             float max = 0;
             for (int i = 0; i < data.size(); i++) {
-                max = Math.max(max,data.get(i).getValue());
+                max = Math.max(max, data.get(i).getValue());
             }
 
             Paint mPaintFill = new Paint();
@@ -124,7 +124,7 @@ public class RoseChart extends PieChart {
             mPaintBorder.setStyle(Style.STROKE);
             mPaintBorder.setColor(longitudeColor);
             mPaintBorder.setAntiAlias(true);
-            
+
             Paint mPaintArcBorder = new Paint();
             mPaintArcBorder.setColor(circleBorderColor);
             mPaintArcBorder.setStyle(Style.STROKE);
@@ -132,7 +132,7 @@ public class RoseChart extends PieChart {
 
             int offset = -90;
             //fixed sweep
-            int sweep = Math.round(1.0f/data.size() * 360f);
+            int sweep = Math.round(1.0f / data.size() * 360f);
             // draw arcs of every piece
             for (int j = 0; j < data.size(); j++) {
                 TitleValueColorEntity e = data.get(j);
@@ -144,11 +144,11 @@ public class RoseChart extends PieChart {
                 RectF oval = new RectF(position.x - radiusLength, position.y
                         - radiusLength, position.x + radiusLength, position.y
                         + radiusLength);
-                
+
                 //draw board
                 canvas.drawArc(oval, offset, sweep, true, mPaintFill);
                 canvas.drawArc(oval, offset, sweep, true, mPaintBorder);
-                
+
                 offset = offset + sweep;
             }
 

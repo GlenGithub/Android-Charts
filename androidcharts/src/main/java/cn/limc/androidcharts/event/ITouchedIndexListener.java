@@ -22,5 +22,5 @@
 package cn.limc.androidcharts.event;
 
 public interface ITouchedIndexListener {
-	void onSelectedIndexChanged(ITouchable touchable, int index);
+    void onSelectedIndexChanged(ITouchable touchable, int index);
 }

@@ -26,6 +26,7 @@ import java.util.List;
 import cn.limc.androidcharts.common.IFlexableGrid;
 import cn.limc.androidcharts.entity.DateValueEntity;
 import cn.limc.androidcharts.entity.LineEntity;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -42,180 +43,179 @@ import android.util.AttributeSet;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/01/22 18:03:26
- * 
  */
 public class SlipBandAreaChart extends SlipLineChart {
 
-	/**
-	 * <p>
-	 * Constructor of SlipBandAreaChart
-	 * </p>
-	 * <p>
-	 * SlipBandChart类对象的构造函数
-	 * </p>
-	 * <p>
-	 * SlipBandChartのコンストラクター
-	 * </p>
-	 * 
-	 * @param context
-	 * @param attrs
-	 * @param defStyle
-	 */
-	public SlipBandAreaChart(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * <p>
+     * Constructor of SlipBandAreaChart
+     * </p>
+     * <p>
+     * SlipBandChart类对象的构造函数
+     * </p>
+     * <p>
+     * SlipBandChartのコンストラクター
+     * </p>
+     *
+     * @param context
+     * @param attrs
+     * @param defStyle
+     */
+    public SlipBandAreaChart(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * <p>
-	 * Constructor of SlipBandAreaChart
-	 * </p>
-	 * <p>
-	 * SlipBandChart类对象的构造函数
-	 * </p>
-	 * <p>
-	 * SlipBandChartのコンストラクター
-	 * </p>
-	 * 
-	 * @param context
-	 * @param attrs
-	 */
-	public SlipBandAreaChart(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * <p>
+     * Constructor of SlipBandAreaChart
+     * </p>
+     * <p>
+     * SlipBandChart类对象的构造函数
+     * </p>
+     * <p>
+     * SlipBandChartのコンストラクター
+     * </p>
+     *
+     * @param context
+     * @param attrs
+     */
+    public SlipBandAreaChart(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * <p>
-	 * Constructor of SlipBandAreaChart
-	 * </p>
-	 * <p>
-	 * SlipBandChart类对象的构造函数
-	 * </p>
-	 * <p>
-	 * SlipBandChartのコンストラクター
-	 * </p>
-	 * 
-	 * @param context
-	 */
-	public SlipBandAreaChart(Context context) {
-		super(context);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * <p>
+     * Constructor of SlipBandAreaChart
+     * </p>
+     * <p>
+     * SlipBandChart类对象的构造函数
+     * </p>
+     * <p>
+     * SlipBandChartのコンストラクター
+     * </p>
+     *
+     * @param context
+     */
+    public SlipBandAreaChart(Context context) {
+        super(context);
+        // TODO Auto-generated constructor stub
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * <p>Called when is going to draw this chart<p> <p>チャートを書く前、メソッドを呼ぶ<p>
-	 * <p>绘制图表时调用<p>
-	 * 
-	 * @param canvas
-	 * 
-	 * @see android.view.View#onDraw(android.graphics.Canvas)
-	 */
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * <p>Called when is going to draw this chart<p> <p>チャートを書く前、メソッドを呼ぶ<p>
+     * <p>绘制图表时调用<p>
+     *
+     * @param canvas
+     *
+     * @see android.view.View#onDraw(android.graphics.Canvas)
+     */
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
 
-	@Override
-	public void drawData(Canvas canvas){
-		super.drawData(canvas);
-		// draw lines
-		drawAreas(canvas);
-	}
+    @Override
+    public void drawData(Canvas canvas) {
+        super.drawData(canvas);
+        // draw lines
+        drawAreas(canvas);
+    }
 
-	/**
-	 * <p>
-	 * draw lines
-	 * </p>
-	 * <p>
-	 * ラインを書く
-	 * </p>
-	 * <p>
-	 * 绘制线条
-	 * </p>
-	 * 
-	 * @param canvas
-	 */
-	protected void drawAreas(Canvas canvas) {
-		if (null == linesData) {
-			return;
-		}
-		if (linesData.size() < 2) {
-			return;
-		}
-		LineEntity<DateValueEntity> line1 = (LineEntity<DateValueEntity>) linesData
-				.get(0);
-		LineEntity<DateValueEntity> line2 = (LineEntity<DateValueEntity>) linesData
-				.get(1);
-		List<DateValueEntity> line1Data = line1.getLineData();
-		List<DateValueEntity> line2Data = line2.getLineData();
+    /**
+     * <p>
+     * draw lines
+     * </p>
+     * <p>
+     * ラインを書く
+     * </p>
+     * <p>
+     * 绘制线条
+     * </p>
+     *
+     * @param canvas
+     */
+    protected void drawAreas(Canvas canvas) {
+        if (null == linesData) {
+            return;
+        }
+        if (linesData.size() < 2) {
+            return;
+        }
+        LineEntity<DateValueEntity> line1 = linesData
+                .get(0);
+        LineEntity<DateValueEntity> line2 = linesData
+                .get(1);
+        List<DateValueEntity> line1Data = line1.getLineData();
+        List<DateValueEntity> line2Data = line2.getLineData();
 
-		if (line1.isDisplay() == false || line2.isDisplay() == false) {
-			return;
-		}
-		if (line1Data == null || line2Data == null) {
-			return;
-		}
+        if (!line1.isDisplay() || !line2.isDisplay()) {
+            return;
+        }
+        if (line1Data == null || line2Data == null) {
+            return;
+        }
 
-		Paint mPaint = new Paint();
-		mPaint.setColor(line1.getLineColor());
-		mPaint.setAlpha(70);
-		mPaint.setAntiAlias(true);
+        Paint mPaint = new Paint();
+        mPaint.setColor(line1.getLineColor());
+        mPaint.setAlpha(70);
+        mPaint.setAntiAlias(true);
 
-		// distance between two points
-		float lineLength;
-		// start point‘s X
-		// set start point’s X
-		float startX;
-		
-		if (lineAlignType == IFlexableGrid.ALIGN_TYPE_CENTER) {
-            lineLength= (dataQuadrant.getPaddingWidth() / getDisplayNumber());
+        // distance between two points
+        float lineLength;
+        // start point‘s X
+        // set start point’s X
+        float startX;
+
+        if (lineAlignType == IFlexableGrid.ALIGN_TYPE_CENTER) {
+            lineLength = (dataQuadrant.getPaddingWidth() / getDisplayNumber());
             startX = dataQuadrant.getPaddingStartX() + lineLength / 2;
-        }else {
-            lineLength= (dataQuadrant.getPaddingWidth() / (getDisplayNumber() - 1));
+        } else {
+            lineLength = (dataQuadrant.getPaddingWidth() / (getDisplayNumber() - 1));
             startX = dataQuadrant.getPaddingStartX();
         }
-		
-		float lastY = 0;
-		float lastX = 0;
 
-		Path areaPath = new Path();
+        float lastY = 0;
+        float lastX = 0;
 
-		for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
-			float value1 = line1Data.get(j).getValue();
-			float value2 = line2Data.get(j).getValue();
+        Path areaPath = new Path();
 
-			// calculate Y
-			float valueY1 = (float) ((1f - (value1 - minValue)
-					/ (maxValue - minValue)) * dataQuadrant.getPaddingHeight())
-					+ dataQuadrant.getPaddingStartY();
-			float valueY2 = (float) ((1f - (value2 - minValue)
-					/ (maxValue - minValue)) * dataQuadrant.getPaddingHeight())
-					+ dataQuadrant.getPaddingStartY();
+        for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
+            float value1 = line1Data.get(j).getValue();
+            float value2 = line2Data.get(j).getValue();
 
-			// 绘制线条路径
-			if (j == getDisplayFrom()) {
-				areaPath.moveTo(startX, valueY1);
-				areaPath.lineTo(startX, valueY2);
-				areaPath.moveTo(startX, valueY1);
-			} else {
-				areaPath.lineTo(startX, valueY1);
-				areaPath.lineTo(startX, valueY2);
-				areaPath.lineTo(lastX, lastY);
-				areaPath.close();
-				areaPath.moveTo(startX, valueY1);
-			}
+            // calculate Y
+            float valueY1 = (float) ((1f - (value1 - minValue)
+                    / (maxValue - minValue)) * dataQuadrant.getPaddingHeight())
+                    + dataQuadrant.getPaddingStartY();
+            float valueY2 = (float) ((1f - (value2 - minValue)
+                    / (maxValue - minValue)) * dataQuadrant.getPaddingHeight())
+                    + dataQuadrant.getPaddingStartY();
 
-			lastX = startX;
-			lastY = valueY2;
-			startX = startX + lineLength;
-		}
-		areaPath.close();
-		canvas.drawPath(areaPath, mPaint);
-	}
+            // 绘制线条路径
+            if (j == getDisplayFrom()) {
+                areaPath.moveTo(startX, valueY1);
+                areaPath.lineTo(startX, valueY2);
+                areaPath.moveTo(startX, valueY1);
+            } else {
+                areaPath.lineTo(startX, valueY1);
+                areaPath.lineTo(startX, valueY2);
+                areaPath.lineTo(lastX, lastY);
+                areaPath.close();
+                areaPath.moveTo(startX, valueY1);
+            }
+
+            lastX = startX;
+            lastY = valueY2;
+            startX = startX + lineLength;
+        }
+        areaPath.close();
+        canvas.drawPath(areaPath, mPaint);
+    }
 }

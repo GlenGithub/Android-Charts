@@ -31,63 +31,60 @@ package cn.limc.androidcharts.entity;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/01/21 15:29:26
- * 
  */
 public class DateValueEntity implements IHasDate {
 
-	private long date;
-	private float value;
+    private long date;
+    private float value;
 
-	/**
-	 * <p>
-	 * Constructor of DateValueEntity
-	 * </p>
-	 * <p>
-	 * DateValueEntity类对象的构造函数
-	 * </p>
-	 * <p>
-	 * DateValueEntityのコンストラクター
-	 * </p>
-	 * 
-	 * @param date
-	 * @param value
-	 */
-	public DateValueEntity(float value, long date) {
-		super();
-		this.value = value;
-		this.date = date;
-	}
+    /**
+     * <p>
+     * Constructor of DateValueEntity
+     * </p>
+     * <p>
+     * DateValueEntity类对象的构造函数
+     * </p>
+     * <p>
+     * DateValueEntityのコンストラクター
+     * </p>
+     *
+     * @param date
+     * @param value
+     */
+    public DateValueEntity(float value, long date) {
+        super();
+        this.value = value;
+        this.date = date;
+    }
 
-	/**
-	 * @return the date
-	 */
-	public long getDate() {
-		return date;
-	}
+    /**
+     * @return the date
+     */
+    public long getDate() {
+        return date;
+    }
 
-	/**
-	 * @param date
-	 *            the date to set
-	 */
-	public void setDate(long date) {
-		this.date = date;
-	}
+    /**
+     * @param date the date to set
+     */
+    public void setDate(long date) {
+        this.date = date;
+    }
 
-	/**
-	 * @return the value
-	 */
-	public float getValue() {
-		return value;
-	}
+    /**
+     * @return the value
+     */
+    public float getValue() {
+        return value;
+    }
 
-	/**
-	 * @param value
-	 *            the value to set
-	 */
-	public void setValue(float value) {
-		this.value = value;
-	}
+    /**
+     * @param value the value to set
+     */
+    public void setValue(float value) {
+        this.value = value;
+    }
 }

@@ -24,13 +24,11 @@ package cn.limc.androidcharts.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.limc.androidcharts.axis.IAxis;
 import cn.limc.androidcharts.common.IDataCursor;
 import cn.limc.androidcharts.common.IFlexableGrid;
 import cn.limc.androidcharts.common.SectionDataCursor;
 import cn.limc.androidcharts.entity.DateValueEntity;
 import cn.limc.androidcharts.entity.IChartData;
-import cn.limc.androidcharts.entity.IMeasurable;
 import cn.limc.androidcharts.entity.IStickEntity;
 import cn.limc.androidcharts.entity.LineEntity;
 import cn.limc.androidcharts.event.IDisplayCursorListener;
@@ -44,11 +42,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.util.AttributeSet;
-import android.util.FloatMath;
 import android.view.MotionEvent;
 
 /**
- * 
  * <p>
  * LineChart is a kind of graph that draw some lines on a GridChart
  * </p>
@@ -58,37 +54,37 @@ import android.view.MotionEvent;
  * <p>
  * LineChart是在GridChart上绘制一条或多条线条的图
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2011/05/30 14:23:53
  * @see GridChart
  */
 public class LineChart extends PeriodDataGridChart implements IZoomable {
-	public static final int DEFAULT_LINE_ALIGN_TYPE = IFlexableGrid.ALIGN_TYPE_CENTER;
+    public static final int DEFAULT_LINE_ALIGN_TYPE = IFlexableGrid.ALIGN_TYPE_CENTER;
 
-	protected IDataCursor dataCursor = new SectionDataCursor();
+    protected IDataCursor dataCursor = new SectionDataCursor();
 
-	public IChartData<IStickEntity> getChartData() {
-		return null;
-	}
+    public IChartData<IStickEntity> getChartData() {
+        return null;
+    }
 
-	public IDataCursor getDataCursor(){
-		return dataCursor;
-	}
+    public IDataCursor getDataCursor() {
+        return dataCursor;
+    }
 
 
-	/**
-	 * <p>
-	 * data to draw lines
-	 * </p>
-	 * <p>
-	 * ラインを書く用データ
-	 * </p>
-	 * <p>
-	 * 绘制线条用的数据
-	 * </p>
-	 */
-	protected List<LineEntity<DateValueEntity>> linesData;
+    /**
+     * <p>
+     * data to draw lines
+     * </p>
+     * <p>
+     * ラインを書く用データ
+     * </p>
+     * <p>
+     * 绘制线条用的数据
+     * </p>
+     */
+    protected List<LineEntity<DateValueEntity>> linesData;
 
 //	/**
 //	 * <p>
@@ -128,174 +124,158 @@ public class LineChart extends PeriodDataGridChart implements IZoomable {
 //	 * </p>
 //	 */
 //	private double maxValue;
-	
-	protected int lineAlignType = DEFAULT_LINE_ALIGN_TYPE;
 
-	public static final boolean DEFAULT_AUTO_CALC_VALUE_RANGE = true;
-	protected boolean autoCalcValueRange = DEFAULT_AUTO_CALC_VALUE_RANGE;
-	
-	protected OnZoomGestureListener onZoomGestureListener = new OnZoomGestureListener();
-	protected IGestureDetector zoomGestureDetector = new ZoomGestureDetector<IZoomable>(this);
-	protected IDisplayCursorListener onDisplayCursorListener;
+    protected int lineAlignType = DEFAULT_LINE_ALIGN_TYPE;
 
-	protected boolean detectZoomEvent = true;
+    public static final boolean DEFAULT_AUTO_CALC_VALUE_RANGE = true;
+    protected boolean autoCalcValueRange = DEFAULT_AUTO_CALC_VALUE_RANGE;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param context
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#GridChart(Context)
-	 */
-	public LineChart(Context context) {
-		super(context);
-	}
+    protected OnZoomGestureListener onZoomGestureListener = new OnZoomGestureListener();
+    protected IGestureDetector zoomGestureDetector = new ZoomGestureDetector<IZoomable>(this);
+    protected IDisplayCursorListener onDisplayCursorListener;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param context
-	 * 
-	 * @param attrs
-	 * 
-	 * @param defStyle
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
-	 * AttributeSet, int)
-	 */
-	public LineChart(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
+    protected boolean detectZoomEvent = true;
+    protected boolean enableZoom = true;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param context
-	 * 
-	 * @param attrs
-	 * 
-	 * 
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
-	 * AttributeSet)
-	 */
-	public LineChart(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @param context
+     *
+     * @see cn.limc.androidcharts.view.GridChart#GridChart(Context)
+     */
+    public LineChart(Context context) {
+        super(context);
+    }
 
-	protected void calcDataValueRange() {
-		double maxValue = Double.MIN_VALUE;
-		double minValue = Double.MAX_VALUE;
-		// 逐条输出MA线
-		for (int i = 0; i < this.linesData.size(); i++) {
-			LineEntity<DateValueEntity> line = (LineEntity<DateValueEntity>) linesData
-					.get(i);
-			if (line == null) {
-				continue;
-			}
-			if (line.isDisplay() == false) {
-				continue;
-			}
-			List<DateValueEntity> lineData = line.getLineData();
-			if (lineData == null) {
-				continue;
-			}
-//			// 判断显示为方柱或显示为线条
-//			for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
-//				DateValueEntity entity = line.getLineData().get(j);
-////				if (axisY.getPosition() == IAxis.AXIS_Y_POSITION_LEFT) {
-////					entity = line.getLineData().get(j);
-////				} else {
-////					entity = line.getLineData().get(lineData.size() - 1 - j);
-////				}
-//
-//				if (entity.getValue() < minValue) {
-//					minValue = entity.getValue();
-//				}
-//				if (entity.getValue() > maxValue) {
-//					maxValue = entity.getValue();
-//				}
-//			}
+    /*
+     * (non-Javadoc)
+     *
+     * @param context
+     *
+     * @param attrs
+     *
+     * @param defStyle
+     *
+     * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
+     * AttributeSet, int)
+     */
+    public LineChart(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @param context
+     *
+     * @param attrs
+     *
+     *
+     *
+     * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
+     * AttributeSet)
+     */
+    public LineChart(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-				if (line != null && line.getLineData().size() > 0) {
-					// 判断显示为方柱或显示为线条
-					for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
-						DateValueEntity entity = line.getLineData().get(j);
-						if (isNoneDisplayValue(entity.getValue())) {
-							//无需参与计算
-						}else {
-							if (entity.getValue() < minValue) {
-								minValue = entity.getValue();
-							}
+    protected void calcDataValueRange() {
+        double maxValue = Double.MIN_VALUE;
+        double minValue = Double.MAX_VALUE;
+        // 逐条输出MA线
+        for (int i = 0; i < this.linesData.size(); i++) {
+            LineEntity<DateValueEntity> line = linesData
+                    .get(i);
+            if (line == null) {
+                continue;
+            }
+            if (!line.isDisplay()) {
+                continue;
+            }
+            List<DateValueEntity> lineData = line.getLineData();
+            if (lineData == null) {
+                continue;
+            }
 
-							if (entity.getValue() > maxValue) {
-								maxValue = entity.getValue();
-							}
-						}
+            if (line != null && line.getLineData().size() > 0) {
+                // 判断显示为方柱或显示为线条
+                for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
+                    DateValueEntity entity = line.getLineData().get(j);
+                    if (isNoneDisplayValue(entity.getValue())) {
+                        //无需参与计算
+                    } else {
+                        if (entity.getValue() < minValue) {
+                            minValue = entity.getValue();
+                        }
 
-					}
-				}
-		}
-		if (maxValue < minValue){
-			maxValue = 0;
-			minValue = 0;
-		}
+                        if (entity.getValue() > maxValue) {
+                            maxValue = entity.getValue();
+                        }
+                    }
 
-		this.maxValue = maxValue;
-		this.minValue = minValue;
-	}
+                }
+            }
+        }
+        if (maxValue < minValue) {
+            maxValue = 0;
+            minValue = 0;
+        }
 
-	protected void calcValueRangePaddingZero() {
-		double maxValue = this.maxValue;
-		double minValue = this.minValue;
+        this.maxValue = maxValue;
+        this.minValue = minValue;
+    }
 
-		if ((long) maxValue > (long) minValue) {
-			if ((maxValue - minValue) < 10. && minValue > 1.) {
-				this.maxValue = (long) (maxValue + 1);
-				this.minValue = (long) (minValue - 1);
-			} else {
-				this.maxValue = (long) (maxValue + (maxValue - minValue) * 0.1);
-				this.minValue = (long) (minValue - (maxValue - minValue) * 0.1);
+    protected void calcValueRangePaddingZero() {
+        double maxValue = this.maxValue;
+        double minValue = this.minValue;
 
-				if (this.minValue < 0) {
-					this.minValue = 0;
-				}
-			}
-		} else if ((long) maxValue == (long) minValue) {
-			if (maxValue <= 10 && maxValue > 1) {
-				this.maxValue = maxValue + 1;
-				this.minValue = minValue - 1;
-			} else if (maxValue <= 100 && maxValue > 10) {
-				this.maxValue = maxValue + 10;
-				this.minValue = minValue - 10;
-			} else if (maxValue <= 1000 && maxValue > 100) {
-				this.maxValue = maxValue + 100;
-				this.minValue = minValue - 100;
-			} else if (maxValue <= 10000 && maxValue > 1000) {
-				this.maxValue = maxValue + 1000;
-				this.minValue = minValue - 1000;
-			} else if (maxValue <= 100000 && maxValue > 10000) {
-				this.maxValue = maxValue + 10000;
-				this.minValue = minValue - 10000;
-			} else if (maxValue <= 1000000 && maxValue > 100000) {
-				this.maxValue = maxValue + 100000;
-				this.minValue = minValue - 100000;
-			} else if (maxValue <= 10000000 && maxValue > 1000000) {
-				this.maxValue = maxValue + 1000000;
-				this.minValue = minValue - 1000000;
-			} else if (maxValue <= 100000000 && maxValue > 10000000) {
-				this.maxValue = maxValue + 10000000;
-				this.minValue = minValue - 10000000;
-			}
-		} else {
-			this.maxValue = 0;
-			this.minValue = 0;
-		}
-	}
+        if ((long) maxValue > (long) minValue) {
+            if ((maxValue - minValue) < 10. && minValue > 1.) {
+                this.maxValue = (long) (maxValue + 1);
+                this.minValue = (long) (minValue - 1);
+            } else {
+                this.maxValue = (long) (maxValue + (maxValue - minValue) * 0.1);
+                this.minValue = (long) (minValue - (maxValue - minValue) * 0.1);
 
-	protected void calcValueRangeFormatForAxis() {
-		int rate = getDataMultiple();
+                if (this.minValue < 0) {
+                    this.minValue = 0;
+                }
+            }
+        } else if ((long) maxValue == (long) minValue) {
+            if (maxValue <= 10 && maxValue > 1) {
+                this.maxValue = maxValue + 1;
+                this.minValue = minValue - 1;
+            } else if (maxValue <= 100 && maxValue > 10) {
+                this.maxValue = maxValue + 10;
+                this.minValue = minValue - 10;
+            } else if (maxValue <= 1000 && maxValue > 100) {
+                this.maxValue = maxValue + 100;
+                this.minValue = minValue - 100;
+            } else if (maxValue <= 10000 && maxValue > 1000) {
+                this.maxValue = maxValue + 1000;
+                this.minValue = minValue - 1000;
+            } else if (maxValue <= 100000 && maxValue > 10000) {
+                this.maxValue = maxValue + 10000;
+                this.minValue = minValue - 10000;
+            } else if (maxValue <= 1000000 && maxValue > 100000) {
+                this.maxValue = maxValue + 100000;
+                this.minValue = minValue - 100000;
+            } else if (maxValue <= 10000000 && maxValue > 1000000) {
+                this.maxValue = maxValue + 1000000;
+                this.minValue = minValue - 1000000;
+            } else if (maxValue <= 100000000 && maxValue > 10000000) {
+                this.maxValue = maxValue + 10000000;
+                this.minValue = minValue - 10000000;
+            }
+        } else {
+            this.maxValue = 0;
+            this.minValue = 0;
+        }
+    }
+
+    protected void calcValueRangeFormatForAxis() {
+        int rate = getDataMultiple();
 
 //		if (this.maxValue < 3000) {
 //			rate = 1;
@@ -321,170 +301,170 @@ public class LineChart extends PeriodDataGridChart implements IZoomable {
 //			rate = 100000;
 //		}
 
-		// 等分轴修正
-		if (simpleGrid.getLatitudeNum() > 0 && rate > 1
-				&& (long) (this.minValue) % rate != 0) {
-			// 最大值加上轴差
-			this.minValue = (long) this.minValue
-					- (long) (this.minValue) % rate;
-		}
-		// 等分轴修正
-		if (simpleGrid.getLatitudeNum() > 0
-				&& (long) (this.maxValue - this.minValue)
-						% (simpleGrid.getLatitudeNum() * rate) != 0) {
-			// 最大值加上轴差
-			this.maxValue = (long) this.maxValue
-					+ simpleGrid.getLatitudeNum() * rate
-					- (long) (this.maxValue - this.minValue) % (simpleGrid.getLatitudeNum() * rate);
-		}
-	}
+        // 等分轴修正
+        if (simpleGrid.getLatitudeNum() > 0 && rate > 1
+                && (long) (this.minValue) % rate != 0) {
+            // 最大值加上轴差
+            this.minValue = (long) this.minValue
+                    - (long) (this.minValue) % rate;
+        }
+        // 等分轴修正
+        if (simpleGrid.getLatitudeNum() > 0
+                && (long) (this.maxValue - this.minValue)
+                % (simpleGrid.getLatitudeNum() * rate) != 0) {
+            // 最大值加上轴差
+            this.maxValue = (long) this.maxValue
+                    + simpleGrid.getLatitudeNum() * rate
+                    - (long) (this.maxValue - this.minValue) % (simpleGrid.getLatitudeNum() * rate);
+        }
+    }
 
-	protected void calcValueRange() {
-		if (null == this.linesData) {
-			this.maxValue = 0;
-			this.minValue = 0;
-			return;
-		}
-		if (this.linesData.size() > 0) {
-			this.calcDataValueRange();
+    protected void calcValueRange() {
+        if (null == this.linesData) {
+            this.maxValue = 0;
+            this.minValue = 0;
+            return;
+        }
+        if (this.linesData.size() > 0) {
+            this.calcDataValueRange();
 //			this.calcValueRangePaddingZero();
-		} else {
-			this.maxValue = 0;
-			this.minValue = 0;
-		}
+        } else {
+            this.maxValue = 0;
+            this.minValue = 0;
+        }
 
-		this.calcValueRangeFormatForAxis();
-		if (autoBalanceValueRange){
-			this.balanceRange();
-		}
-	}
+        this.calcValueRangeFormatForAxis();
+        if (autoBalanceValueRange) {
+            this.balanceRange();
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * <p>Called when is going to draw this chart<p> <p>チャートを書く前、メソッドを呼ぶ<p>
-	 * <p>绘制图表时调用<p>
-	 * 
-	 * @param canvas
-	 * 
-	 * @see android.view.View#onDraw(android.graphics.Canvas)
-	 */
-	@Override
-	protected void onDraw(Canvas canvas) {
-		if (autoCalcValueRange) {
-			calcValueRange();
-		}
+    /*
+     * (non-Javadoc)
+     *
+     * <p>Called when is going to draw this chart<p> <p>チャートを書く前、メソッドを呼ぶ<p>
+     * <p>绘制图表时调用<p>
+     *
+     * @param canvas
+     *
+     * @see android.view.View#onDraw(android.graphics.Canvas)
+     */
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (autoCalcValueRange) {
+            calcValueRange();
+        }
 
-		initAxisY();
-		initAxisX();
+        initAxisY();
+        initAxisX();
 
-		super.onDraw(canvas);
-	}
+        super.onDraw(canvas);
+    }
 
-	private int dataSize(){
-		if (null == this.linesData) {
-			return 0;
-		}
-		if (0 == this.linesData.size()) {
-			return 0;
-		}
-		LineEntity<DateValueEntity> line = (LineEntity<DateValueEntity>) linesData
-				.get(0);
-		if (line == null) {
-			return 0;
-		}
-		if (line.isDisplay() == false) {
-			return 0;
-		}
-		List<DateValueEntity> lineData = line.getLineData();
-		if (lineData != null) {
-			return lineData.size();
-		}
-		return 0;
-	}
+    private int dataSize() {
+        if (null == this.linesData) {
+            return 0;
+        }
+        if (0 == this.linesData.size()) {
+            return 0;
+        }
+        LineEntity<DateValueEntity> line = linesData
+                .get(0);
+        if (line == null) {
+            return 0;
+        }
+        if (!line.isDisplay()) {
+            return 0;
+        }
+        List<DateValueEntity> lineData = line.getLineData();
+        if (lineData != null) {
+            return lineData.size();
+        }
+        return 0;
+    }
 
-	@Override
-	public void drawData(Canvas canvas){
-		dataCursor.setMaxDisplayNumber(this.dataSize());
-		super.drawData(canvas);
-		drawLines(canvas);
-	}
+    @Override
+    public void drawData(Canvas canvas) {
+        dataCursor.setMaxDisplayNumber(this.dataSize());
+        super.drawData(canvas);
+        drawLines(canvas);
+    }
 
 
-	/**
-	 * <p>
-	 * draw lines
-	 * </p>
-	 * <p>
-	 * ラインを書く
-	 * </p>
-	 * <p>
-	 * 绘制线条
-	 * </p>
-	 * 
-	 * @param canvas
-	 */
-	protected void drawLines(Canvas canvas) {
-		if (null == this.linesData) {
-			return;
-		}
-		if (0 == this.linesData.size()) {
-			return;
-		}
-		// distance between two points
-		float lineLength;
-		// start point‘s X
-		float startX;
+    /**
+     * <p>
+     * draw lines
+     * </p>
+     * <p>
+     * ラインを書く
+     * </p>
+     * <p>
+     * 绘制线条
+     * </p>
+     *
+     * @param canvas
+     */
+    protected void drawLines(Canvas canvas) {
+        if (null == this.linesData) {
+            return;
+        }
+        if (0 == this.linesData.size()) {
+            return;
+        }
+        // distance between two points
+        float lineLength;
+        // start point‘s X
+        float startX;
 
-		// draw lines
-		for (int i = 0; i < linesData.size(); i++) {
-			LineEntity<DateValueEntity> line = (LineEntity<DateValueEntity>) linesData
-					.get(i);
-			if (line == null) {
-				continue;
-			}
-			if (line.isDisplay() == false) {
-				continue;
-			}
-			List<DateValueEntity> lineData = line.getLineData();
-			if (lineData == null) {
-				continue;
-			}
+        // draw lines
+        for (int i = 0; i < linesData.size(); i++) {
+            LineEntity<DateValueEntity> line = linesData
+                    .get(i);
+            if (line == null) {
+                continue;
+            }
+            if (!line.isDisplay()) {
+                continue;
+            }
+            List<DateValueEntity> lineData = line.getLineData();
+            if (lineData == null || lineData.size() == 0) {
+                continue;
+            }
 
-			Paint mPaint = new Paint();
-			mPaint.setColor(line.getLineColor());
-			mPaint.setAntiAlias(true);
-			// start point
-			PointF ptFirst = null;
+            Paint mPaint = new Paint();
+            mPaint.setColor(line.getLineColor());
+            mPaint.setAntiAlias(true);
+            // start point
+            PointF ptFirst = null;
 //			if (axisY.getPosition() == IAxis.AXIS_Y_POSITION_LEFT) {
-	            if (lineAlignType == IFlexableGrid.ALIGN_TYPE_CENTER) {
-	                lineLength= (dataQuadrant.getPaddingWidth() / getDataDisplayNumber());
-	                startX = dataQuadrant.getPaddingStartX() + lineLength / 2;
-	            }else {
-	                lineLength= (dataQuadrant.getPaddingWidth() / (getDataDisplayNumber() - 1));
-	                startX = dataQuadrant.getPaddingStartX();
-	            }
-				
-				for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
-					float value = lineData.get(j).getValue();
-					if (isNoneDisplayValue(value)) {
-						//无需显示
-					}else{
-						// calculate Y
-						float valueY = (float) ((1f - (value - minValue)
-								/ (maxValue - minValue)) * dataQuadrant.getPaddingHeight())
-								+ dataQuadrant.getPaddingStartY();
+            if (lineAlignType == IFlexableGrid.ALIGN_TYPE_CENTER) {
+                lineLength = (dataQuadrant.getPaddingWidth() / getDataDisplayNumber());
+                startX = dataQuadrant.getPaddingStartX() + lineLength / 2;
+            } else {
+                lineLength = (dataQuadrant.getPaddingWidth() / (getDataDisplayNumber() - 1));
+                startX = dataQuadrant.getPaddingStartX();
+            }
 
-						// if is not last point connect to previous point
-						if (j > getDisplayFrom() && ptFirst != null) {
-							canvas.drawLine(ptFirst.x, ptFirst.y, startX, valueY,
-									mPaint);
-						}
-						// reset
-						ptFirst = new PointF(startX, valueY);
-					}
-					startX = startX + lineLength;
-				}
+            for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
+                float value = lineData.get(j).getValue();
+                if (isNoneDisplayValue(value)) {
+                    //无需显示
+                } else {
+                    // calculate Y
+                    float valueY = (float) ((1f - (value - minValue)
+                            / (maxValue - minValue)) * dataQuadrant.getPaddingHeight())
+                            + dataQuadrant.getPaddingStartY();
+
+                    // if is not last point connect to previous point
+                    if (j > getDisplayFrom() && ptFirst != null) {
+                        canvas.drawLine(ptFirst.x, ptFirst.y, startX, valueY,
+                                mPaint);
+                    }
+                    // reset
+                    ptFirst = new PointF(startX, valueY);
+                }
+                startX = startX + lineLength;
+            }
 
 
 //			} else {
@@ -513,83 +493,84 @@ public class LineChart extends PeriodDataGridChart implements IZoomable {
 //					startX = startX - lineLength;
 //				}
 //			}
-		}
-	}
+        }
+    }
 
-	protected PointF calcBindPoint(float x ,float y) {
-		float calcX = 0;
-		float calcY = 0;
+    protected PointF calcBindPoint(float x, float y) {
+        float calcX = 0;
+        float calcY = 0;
 
-		if (null == this.linesData) {
-			return new PointF(calcX,calcY);
-		}
-		LineEntity<DateValueEntity> line = (LineEntity<DateValueEntity>) linesData
-				.get(0);
-		if (line == null) {
-			return new PointF(calcX,calcY);
-		}
-		if (line.isDisplay() == false) {
-			return new PointF(calcX,calcY);
-		}
-		List<DateValueEntity> lineData = line.getLineData();
-		if (lineData == null) {
-			return new PointF(calcX,calcY);
-		}
+        if (null == this.linesData) {
+            return new PointF(calcX, calcY);
+        }
+        LineEntity<DateValueEntity> line = linesData
+                .get(0);
+        if (line == null) {
+            return new PointF(calcX, calcY);
+        }
+        if (!line.isDisplay()) {
+            return new PointF(calcX, calcY);
+        }
+        List<DateValueEntity> lineData = line.getLineData();
+        if (lineData == null) {
+            return new PointF(calcX, calcY);
+        }
 
-		int index = calcSelectedIndex(x,y);
+        int index = calcSelectedIndex(x, y);
 
-		float stickWidth = dataQuadrant.getPaddingWidth() / getDataDisplayNumber();
+        float stickWidth = dataQuadrant.getPaddingWidth() / getDataDisplayNumber();
 
-		if (index >= getDisplayFrom() && index <= getDisplayTo() - 1) {
-			DateValueEntity point = lineData.get(index);
-			if (isNoneDisplayValue(point.getValue())) {
-			}else{
-				calcY = (float) ((1f - (point.getValue() - minValue)
-						/ (maxValue - minValue))
-						* (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
-				calcX = dataQuadrant.getPaddingStartX() + stickWidth * (index - getDisplayFrom()) + stickWidth / 2;
-			}
-		}
+        if (index >= getDisplayFrom() && index <= getDisplayTo() - 1) {
+            DateValueEntity point = lineData.get(index);
+            if (isNoneDisplayValue(point.getValue())) {
+                return new PointF(x, y);
+            } else {
+                calcY = (float) ((1f - (point.getValue() - minValue)
+                        / (maxValue - minValue))
+                        * (dataQuadrant.getPaddingHeight()) + dataQuadrant.getPaddingStartY());
+                calcX = dataQuadrant.getPaddingStartX() + stickWidth * (index - getDisplayFrom()) + stickWidth / 2;
+            }
+        }
 
-		return new PointF(calcX,calcY);
-	}
+        return new PointF(calcX, calcY);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param value
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#getAxisXGraduate(Object)
-	 */
-	@Override
-	public String getAxisXGraduate(Object value) {
+    /*
+     * (non-Javadoc)
+     *
+     * @param value
+     *
+     * @see cn.limc.androidcharts.view.GridChart#getAxisXGraduate(Object)
+     */
+    @Override
+    public String getAxisXGraduate(Object value) {
 
-		float graduate = Float.valueOf(super.getAxisXGraduate(value));
-		int index = (int) Math.floor(graduate * getDataDisplayNumber());
+        float graduate = Float.valueOf(super.getAxisXGraduate(value));
+        int index = (int) Math.floor(graduate * getDataDisplayNumber());
 
-		if (index >= getDisplayTo()) {
-			index = getDisplayTo() - 1;
-		} else if (index < 0) {
-			index = 0;
-		}
+        if (index >= getDisplayTo()) {
+            index = getDisplayTo() - 1;
+        } else if (index < 0) {
+            index = 0;
+        }
 
-		if (null == this.linesData) {
-			return "";
-		}
-		LineEntity<DateValueEntity> line = (LineEntity<DateValueEntity>) linesData
-				.get(0);
-		if (line == null) {
-			return "";
-		}
-		if (line.isDisplay() == false) {
-			return "";
-		}
-		List<DateValueEntity> lineData = line.getLineData();
-		if (lineData == null) {
-			return "";
-		}
-		return String.valueOf(lineData.get(index).getDate());
-	}
+        if (null == this.linesData) {
+            return "";
+        }
+        LineEntity<DateValueEntity> line = linesData
+                .get(0);
+        if (line == null) {
+            return "";
+        }
+        if (!line.isDisplay()) {
+            return "";
+        }
+        List<DateValueEntity> lineData = line.getLineData();
+        if (lineData == null) {
+            return "";
+        }
+        return String.valueOf(lineData.get(index).getDate());
+    }
 
 //	/*
 //	 * (non-Javadoc)
@@ -604,7 +585,7 @@ public class LineChart extends PeriodDataGridChart implements IZoomable {
 //		return String.valueOf((int) Math.floor(graduate * (maxValue - minValue)
 //				+ minValue));
 //	}
-	
+
 //	public float longitudePostOffset(){
 //		if (lineAlignType == IFlexableGrid.ALIGN_TYPE_CENTER) {
 //			float lineLength = dataQuadrant.getPaddingWidth() / getDisplayNumber();
@@ -662,134 +643,137 @@ public class LineChart extends PeriodDataGridChart implements IZoomable {
 //		simpleGrid.setLatitudeTitles(titleY);
 //	}
 
-	/**
-	 * <p>
-	 * initialize degrees on Y axis
-	 * </p>
-	 * <p>
-	 * Y軸の目盛を初期化
-	 * </p>
-	 * <p>
-	 * 初始化Y轴的坐标值
-	 * </p>
-	 */
-	protected void initAxisX() {
-		if (this.autoCalcLongitudeTitle == false) {
-			return;
-		}
-		if (null == linesData) {
-			return;
-		}
-		if (0 == linesData.size()) {
-			return;
-		}
-		LineEntity<DateValueEntity> line = (LineEntity<DateValueEntity>) linesData
-				.get(0);
-		if (line == null) {
-			return;
-		}
-		if (line.isDisplay() == false) {
-			return;
-		}
-		List<DateValueEntity> lineData = line.getLineData();
-		if (lineData == null) {
-			return;
-		}
+    /**
+     * <p>
+     * initialize degrees on Y axis
+     * </p>
+     * <p>
+     * Y軸の目盛を初期化
+     * </p>
+     * <p>
+     * 初始化Y轴的坐标值
+     * </p>
+     */
+    protected void initAxisX() {
+        if (!this.autoCalcLongitudeTitle) {
+            return;
+        }
+        if (null == linesData) {
+            return;
+        }
+        if (0 == linesData.size()) {
+            return;
+        }
+        LineEntity<DateValueEntity> line = linesData
+                .get(0);
+        if (line == null) {
+            return;
+        }
+        if (!line.isDisplay()) {
+            return;
+        }
+        List<DateValueEntity> lineData = line.getLineData();
+        if (lineData == null) {
+            return;
+        }
 
-		List<String> titleX = new ArrayList<String>();
-		if (null != linesData && linesData.size() > 0) {
-			float average = getDisplayNumber() / simpleGrid.getLongitudeNum();
-			for (int i = 0; i < simpleGrid.getLongitudeNum(); i++) {
-				int index = (int) Math.floor(i * average);
-				if (index > getDisplayNumber() - 1) {
-					index = getDisplayNumber() - 1;
-				}
-				titleX.add(formatAxisXDegree(lineData.get(index).getDate()));
-			}
-			titleX.add(formatAxisXDegree(lineData.get(getDisplayNumber() - 1).getDate()));
-		}
-		simpleGrid.setLongitudeTitles(titleX);
-	}
+        List<String> titleX = new ArrayList<String>();
+        if (null != linesData && linesData.size() > 0) {
+            float average = getDisplayNumber() / simpleGrid.getLongitudeNum();
+            for (int i = 0; i < simpleGrid.getLongitudeNum(); i++) {
+                int index = (int) Math.floor(i * average);
+                if (index > getDisplayNumber() - 1) {
+                    index = getDisplayNumber() - 1;
+                }
+                titleX.add(formatAxisXDegree(lineData.get(index).getDate()));
+            }
+            titleX.add(formatAxisXDegree(lineData.get(getDisplayNumber() - 1).getDate()));
+        }
+        simpleGrid.setLongitudeTitles(titleX);
+    }
 
 //	private float olddistance = 0f;
 //	private float newdistance = 0f;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * <p>Called when chart is touched<p> <p>チャートをタッチしたら、メソッドを呼ぶ<p>
-	 * <p>图表点击时调用<p>
-	 * 
-	 * @param event
-	 * 
-	 * @see android.view.View#onTouchEvent(MotionEvent)
-	 */
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		//valid
-		if (!isValidTouchPoint(event.getX(),event.getY())) {
-			return false;
-		}
-		if (null == linesData || linesData.size() == 0) {
-			return false;
-		}
+    /*
+     * (non-Javadoc)
+     *
+     * <p>Called when chart is touched<p> <p>チャートをタッチしたら、メソッドを呼ぶ<p>
+     * <p>图表点击时调用<p>
+     *
+     * @param event
+     *
+     * @see android.view.View#onTouchEvent(MotionEvent)
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //valid
+        if (!isValidTouchPoint(event.getX(), event.getY())) {
+            return false;
+        }
+        if (null == linesData || linesData.size() == 0) {
+            return false;
+        }
 
-		if (detectZoomEvent) {
-			return zoomGestureDetector.onTouchEvent(event);
-		}else{
-			return true;
-		}
-	}
+        if (detectZoomEvent) {
+            return zoomGestureDetector.onTouchEvent(event);
+        } else {
+            return super.onTouchEvent(event);
+        }
+    }
 
-	/**
-	 * <p>
-	 * calculate the distance between two touch points
-	 * </p>
-	 * <p>
-	 * 複数タッチしたポイントの距離
-	 * </p>
-	 * <p>
-	 * 计算两点触控时两点之间的距离
-	 * </p>
-	 * 
-	 * @param event
-	 * @return float
-	 *         <p>
-	 *         distance
-	 *         </p>
-	 *         <p>
-	 *         距離
-	 *         </p>
-	 *         <p>
-	 *         距离
-	 *         </p>
-	 */
-	protected float calcDistance(MotionEvent event) {
-		if(event.getPointerCount() <= 1) {
-			return 0f;
-		}else{
-			float x = event.getX(0) - event.getX(1);
-			float y = event.getY(0) - event.getY(1);
-			return (float) Math.sqrt(x * x + y * y);
-		}
-	}
+    /**
+     * <p>
+     * calculate the distance between two touch points
+     * </p>
+     * <p>
+     * 複数タッチしたポイントの距離
+     * </p>
+     * <p>
+     * 计算两点触控时两点之间的距离
+     * </p>
+     *
+     * @param event
+     * @return float
+     * <p>
+     * distance
+     * </p>
+     * <p>
+     * 距離
+     * </p>
+     * <p>
+     * 距离
+     * </p>
+     */
+    protected float calcDistance(MotionEvent event) {
+        if (event.getPointerCount() <= 1) {
+            return 0f;
+        } else {
+            float x = event.getX(0) - event.getX(1);
+            float y = event.getY(0) - event.getY(1);
+            return (float) Math.sqrt(x * x + y * y);
+        }
+    }
 
-	/**
-	 * <p>
-	 * Zoom in the graph
-	 * </p>
-	 * <p>
-	 * 拡大表示する。
-	 * </p>
-	 * <p>
-	 * 放大表示
-	 * </p>
-	 */
-	public void zoomIn() {
+    /**
+     * <p>
+     * Zoom in the graph
+     * </p>
+     * <p>
+     * 拡大表示する。
+     * </p>
+     * <p>
+     * 放大表示
+     * </p>
+     */
+    public void zoomIn() {
+        if (!this.enableZoom) {
+            return;
+        }
 
-		if(this.stretch(ZOOM_STEP)) {
-			this.postInvalidate();
-		}
+        if (this.stretch(ZOOM_STEP)) {
+            this.postInvalidate();
+        }
 //		if (null == linesData || linesData.size() <= 0) {
 //			return;
 //		}
@@ -803,26 +787,30 @@ public class LineChart extends PeriodDataGridChart implements IZoomable {
 //		if (onZoomGestureListener != null) {
 //			onZoomGestureListener.(ZOOM_IN, 0, getDisplayNumber());
 //		}
-		if (onDisplayCursorListener != null) {
-			onDisplayCursorListener.onCursorChanged(this,getDisplayFrom(), getDisplayNumber());
-		}
-	}
+        if (onDisplayCursorListener != null) {
+            onDisplayCursorListener.onCursorChanged(this, getDisplayFrom(), getDisplayNumber());
+        }
+    }
 
-	/**
-	 * <p>
-	 * Zoom out the grid
-	 * </p>
-	 * <p>
-	 * 縮小表示する。
-	 * </p>
-	 * <p>
-	 * 缩小
-	 * </p>
-	 */
-	public void zoomOut() {
-		if(this.shrink(ZOOM_STEP)) {
-			this.postInvalidate();
-		}
+    /**
+     * <p>
+     * Zoom out the grid
+     * </p>
+     * <p>
+     * 縮小表示する。
+     * </p>
+     * <p>
+     * 缩小
+     * </p>
+     */
+    public void zoomOut() {
+        if (!this.enableZoom) {
+            return;
+        }
+
+        if (this.shrink(ZOOM_STEP)) {
+            this.postInvalidate();
+        }
 //		if (null == linesData || linesData.size() <= 0) {
 //			return;
 //		}
@@ -831,88 +819,91 @@ public class LineChart extends PeriodDataGridChart implements IZoomable {
 //		}
 //
 //		this.postInvalidate();
-		
+
 //		//Listener
 //		if (onZoomGestureListener != null) {
 //			onZoomGestureListener.onZoom(ZOOM_OUT, 0, maxPointNum);
 //		}
-		//Listener
-		if (onDisplayCursorListener != null) {
-			onDisplayCursorListener.onCursorChanged(this,getDisplayFrom(), getDisplayNumber());
-		}
-	}
+        //Listener
+        if (onDisplayCursorListener != null) {
+            onDisplayCursorListener.onCursorChanged(this, getDisplayFrom(), getDisplayNumber());
+        }
+    }
 
-	/**
-	 * @return the linesData
-	 */
-	public List<LineEntity<DateValueEntity>> getLinesData() {
-		return linesData;
-	}
+    /**
+     * @return the linesData
+     */
+    public List<LineEntity<DateValueEntity>> getLinesData() {
+        return linesData;
+    }
 
-	/**
-	 * @param linesData
-	 *            the linesData to set
-	 */
-	public void setLinesData(List<LineEntity<DateValueEntity>> linesData) {
-		if (null == linesData) {
-			return;
-		}
-		if (0 == linesData.size()) {
-			return;
-		}
-		LineEntity<DateValueEntity> line = (LineEntity<DateValueEntity>) linesData
-				.get(0);
-		if (line == null) {
-			return;
-		}
-		if (line.isDisplay() == false) {
-			return;
-		}
-		List<DateValueEntity> lineData = line.getLineData();
-		if (lineData == null) {
-			return;
-		}
+    /**
+     * @param linesData the linesData to set
+     */
+    public void setLinesData(List<LineEntity<DateValueEntity>> linesData) {
+        if (null == linesData) {
+            return;
+        }
+        if (0 == linesData.size()) {
+            return;
+        }
+        LineEntity<DateValueEntity> line = linesData
+                .get(0);
+        if (line == null) {
+            return;
+        }
+        if (!line.isDisplay()) {
+            return;
+        }
+        List<DateValueEntity> lineData = line.getLineData();
+        if (lineData == null) {
+            return;
+        }
 
-		int datasize = lineData.size();
+        int datasize = lineData.size();
 
-		this.linesData = linesData;
+        this.linesData = linesData;
 
-		if (dataCursor.getMinDisplayNumber() >= datasize) {
-			dataCursor.setMaxDisplayNumber(datasize);
-			dataCursor.setDisplayFrom(0);
-			dataCursor.setDisplayNumber(datasize);
-		}else{
-			dataCursor.setMaxDisplayNumber(datasize);
-			//右侧显示
-			dataCursor.setDisplayFrom(datasize - getDisplayNumber());
-		}
-	}
+        if (dataCursor.getMinDisplayNumber() >= datasize) {
+            dataCursor.setMaxDisplayNumber(datasize);
+            dataCursor.setDisplayFrom(0);
+            dataCursor.setDisplayNumber(datasize);
+        } else {
+            dataCursor.setDisplayNumber(getMinDisplayNumber());
+            dataCursor.setMaxDisplayNumber(datasize);
+            //右侧显示
+            dataCursor.setDisplayFrom(datasize - getDisplayNumber());
+        }
+    }
 
-	@Override
-	public long touchPointAxisXValue() {
-		if (null == touchPoint) {
-			return 0;
-		}
-		if (null == linesData) {
-			return 0;
-		}
-		if (0 == linesData.size()) {
-			return 0;
-		}
-		LineEntity<DateValueEntity> line = (LineEntity<DateValueEntity>) linesData
-				.get(0);
-		if (line == null) {
-			return 0 ;
-		}
-		if (line.isDisplay() == false) {
-			return 0 ;
-		}
-		List<DateValueEntity> lineData = line.getLineData();
-		if (lineData == null) {
-			return 0 ;
-		}
-		return lineData.get(getSelectedIndex()).getDate();
-	}
+    @Override
+    public long touchPointAxisXValue() {
+        if (null == touchPoint) {
+            return 0;
+        }
+        if (null == linesData) {
+            return 0;
+        }
+        if (0 == linesData.size()) {
+            return 0;
+        }
+        LineEntity<DateValueEntity> line = linesData
+                .get(0);
+        if (line == null) {
+            return 0;
+        }
+        if (!line.isDisplay()) {
+            return 0;
+        }
+        List<DateValueEntity> lineData = line.getLineData();
+        if (lineData == null) {
+            return 0;
+        }
+
+        int selectedIndex = getSelectedIndex();
+
+        return lineData.get(getSelectedIndex()).getDate();
+    }
 
 //	/**
 //	 * @return the maxPointNum
@@ -959,74 +950,81 @@ public class LineChart extends PeriodDataGridChart implements IZoomable {
 //		this.maxValue = maxValue;
 //	}
 
-	public boolean isDetectZoomEvent() {
-		return detectZoomEvent;
-	}
+    public boolean isDetectZoomEvent() {
+        return detectZoomEvent;
+    }
 
-	public void setDetectZoomEvent(boolean detectZoomEvent) {
-		this.detectZoomEvent = detectZoomEvent;
-	}
+    public void setDetectZoomEvent(boolean detectZoomEvent) {
+        this.detectZoomEvent = detectZoomEvent;
+    }
 
-	/**
-	 * @return the autoCalcValueRange
-	 */
-	public boolean isAutoCalcValueRange() {
-		return autoCalcValueRange;
-	}
+    public boolean isEnableZoom() {
+        return enableZoom;
+    }
 
-	/**
-	 * @param autoCalcValueRange
-	 *            the autoCalcValueRange to set
-	 */
-	public void setAutoCalcValueRange(boolean autoCalcValueRange) {
-		this.autoCalcValueRange = autoCalcValueRange;
-	}
+    public void setEnableZoom(boolean enableZoom) {
+        this.enableZoom = enableZoom;
+    }
 
-	/**
-	 * @return the lineAlignType
-	 */
-	public int getLineAlignType() {
-		return lineAlignType;
-	}
+    /**
+     * @return the autoCalcValueRange
+     */
+    public boolean isAutoCalcValueRange() {
+        return autoCalcValueRange;
+    }
 
-	/**
-	 * @param lineAlignType the lineAlignType to set
-	 */
-	public void setLineAlignType(int lineAlignType) {
-		this.lineAlignType = lineAlignType;
-	}
+    /**
+     * @param autoCalcValueRange the autoCalcValueRange to set
+     */
+    public void setAutoCalcValueRange(boolean autoCalcValueRange) {
+        this.autoCalcValueRange = autoCalcValueRange;
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @param listener 
-	 * @see cn.limc.androidcharts.event.IZoomable#setOnZoomGestureListener(cn.limc.androidcharts.event.OnZoomGestureListener) 
-	 */
-	public void setOnZoomGestureListener(OnZoomGestureListener listener) {
-		this.onZoomGestureListener = listener;
-	}
+    /**
+     * @return the lineAlignType
+     */
+    public int getLineAlignType() {
+        return lineAlignType;
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.event.IZoomable#getOnZoomGestureListener() 
-	 */
-	public OnZoomGestureListener getOnZoomGestureListener() {
-		return onZoomGestureListener;
-	}
+    /**
+     * @param lineAlignType the lineAlignType to set
+     */
+    public void setLineAlignType(int lineAlignType) {
+        this.lineAlignType = lineAlignType;
+    }
+
+    /* (non-Javadoc)
+     *
+     * @param listener
+     * @see cn.limc.androidcharts.event.IZoomable#setOnZoomGestureListener(cn.limc.androidcharts.event.OnZoomGestureListener)
+     */
+    public void setOnZoomGestureListener(OnZoomGestureListener listener) {
+        this.onZoomGestureListener = listener;
+    }
+
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.event.IZoomable#getOnZoomGestureListener()
+     */
+    public OnZoomGestureListener getOnZoomGestureListener() {
+        return onZoomGestureListener;
+    }
 
 
-	/**
-	 * @return the onDisplayCursorListener
-	 */
-	public IDisplayCursorListener getOnDisplayCursorListener() {
-		return onDisplayCursorListener;
-	}
+    /**
+     * @return the onDisplayCursorListener
+     */
+    public IDisplayCursorListener getOnDisplayCursorListener() {
+        return onDisplayCursorListener;
+    }
 
-	/**
-	 * @param onDisplayCursorListener the onDisplayCursorListener to set
-	 */
-	public void setOnDisplayCursorListener(
-			IDisplayCursorListener onDisplayCursorListener) {
-		this.onDisplayCursorListener = onDisplayCursorListener;
-	}
+    /**
+     * @param onDisplayCursorListener the onDisplayCursorListener to set
+     */
+    public void setOnDisplayCursorListener(
+            IDisplayCursorListener onDisplayCursorListener) {
+        this.onDisplayCursorListener = onDisplayCursorListener;
+    }
 }

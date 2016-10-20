@@ -22,17 +22,14 @@
 package cn.limc.androidcharts.view;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PointF;
 import android.util.AttributeSet;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-import cn.limc.androidcharts.common.IFlexableGrid;
 import cn.limc.androidcharts.common.SimpleSplitedGrid;
-import cn.limc.androidcharts.entity.DateValueEntity;
 import cn.limc.androidcharts.entity.LineEntity;
 
 /**
@@ -46,7 +43,7 @@ public class TickChart extends SlipLineChart {
     protected double limitMinValue = 0.;
 
     /*
-	 * (non-Javadoc)
+     * (non-Javadoc)
 	 *
 	 * @param context
 	 *
@@ -95,29 +92,29 @@ public class TickChart extends SlipLineChart {
     protected void calcValueRangeFormatForAxis() {
         int rate = getDataMultiple();
 
-		if (this.maxValue < 3000) {
-			rate = 1;
-		} else if (this.maxValue >= 3000 && this.maxValue < 5000) {
-			rate = 5;
-		} else if (this.maxValue >= 5000 && this.maxValue < 30000) {
-			rate = 10;
-		} else if (this.maxValue >= 30000 && this.maxValue < 50000) {
-			rate = 50;
-		} else if (this.maxValue >= 50000 && this.maxValue < 300000) {
-			rate = 100;
-		} else if (this.maxValue >= 300000 && this.maxValue < 500000) {
-			rate = 500;
-		} else if (this.maxValue >= 500000 && this.maxValue < 3000000) {
-			rate = 1000;
-		} else if (this.maxValue >= 3000000 && this.maxValue < 5000000) {
-			rate = 5000;
-		} else if (this.maxValue >= 5000000 && this.maxValue < 30000000) {
-			rate = 10000;
-		} else if (this.maxValue >= 30000000 && this.maxValue < 50000000) {
-			rate = 50000;
-		} else {
-			rate = 100000;
-		}
+        if (this.maxValue < 3000) {
+            rate = 1;
+        } else if (this.maxValue >= 3000 && this.maxValue < 5000) {
+            rate = 5;
+        } else if (this.maxValue >= 5000 && this.maxValue < 30000) {
+            rate = 10;
+        } else if (this.maxValue >= 30000 && this.maxValue < 50000) {
+            rate = 50;
+        } else if (this.maxValue >= 50000 && this.maxValue < 300000) {
+            rate = 100;
+        } else if (this.maxValue >= 300000 && this.maxValue < 500000) {
+            rate = 500;
+        } else if (this.maxValue >= 500000 && this.maxValue < 3000000) {
+            rate = 1000;
+        } else if (this.maxValue >= 3000000 && this.maxValue < 5000000) {
+            rate = 5000;
+        } else if (this.maxValue >= 5000000 && this.maxValue < 30000000) {
+            rate = 10000;
+        } else if (this.maxValue >= 30000000 && this.maxValue < 50000000) {
+            rate = 50000;
+        } else {
+            rate = 100000;
+        }
 
         // 等分轴修正
         if (simpleGrid.getLatitudeNum() > 0 && rate > 1
@@ -146,14 +143,14 @@ public class TickChart extends SlipLineChart {
         }
         if (this.linesData.size() > 0) {
             this.calcDataValueRange();
-			this.calcValueRangePaddingZero();
+            this.calcValueRangePaddingZero();
         } else {
             this.maxValue = 0;
             this.minValue = 0;
         }
 
         this.calcValueRangeFormatForAxis();
-        if (autoBalanceValueRange){
+        if (autoBalanceValueRange) {
             this.balanceRange();
         }
 
@@ -163,28 +160,40 @@ public class TickChart extends SlipLineChart {
     }
 
     @Override
-    protected void balanceRange(){
-        if(this.lastClose > 0 && this.maxValue > 0 && this.minValue > 0){
+    public String formatAxisXDegree(long date) {
+        DecimalFormat df = new DecimalFormat("0000");
+
+        String time = df.format(date);
+        try {
+            return time.substring(0, 2) + ":" +  time.substring(2, time.length());
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    @Override
+    protected void balanceRange() {
+        if (this.lastClose > 0 && this.maxValue > 0 && this.minValue > 0) {
             double gap = Math.max(Math.abs(this.maxValue - this.lastClose), Math.abs(this.minValue - this.lastClose));
             this.maxValue = this.lastClose + gap;
             this.minValue = this.lastClose - gap;
         }
     }
 
-    protected  void calcLimitRange(){
+    protected void calcLimitRange() {
         if (this.limitMinValue >= 0 && this.limitMaxValue >= 0) {
-            if(this.maxValue > this.limitMaxValue){
+            if (this.maxValue > this.limitMaxValue) {
                 this.maxValue = this.limitMaxValue;
             }
-            if(this.minValue < this.limitMinValue){
+            if (this.minValue < this.limitMinValue) {
                 this.minValue = this.limitMinValue;
             }
         }
     }
 
     @Override
-    protected void initAxisX(){
-        if (this.autoCalcLongitudeTitle == false) {
+    protected void initAxisX() {
+        if (!this.autoCalcLongitudeTitle) {
             return;
         }
         int[] longitudeSplitor = ((SimpleSplitedGrid) simpleGrid).getLongitudeSplitor();
@@ -200,10 +209,10 @@ public class TickChart extends SlipLineChart {
         if (null != getChartData() && getChartData().size() > 0 && longitudeSplitor.length > 0) {
             //以第1条线作为X轴的标示
             LineEntity line = this.linesData.get(0);
-            if (line.getLineData().size() > 0 && longitudeSplitor.length >0) {
+            if (line.getLineData().size() > 0 && longitudeSplitor.length > 0) {
                 int counter = 0;
-                do{
-                    for(int i = 0; i < longitudeSplitor.length;i++){
+                do {
+                    for (int i = 0; i < longitudeSplitor.length; i++) {
                         int index = counter;
                         if (index > getDisplayNumber() - 1) {
                             index = getDisplayNumber() - 1;
@@ -212,7 +221,7 @@ public class TickChart extends SlipLineChart {
                         //计数器重新设置
                         counter = counter + longitudeSplitor[i];
                     }
-                }while(counter < getDisplayNumber());
+                } while (counter < getDisplayNumber());
             }
         }
         simpleGrid.setLongitudeTitles(titleX);

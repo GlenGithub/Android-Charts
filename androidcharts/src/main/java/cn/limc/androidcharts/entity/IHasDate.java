@@ -31,22 +31,20 @@ package cn.limc.androidcharts.entity;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/03/18 14:04:55
- * 
  */
 public interface IHasDate {
 
-	/**
-	 * @return the date
-	 */
-	long getDate();
+    /**
+     * @return the date
+     */
+    long getDate();
 
-	/**
-	 * @param date
-	 *            the date to set
-	 */
-	void setDate(long date);
+    /**
+     * @param date the date to set
+     */
+    void setDate(long date);
 
 }

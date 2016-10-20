@@ -23,50 +23,49 @@
 package cn.limc.androidcharts.event;
 
 
-
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/05/29 16:49:01 
- *  
+ * @author limc
+ * @version v1.0 2014/05/29 16:49:01
  */
 public interface IZoomable extends ITouchable {
 
-	static final int ZOOM_NONE = 0;
-	static final int ZOOM_IN = 1;
-	static final int ZOOM_OUT = 2;
-	
-	static final int ZOOM_STEP = 4;
-	
-	/**
-	 * <p>
-	 * Zoom in the graph
-	 * </p>
-	 * <p>
-	 * 拡大表示する。
-	 * </p>
-	 * <p>
-	 * 放大表示
-	 * </p>
-	 */
-	void zoomIn();
+    int ZOOM_NONE = 0;
+    int ZOOM_IN = 1;
+    int ZOOM_OUT = 2;
 
-	/**
-	 * <p>
-	 * Zoom out the grid
-	 * </p>
-	 * <p>
-	 * 縮小表示する。
-	 * </p>
-	 * <p>
-	 * 缩小
-	 * </p>
-	 */
-	void zoomOut();
-	
-	void setOnZoomGestureListener(OnZoomGestureListener listener);
-	OnZoomGestureListener getOnZoomGestureListener();
+    int ZOOM_STEP = 4;
+
+    /**
+     * <p>
+     * Zoom in the graph
+     * </p>
+     * <p>
+     * 拡大表示する。
+     * </p>
+     * <p>
+     * 放大表示
+     * </p>
+     */
+    void zoomIn();
+
+    /**
+     * <p>
+     * Zoom out the grid
+     * </p>
+     * <p>
+     * 縮小表示する。
+     * </p>
+     * <p>
+     * 缩小
+     * </p>
+     */
+    void zoomOut();
+
+    void setOnZoomGestureListener(OnZoomGestureListener listener);
+
+    OnZoomGestureListener getOnZoomGestureListener();
 }

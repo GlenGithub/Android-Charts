@@ -31,31 +31,29 @@ package cn.limc.androidcharts.entity;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/01/20 18:02:55
- * 
  */
 public class ColoredStickEntity extends StickEntity implements IHasColor {
-	private int color;
+    private int color;
 
-	public ColoredStickEntity(double high, double low, int date, int color) {
-		super(high, low, date);
-		this.color = color;
-	}
+    public ColoredStickEntity(double high, double low, long date, int color) {
+        super(high, low, date);
+        this.color = color;
+    }
 
-	/**
-	 * @return the color
-	 */
-	public int getColor() {
-		return color;
-	}
+    /**
+     * @return the color
+     */
+    public int getColor() {
+        return color;
+    }
 
-	/**
-	 * @param color
-	 *            the color to set
-	 */
-	public void setColor(int color) {
-		this.color = color;
-	}
+    /**
+     * @param color the color to set
+     */
+    public void setColor(int color) {
+        this.color = color;
+    }
 }

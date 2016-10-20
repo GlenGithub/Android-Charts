@@ -26,6 +26,7 @@ import java.util.List;
 import cn.limc.androidcharts.common.IFlexableGrid;
 import cn.limc.androidcharts.entity.DateValueEntity;
 import cn.limc.androidcharts.entity.LineEntity;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -42,167 +43,167 @@ import android.util.AttributeSet;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/01/22 16:19:37
- * 
  */
 public class SlipAreaChart extends SlipLineChart {
 
-	/**
-	 * <p>
-	 * Constructor of SlipAreaChart
-	 * </p>
-	 * <p>
-	 * SlipAreaChart类对象的构造函数
-	 * </p>
-	 * <p>
-	 * SlipAreaChartのコンストラクター
-	 * </p>
-	 * 
-	 * @param context
-	 * @param attrs
-	 * @param defStyle
-	 */
-	public SlipAreaChart(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * <p>
+     * Constructor of SlipAreaChart
+     * </p>
+     * <p>
+     * SlipAreaChart类对象的构造函数
+     * </p>
+     * <p>
+     * SlipAreaChartのコンストラクター
+     * </p>
+     *
+     * @param context
+     * @param attrs
+     * @param defStyle
+     */
+    public SlipAreaChart(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * <p>
-	 * Constructor of SlipAreaChart
-	 * </p>
-	 * <p>
-	 * SlipAreaChart类对象的构造函数
-	 * </p>
-	 * <p>
-	 * SlipAreaChartのコンストラクター
-	 * </p>
-	 * 
-	 * @param context
-	 * @param attrs
-	 */
-	public SlipAreaChart(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * <p>
+     * Constructor of SlipAreaChart
+     * </p>
+     * <p>
+     * SlipAreaChart类对象的构造函数
+     * </p>
+     * <p>
+     * SlipAreaChartのコンストラクター
+     * </p>
+     *
+     * @param context
+     * @param attrs
+     */
+    public SlipAreaChart(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * <p>
-	 * Constructor of SlipAreaChart
-	 * </p>
-	 * <p>
-	 * SlipAreaChart类对象的构造函数
-	 * </p>
-	 * <p>
-	 * SlipAreaChartのコンストラクター
-	 * </p>
-	 * 
-	 * @param context
-	 */
-	public SlipAreaChart(Context context) {
-		super(context);
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * <p>
+     * Constructor of SlipAreaChart
+     * </p>
+     * <p>
+     * SlipAreaChart类对象的构造函数
+     * </p>
+     * <p>
+     * SlipAreaChartのコンストラクター
+     * </p>
+     *
+     * @param context
+     */
+    public SlipAreaChart(Context context) {
+        super(context);
+        // TODO Auto-generated constructor stub
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * <p>Called when is going to draw this chart<p> <p>チャートを書く前、メソッドを呼ぶ<p>
-	 * <p>绘制图表时调用<p>
-	 * 
-	 * @param canvas
-	 * 
-	 * @see android.view.View#onDraw(android.graphics.Canvas)
-	 */
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * <p>Called when is going to draw this chart<p> <p>チャートを書く前、メソッドを呼ぶ<p>
+     * <p>绘制图表时调用<p>
+     *
+     * @param canvas
+     *
+     * @see android.view.View#onDraw(android.graphics.Canvas)
+     */
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
 
-	@Override
-	public void drawData(Canvas canvas){
-		super.drawData(canvas);
-		// draw lines
-		drawAreas(canvas);
-	}
-	/**
-	 * <p>
-	 * draw lines
-	 * </p>
-	 * <p>
-	 * ラインを書く
-	 * </p>
-	 * <p>
-	 * 绘制线条
-	 * </p>
-	 * 
-	 * @param canvas
-	 */
-	protected void drawAreas(Canvas canvas) {
-		if (null == linesData) {
-			return;
-		}
-		if (0 == linesData.size()) {
-			return;
-		}
-		// distance between two points
-		float lineLength;
-		// start point‘s X
-		float startX;
+    @Override
+    public void drawData(Canvas canvas) {
+        super.drawData(canvas);
+        // draw lines
+        drawAreas(canvas);
+    }
 
-		// draw lines
-		for (int i = 0; i < linesData.size(); i++) {
-			LineEntity<DateValueEntity> line = (LineEntity<DateValueEntity>) linesData
-					.get(i);
-			if (line == null) {
-				continue;
-			}
-			if (line.isDisplay() == false) {
-				continue;
-			}
-			List<DateValueEntity> lineData = line.getLineData();
-			if (lineData == null) {
-				continue;
-			}
+    /**
+     * <p>
+     * draw lines
+     * </p>
+     * <p>
+     * ラインを書く
+     * </p>
+     * <p>
+     * 绘制线条
+     * </p>
+     *
+     * @param canvas
+     */
+    protected void drawAreas(Canvas canvas) {
+        if (null == linesData) {
+            return;
+        }
+        if (0 == linesData.size()) {
+            return;
+        }
+        // distance between two points
+        float lineLength;
+        // start point‘s X
+        float startX;
 
-			Paint mPaint = new Paint();
-			mPaint.setColor(line.getLineColor());
-			mPaint.setAlpha(70);
-			mPaint.setAntiAlias(true);
+        // draw lines
+        for (int i = 0; i < linesData.size(); i++) {
+            LineEntity<DateValueEntity> line = linesData
+                    .get(i);
+            if (line == null) {
+                continue;
+            }
+            if (!line.isDisplay()) {
+                continue;
+            }
+            List<DateValueEntity> lineData = line.getLineData();
+            if (lineData == null) {
+                continue;
+            }
 
-			// set start point’s X
-			if (lineAlignType == IFlexableGrid.ALIGN_TYPE_CENTER) {
-                lineLength= (dataQuadrant.getPaddingWidth() / getDisplayNumber());
+            Paint mPaint = new Paint();
+            mPaint.setColor(line.getLineColor());
+            mPaint.setAlpha(70);
+            mPaint.setAntiAlias(true);
+
+            // set start point’s X
+            if (lineAlignType == IFlexableGrid.ALIGN_TYPE_CENTER) {
+                lineLength = (dataQuadrant.getPaddingWidth() / getDisplayNumber());
                 startX = dataQuadrant.getPaddingStartX() + lineLength / 2;
-            }else {
-                lineLength= (dataQuadrant.getPaddingWidth() / (getDisplayNumber() - 1));
+            } else {
+                lineLength = (dataQuadrant.getPaddingWidth() / (getDisplayNumber() - 1));
                 startX = dataQuadrant.getPaddingStartX();
             }
-			
-			Path linePath = new Path();
-			for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
-				float value = lineData.get(j).getValue();
-				// calculate Y
-				float valueY = (float) ((1f - (value - minValue)
-						/ (maxValue - minValue)) * dataQuadrant.getPaddingHeight())
-						+ dataQuadrant.getPaddingStartY();
 
-				// if is not last point connect to previous point
-				if (j == getDisplayFrom()) {
-					linePath.moveTo(startX, dataQuadrant.getPaddingEndY());
-					linePath.lineTo(startX, valueY);
-				} else if (j == getDisplayTo() - 1) {
-					linePath.lineTo(startX, valueY);
-					linePath.lineTo(startX, dataQuadrant.getPaddingEndY());
-				} else {
-					linePath.lineTo(startX, valueY);
-				}
-				startX = startX + lineLength;
-			}
-			linePath.close();
-			canvas.drawPath(linePath, mPaint);
-		}
-	}
+            Path linePath = new Path();
+            for (int j = getDisplayFrom(); j < getDisplayTo(); j++) {
+                float value = lineData.get(j).getValue();
+                // calculate Y
+                float valueY = (float) ((1f - (value - minValue)
+                        / (maxValue - minValue)) * dataQuadrant.getPaddingHeight())
+                        + dataQuadrant.getPaddingStartY();
+
+                // if is not last point connect to previous point
+                if (j == getDisplayFrom()) {
+                    linePath.moveTo(startX, dataQuadrant.getPaddingEndY());
+                    linePath.lineTo(startX, valueY);
+                } else if (j == getDisplayTo() - 1) {
+                    linePath.lineTo(startX, valueY);
+                    linePath.lineTo(startX, dataQuadrant.getPaddingEndY());
+                } else {
+                    linePath.lineTo(startX, valueY);
+                }
+                startX = startX + lineLength;
+            }
+            linePath.close();
+            canvas.drawPath(linePath, mPaint);
+        }
+    }
 }

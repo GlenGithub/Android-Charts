@@ -23,53 +23,51 @@
 package cn.limc.androidcharts.event;
 
 import android.graphics.PointF;
-import android.util.Log;
 import android.view.MotionEvent;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/23 15:52:21 
- *  
+ * @author limc
+ * @version v1.0 2014/06/23 15:52:21
  */
 public class OnTouchGestureListener {
 
-	public void onTouchDown(ITouchable touchable,MotionEvent event){
-		if (touchable != null) { 
-			touchable.touchDown(new PointF(event.getX(),event.getY()));
-		}
-	}
-	
-	public void onTouchMoved(ITouchable touchable,MotionEvent event){
-		if (touchable != null) {
-			touchable.touchMoved(new PointF(event.getX(),event.getY()));
-		}
-	}
-	
-	public void onTouchUp(ITouchable touchable,MotionEvent event){
-		if (touchable != null) {
-			touchable.touchUp(new PointF(event.getX(),event.getY()));
-		}
-	}
+    public void onTouchDown(ITouchable touchable, MotionEvent event) {
+        if (touchable != null) {
+            touchable.touchDown(new PointF(event.getX(), event.getY()));
+        }
+    }
 
-	public void onLongPressDown(ITouchable touchable,MotionEvent event){
-		if (touchable != null) {
-			touchable.longPressDown(new PointF(event.getX(),event.getY()));
-		}
-	}
+    public void onTouchMoved(ITouchable touchable, MotionEvent event) {
+        if (touchable != null) {
+            touchable.touchMoved(new PointF(event.getX(), event.getY()));
+        }
+    }
 
-	public void onLongPressMoved(ITouchable touchable,MotionEvent event){
-		if (touchable != null) {
-			touchable.longPressMoved(new PointF(event.getX(),event.getY()));
-		}
-	}
+    public void onTouchUp(ITouchable touchable, MotionEvent event) {
+        if (touchable != null) {
+            touchable.touchUp(new PointF(event.getX(), event.getY()));
+        }
+    }
 
-	public void onLongPressUp(ITouchable touchable,MotionEvent event){
-		if (touchable != null) {
-			touchable.longPressUp(new PointF(event.getX(),event.getY()));
-		}
-	}
+    public void onLongPressDown(ITouchable touchable, MotionEvent event) {
+        if (touchable != null) {
+            touchable.longPressDown(new PointF(event.getX(), event.getY()));
+        }
+    }
+
+    public void onLongPressMoved(ITouchable touchable, MotionEvent event) {
+        if (touchable != null) {
+            touchable.longPressMoved(new PointF(event.getX(), event.getY()));
+        }
+    }
+
+    public void onLongPressUp(ITouchable touchable, MotionEvent event) {
+        if (touchable != null) {
+            touchable.longPressUp(new PointF(event.getX(), event.getY()));
+        }
+    }
 }

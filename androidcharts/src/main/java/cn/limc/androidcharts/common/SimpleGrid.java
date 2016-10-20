@@ -23,8 +23,8 @@ package cn.limc.androidcharts.common;
 
 import java.util.List;
 
-import cn.limc.androidcharts.axis.IAxis;
 import cn.limc.androidcharts.view.GridChart;
+
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -34,21 +34,20 @@ import android.graphics.Paint.Style;
 /**
  * SimpleGrid
  * Description: <br>
- *   <p>add description here </p>
+ * <p>add description here </p>
  * Tags: <br>
- *   <p> </p>
+ * <p> </p>
  *
  * @author limc
- * @version v1.0 
- * 
- * History: <br>
- * 2014/09/01 limc create v1.0 <br>
- *
+ * @version v1.0
+ *          <p>
+ *          History: <br>
+ *          2014/09/01 limc create v1.0 <br>
  */
 public class SimpleGrid implements IFlexableGrid {
 
     protected GridChart inChart;
-    
+
     /**
      * <p>
      * Color of grid‘s longitude line
@@ -74,8 +73,8 @@ public class SimpleGrid implements IFlexableGrid {
      * </p>
      */
     protected int latitudeColor = DEFAULT_LAITUDE_COLOR;
-    
-    
+
+
     /**
      * <p>
      * Should display the degrees in X axis?
@@ -90,8 +89,8 @@ public class SimpleGrid implements IFlexableGrid {
     protected boolean displayLongitudeTitle = DEFAULT_DISPLAY_LONGITUDE_TITLE;
 
     protected float longitudeWidth = DEFAULT_LONGITUDE_WIDTH;
-    
-    
+
+
     /**
      * <p>
      * Should display the degrees in Y axis?
@@ -106,8 +105,10 @@ public class SimpleGrid implements IFlexableGrid {
     protected boolean displayLatitudeTitle = DEFAULT_DISPLAY_LATITUDE_TITLE;
 
     protected float latitudeWidth = DEFAULT_LATITUDE_WIDTH;
-    
-    
+
+    protected boolean displayLeftLatitudeTitle = DEFAULT_DISPLAY_LEFT_LATITUDE_TITLE;
+    protected boolean displayRightLatitudeTitle = DEFAULT_DISPLAY_RIGHT_LATITUDE_TITLE;
+
 
     /**
      * <p>
@@ -251,8 +252,8 @@ public class SimpleGrid implements IFlexableGrid {
      * </p>
      */
     protected int latitudeFontSize = DEFAULT_LATITUDE_FONT_SIZE;
-    
-    
+
+
     /**
      * <p>
      * Titles Array for display of X axis
@@ -291,16 +292,16 @@ public class SimpleGrid implements IFlexableGrid {
      * </p>
      */
     private int latitudeMaxTitleLength = DEFAULT_LATITUDE_MAX_TITLE_LENGTH;
-    
+
     /**
-     * 
+     *
      */
-    public SimpleGrid (GridChart inChart) {
+    public SimpleGrid(GridChart inChart) {
         super();
         this.inChart = inChart;
     }
-    
-    public void drawGrid(Canvas canvas){
+
+    public void drawGrid(Canvas canvas) {
         if (displayLongitude) {
             drawLongitudeLine(canvas);
         }
@@ -310,7 +311,7 @@ public class SimpleGrid implements IFlexableGrid {
         }
     }
 
-    public void drawTitles(Canvas canvas){
+    public void drawTitles(Canvas canvas) {
         if (displayLongitudeTitle) {
             drawLongitudeTitle(canvas);
         }
@@ -319,7 +320,7 @@ public class SimpleGrid implements IFlexableGrid {
             drawLatitudeTitle(canvas);
         }
     }
-    
+
     /**
      * @return the displayLongitudeTitle
      */
@@ -328,8 +329,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param displayLongitudeTitle
-     *            the displayLongitudeTitle to set
+     * @param displayLongitudeTitle the displayLongitudeTitle to set
      */
     public void setDisplayLongitudeTitle(boolean displayLongitudeTitle) {
         this.displayLongitudeTitle = displayLongitudeTitle;
@@ -343,8 +343,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param displayLatitudeTitle
-     *            the displayLatitudeTitle to set
+     * @param displayLatitudeTitle the displayLatitudeTitle to set
      */
     public void setDisplayLatitudeTitle(boolean displayLatitudeTitle) {
         this.displayLatitudeTitle = displayLatitudeTitle;
@@ -358,8 +357,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param latitudeNum
-     *            the latitudeNum to set
+     * @param latitudeNum the latitudeNum to set
      */
     public void setLatitudeNum(int latitudeNum) {
         this.latitudeNum = latitudeNum;
@@ -373,8 +371,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param longitudeNum
-     *            the longitudeNum to set
+     * @param longitudeNum the longitudeNum to set
      */
     public void setLongitudeNum(int longitudeNum) {
         this.longitudeNum = longitudeNum;
@@ -388,8 +385,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param displayLongitude
-     *            the displayLongitude to set
+     * @param displayLongitude the displayLongitude to set
      */
     public void setDisplayLongitude(boolean displayLongitude) {
         this.displayLongitude = displayLongitude;
@@ -403,8 +399,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param dashLongitude
-     *            the dashLongitude to set
+     * @param dashLongitude the dashLongitude to set
      */
     public void setDashLongitude(boolean dashLongitude) {
         this.dashLongitude = dashLongitude;
@@ -418,11 +413,26 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param displayLatitude
-     *            the displayLatitude to set
+     * @param displayLatitude the displayLatitude to set
      */
     public void setDisplayLatitude(boolean displayLatitude) {
         this.displayLatitude = displayLatitude;
+    }
+
+    public boolean isDisplayLeftLatitudeTitle() {
+        return displayLeftLatitudeTitle;
+    }
+
+    public void setDisplayLeftLatitudeTitle(boolean displayLeftLatitudeTitle) {
+        this.displayLeftLatitudeTitle = displayLeftLatitudeTitle;
+    }
+
+    public boolean isDisplayRightLatitudeTitle() {
+        return displayRightLatitudeTitle;
+    }
+
+    public void setDisplayRightLatitudeTitle(boolean displayRightLatitudeTitle) {
+        this.displayRightLatitudeTitle = displayRightLatitudeTitle;
     }
 
     /**
@@ -433,8 +443,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param dashLatitude
-     *            the dashLatitude to set
+     * @param dashLatitude the dashLatitude to set
      */
     public void setDashLatitude(boolean dashLatitude) {
         this.dashLatitude = dashLatitude;
@@ -448,13 +457,12 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param dashEffect
-     *            the dashEffect to set
+     * @param dashEffect the dashEffect to set
      */
     public void setDashEffect(PathEffect dashEffect) {
         this.dashEffect = dashEffect;
     }
-    
+
     /**
      * @return the longitudeWidth
      */
@@ -491,8 +499,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param longitudeFontColor
-     *            the longitudeFontColor to set
+     * @param longitudeFontColor the longitudeFontColor to set
      */
     public void setLongitudeFontColor(int longitudeFontColor) {
         this.longitudeFontColor = longitudeFontColor;
@@ -506,8 +513,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param longitudeFontSize
-     *            the longitudeFontSize to set
+     * @param longitudeFontSize the longitudeFontSize to set
      */
     public void setLongitudeFontSize(int longitudeFontSize) {
         this.longitudeFontSize = longitudeFontSize;
@@ -521,8 +527,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param latitudeFontColor
-     *            the latitudeFontColor to set
+     * @param latitudeFontColor the latitudeFontColor to set
      */
     public void setLatitudeFontColor(int latitudeFontColor) {
         this.latitudeFontColor = latitudeFontColor;
@@ -536,13 +541,12 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param latitudeFontSize
-     *            the latitudeFontSize to set
+     * @param latitudeFontSize the latitudeFontSize to set
      */
     public void setLatitudeFontSize(int latitudeFontSize) {
         this.latitudeFontSize = latitudeFontSize;
     }
-    
+
     /**
      * @return the longitudeColor
      */
@@ -551,8 +555,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param longitudeColor
-     *            the longitudeColor to set
+     * @param longitudeColor the longitudeColor to set
      */
     public void setLongitudeColor(int longitudeColor) {
         this.longitudeColor = longitudeColor;
@@ -566,14 +569,13 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param latitudeColor
-     *            the latitudeColor to set
+     * @param latitudeColor the latitudeColor to set
      */
     public void setLatitudeColor(int latitudeColor) {
         this.latitudeColor = latitudeColor;
     }
-    
-    
+
+
     /**
      * @return the longitudeTitles
      */
@@ -582,8 +584,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param longitudeTitles
-     *            the longitudeTitles to set
+     * @param longitudeTitles the longitudeTitles to set
      */
     public void setLongitudeTitles(List<String> longitudeTitles) {
         this.longitudeTitles = longitudeTitles;
@@ -597,8 +598,7 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param latitudeTitles
-     *            the latitudeTitles to set
+     * @param latitudeTitles the latitudeTitles to set
      */
     public void setLatitudeTitles(List<String> latitudeTitles) {
         this.latitudeTitles = latitudeTitles;
@@ -612,23 +612,21 @@ public class SimpleGrid implements IFlexableGrid {
     }
 
     /**
-     * @param latitudeMaxTitleLength
-     *            the latitudeMaxTitleLength to set
+     * @param latitudeMaxTitleLength the latitudeMaxTitleLength to set
      */
     public void setLatitudeMaxTitleLength(int latitudeMaxTitleLength) {
         this.latitudeMaxTitleLength = latitudeMaxTitleLength;
     }
 
-    
-    
-    public float longitudePostOffset(){
+
+    public float longitudePostOffset() {
         return inChart.getDataQuadrant().getPaddingWidth() / (longitudeTitles.size() - 1);
     }
-    
-    public float longitudeOffset(){
+
+    public float longitudeOffset() {
         return inChart.getDataQuadrant().getPaddingStartX();
     }
-    
+
     /**
      * <p>
      * draw longitude lines
@@ -639,7 +637,7 @@ public class SimpleGrid implements IFlexableGrid {
      * <p>
      * 绘制经线
      * </p>
-     * 
+     *
      * @param canvas
      */
     protected void drawLongitudeLine(Canvas canvas) {
@@ -683,7 +681,7 @@ public class SimpleGrid implements IFlexableGrid {
      * <p>
      * 绘制经线
      * </p>
-     * 
+     *
      * @param canvas
      */
     protected void drawLongitudeTitle(Canvas canvas) {
@@ -733,7 +731,7 @@ public class SimpleGrid implements IFlexableGrid {
      * <p>
      * 绘制纬线
      * </p>
-     * 
+     *
      * @param canvas
      */
     protected void drawLatitudeLine(Canvas canvas) {
@@ -752,7 +750,7 @@ public class SimpleGrid implements IFlexableGrid {
         }
 
         float length = inChart.getDataQuadrant().getWidth();
-        
+
         Paint mPaintLine = new Paint();
         mPaintLine.setStyle(Style.STROKE);
         mPaintLine.setColor(latitudeColor);
@@ -774,23 +772,13 @@ public class SimpleGrid implements IFlexableGrid {
                 - inChart.getAxisX().getHeight() - inChart.getAxisX().getLineWidth()
                 - inChart.getDataQuadrant().getPaddingBottom();
 
-//        if (inChart.getAxisY().getPosition() == IAxis.AXIS_Y_POSITION_LEFT) {
-//            float startFrom = inChart.getBorderWidth() + inChart.getAxisY().getWidth()  + inChart.getAxisY().getLineWidth();
-//            for (int i = 0; i < latitudeTitles.size(); i++) {
-//                Path path = new Path();
-//                path.moveTo(startFrom, offset - i * postOffset);
-//                path.lineTo(startFrom + length, offset - i * postOffset);
-//                canvas.drawPath(path, mPaintLine);
-//            }
-//        } else {
-            float startFrom = inChart.getBorderWidth();
-            for (int i = 0; i < latitudeTitles.size(); i++) {
-                Path path = new Path();
-                path.moveTo(startFrom, offset - i * postOffset);
-                path.lineTo(startFrom + length, offset - i * postOffset);
-                canvas.drawPath(path, mPaintLine);
-            }
-//        }
+        float startFrom = inChart.getBorderWidth();
+        for (int i = 0; i < latitudeTitles.size(); i++) {
+            Path path = new Path();
+            path.moveTo(startFrom, offset - i * postOffset);
+            path.lineTo(startFrom + length, offset - i * postOffset);
+            canvas.drawPath(path, mPaintLine);
+        }
     }
 
     /**
@@ -803,7 +791,7 @@ public class SimpleGrid implements IFlexableGrid {
      * <p>
      * 绘制纬线
      * </p>
-     * 
+     *
      * @param canvas
      */
     protected void drawLatitudeTitle(Canvas canvas) {
@@ -820,7 +808,6 @@ public class SimpleGrid implements IFlexableGrid {
         mPaintFont.setColor(latitudeFontColor);
         mPaintFont.setTextSize(latitudeFontSize);
         mPaintFont.setAntiAlias(true);
-        mPaintFont.setTextAlign(Paint.Align.LEFT);
 
         float postOffset = inChart.getDataQuadrant().getPaddingHeight()
                 / (latitudeTitles.size() - 1);
@@ -829,7 +816,9 @@ public class SimpleGrid implements IFlexableGrid {
                 - inChart.getAxisX().getHeight() - inChart.getAxisX().getLineWidth()
                 - inChart.getDataQuadrant().getPaddingBottom();
 
-//        if (inChart.getAxisY().getPosition() == IAxis.AXIS_Y_POSITION_LEFT) {
+        if (this.displayLeftLatitudeTitle) {
+            //绘制左侧的Y轴坐标
+            mPaintFont.setTextAlign(Paint.Align.LEFT);
             float startFromLeft = inChart.getBorderWidth();
             for (int i = 0; i < latitudeTitles.size(); i++) {
                 if (latitudeTitles.size() - 1 == i) {
@@ -838,32 +827,28 @@ public class SimpleGrid implements IFlexableGrid {
                             mPaintFont);
                 } else {
                     canvas.drawText(latitudeTitles.get(i), startFromLeft, offset
-                            - i * postOffset - 2,
+                                    - i * postOffset - 2,
                             mPaintFont);
                 }
             }
-//        } else {
+        }
 
-
-        mPaintFont.setTextAlign(Paint.Align.RIGHT);
-
-            float startFromRight = inChart.getWidth() - inChart.getBorderWidth() ;
-
+        if (this.displayRightLatitudeTitle) {
+            //绘制右侧的Y轴坐标
+            mPaintFont.setTextAlign(Paint.Align.RIGHT);
+            float startFromRight = inChart.getWidth() - inChart.getBorderWidth();
             for (int i = 0; i < latitudeTitles.size(); i++) {
 
                 if (latitudeTitles.size() - 1 == i) {
-//                    canvas.drawText(latitudeTitles.get(i), startFromRight,
-//                            inChart.getHeight() - - inChart.getAxisX().getHeight() - inChart.getAxisX().getLineWidth()
-//                            - inChart.getBorderWidth() - 2f, mPaintFont);
                     canvas.drawText(latitudeTitles.get(i), startFromRight, offset
                                     - i * postOffset + latitudeFontSize + 2,
                             mPaintFont);
                 } else {
                     canvas.drawText(latitudeTitles.get(i), startFromRight, offset
-                            - i * postOffset - 2,
+                                    - i * postOffset - 2,
                             mPaintFont);
                 }
             }
-//        }
+        }
     }
 }

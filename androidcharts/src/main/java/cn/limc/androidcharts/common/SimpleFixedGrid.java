@@ -25,25 +25,21 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Path;
-import android.graphics.PathEffect;
-
-import java.util.List;
 
 import cn.limc.androidcharts.view.GridChart;
 
 /**
  * SimpleGrid
  * Description: <br>
- *   <p>add description here </p>
+ * <p>add description here </p>
  * Tags: <br>
- *   <p> </p>
+ * <p> </p>
  *
  * @author limc
- * @version v1.0 
- * 
- * History: <br>
- * 2014/09/01 limc create v1.0 <br>
- *
+ * @version v1.0
+ *          <p>
+ *          History: <br>
+ *          2014/09/01 limc create v1.0 <br>
  */
 public class SimpleFixedGrid extends SimpleGrid {
     /**
@@ -63,7 +59,7 @@ public class SimpleFixedGrid extends SimpleGrid {
      * <p>
      * 绘制经线
      * </p>
-     * 
+     *
      * @param canvas
      */
     protected void drawLongitudeLine(Canvas canvas) {
@@ -107,7 +103,7 @@ public class SimpleFixedGrid extends SimpleGrid {
      * <p>
      * 绘制经线
      * </p>
-     * 
+     *
      * @param canvas
      */
     protected void drawLongitudeTitle(Canvas canvas) {

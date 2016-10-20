@@ -31,20 +31,18 @@ package cn.limc.androidcharts.entity;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/03/18 15:15:37
- * 
  */
 public interface IHasColor {
-	/**
-	 * @return the color
-	 */
-	int getColor();
+    /**
+     * @return the color
+     */
+    int getColor();
 
-	/**
-	 * @param color
-	 *            the color to set
-	 */
-	void setColor(int color);
+    /**
+     * @param color the color to set
+     */
+    void setColor(int color);
 }

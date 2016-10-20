@@ -28,7 +28,7 @@ import android.util.AttributeSet;
 
 
 public class RoundChart extends AbstractBaseChart {
-    
+
     /**
      * <p>
      * default title
@@ -93,8 +93,8 @@ public class RoundChart extends AbstractBaseChart {
      * </p>
      */
     public static final int DEFAULT_CIRCLE_BORDER_COLOR = Color.WHITE;
-    
-    
+
+
     /**
      * <p>
      * default color for circle's border
@@ -120,7 +120,7 @@ public class RoundChart extends AbstractBaseChart {
      * </p>
      */
     public static final Point DEFAULT_POSITION = new Point(0, 0);
-   
+
     /**
      * <p>
      * title
@@ -185,7 +185,7 @@ public class RoundChart extends AbstractBaseChart {
      * </p>
      */
     protected int circleBorderColor = DEFAULT_CIRCLE_BORDER_COLOR;
-    
+
     protected int circleBorderWidth = DEFAULT_CIRCLE_BORDER_WIDTH;
 
     /**
@@ -200,7 +200,7 @@ public class RoundChart extends AbstractBaseChart {
      * </p>
      */
     protected boolean displayLongitude = DEFAULT_DISPLAY_LONGITUDE;
-    
+
 
     /**
      * @param context
@@ -228,7 +228,7 @@ public class RoundChart extends AbstractBaseChart {
         super(context);
         // TODO Auto-generated constructor stub
     }
-    
+
     /**
      * @return the title
      */
@@ -237,8 +237,7 @@ public class RoundChart extends AbstractBaseChart {
     }
 
     /**
-     * @param title
-     *            the title to set
+     * @param title the title to set
      */
     public void setTitle(String title) {
         this.title = title;
@@ -252,8 +251,7 @@ public class RoundChart extends AbstractBaseChart {
     }
 
     /**
-     * @param position
-     *            the position to set
+     * @param position the position to set
      */
     public void setPosition(Point position) {
         this.position = position;
@@ -267,8 +265,7 @@ public class RoundChart extends AbstractBaseChart {
     }
 
     /**
-     * @param longitudeLength
-     *            the longitudeLength to set
+     * @param longitudeLength the longitudeLength to set
      */
     public void setLongitudeLength(float radiusLength) {
         this.longitudeLength = radiusLength;
@@ -282,8 +279,7 @@ public class RoundChart extends AbstractBaseChart {
     }
 
     /**
-     * @param longitudeColor
-     *            the longitudeColor to set
+     * @param longitudeColor the longitudeColor to set
      */
     public void setLongitudeColor(int radiusColor) {
         this.longitudeColor = radiusColor;
@@ -297,8 +293,7 @@ public class RoundChart extends AbstractBaseChart {
     }
 
     /**
-     * @param circleBorderColor
-     *            the circleBorderColor to set
+     * @param circleBorderColor the circleBorderColor to set
      */
     public void setCircleBorderColor(int circleBorderColor) {
         this.circleBorderColor = circleBorderColor;
@@ -312,8 +307,7 @@ public class RoundChart extends AbstractBaseChart {
     }
 
     /**
-     * @param displayLongitude
-     *            the displayLongitude to set
+     * @param displayLongitude the displayLongitude to set
      */
     public void setDisplayLongitude(boolean displayRadius) {
         this.displayLongitude = displayRadius;

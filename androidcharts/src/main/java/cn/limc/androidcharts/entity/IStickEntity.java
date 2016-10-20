@@ -31,10 +31,9 @@ package cn.limc.androidcharts.entity;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/03/18 15:58:20
- * 
  */
 public interface IStickEntity extends IMeasurable, IHasDate {
 

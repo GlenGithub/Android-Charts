@@ -21,17 +21,17 @@
 
 
 package cn.limc.androidcharts.event;
+
 import cn.limc.androidcharts.common.IDataCursor;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/23 16:25:51 
- *  
+ * @author limc
+ * @version v1.0 2014/06/23 16:25:51
  */
 public interface IDisplayCursorListener {
-	void onCursorChanged(IDataCursor cursor,int displayFrom, int displayNumber);
+    void onCursorChanged(IDataCursor cursor, int displayFrom, int displayNumber);
 }

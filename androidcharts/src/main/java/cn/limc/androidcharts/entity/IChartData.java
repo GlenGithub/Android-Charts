@@ -31,19 +31,18 @@ package cn.limc.androidcharts.entity;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/03/18 15:19:56
- * 
  */
 public interface IChartData<T> {
-	int size();
+    int size();
 
-	T get(int index);
+    T get(int index);
 
-	boolean hasData();
+    boolean hasData();
 
-	boolean hasNoData();
+    boolean hasNoData();
 
-	void add(T data);
+    void add(T data);
 }

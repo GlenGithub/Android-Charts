@@ -21,15 +21,12 @@
 
 package cn.limc.androidcharts.view;
 
-import cn.limc.androidcharts.axis.IAxis;
 import cn.limc.androidcharts.entity.IMeasurable;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.util.AttributeSet;
 
 /**
- * 
  * <p>
  * MinusStickChart is inherits from StickChart which its data can be minus value
  * </p>
@@ -39,94 +36,93 @@ import android.util.AttributeSet;
  * <p>
  * MinusStickChart继承于StickChart的，可以在StickChart基础上绘制包含负数的柱状条。
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2011/05/30 15:11:43
- * 
  */
 public class MinusStickChart extends StickChart {
-	@Override
-	protected void calcDataValueRange() {
+    @Override
+    protected void calcDataValueRange() {
 
-		double maxValue = -Double.MAX_VALUE;
-		double minValue = Double.MAX_VALUE;
+        double maxValue = -Double.MAX_VALUE;
+        double minValue = Double.MAX_VALUE;
 
-		IMeasurable first = this.stickData.get(0);
-		// 第一个stick为停盘的情况
-		if (first.getHigh() == 0 && first.getLow() == 0) {
+        IMeasurable first = this.stickData.get(0);
+        // 第一个stick为停盘的情况
+        if (first.getHigh() == 0 && first.getLow() == 0) {
 
-		} else {
-			maxValue = first.getHigh();
-			minValue = first.getLow();
-		}
+        } else {
+            maxValue = first.getHigh();
+            minValue = first.getLow();
+        }
 
-		// 判断显示为方柱或显示为线条
-		for (int i = 0; i < this.stickData.size(); i++) {
-			IMeasurable stick = this.stickData.get(i);
-			if (stick.getLow() < minValue) {
-				minValue = stick.getLow();
-			}
+        // 判断显示为方柱或显示为线条
+        for (int i = 0; i < this.stickData.size(); i++) {
+            IMeasurable stick = this.stickData.get(i);
+            if (stick.getLow() < minValue) {
+                minValue = stick.getLow();
+            }
 
-			if (stick.getHigh() > maxValue) {
-				maxValue = stick.getHigh();
-			}
+            if (stick.getHigh() > maxValue) {
+                maxValue = stick.getHigh();
+            }
 
-		}
+        }
 
-		this.maxValue = maxValue;
-		this.minValue = minValue;
-	}
-	
-	@Override
-	protected void calcValueRangePaddingZero(){
-		
-	}
-	
-	@Override
-	protected void calcValueRangeFormatForAxis() {
-		
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param context
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#GridChart(Context)
-	 */
-	public MinusStickChart(Context context) {
-		super(context);
-	}
+        this.maxValue = maxValue;
+        this.minValue = minValue;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param context
-	 * 
-	 * @param attrs
-	 * 
-	 * @param defStyle
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
-	 * AttributeSet, int)
-	 */
-	public MinusStickChart(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
+    @Override
+    protected void calcValueRangePaddingZero() {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param context
-	 * 
-	 * @param attrs
-	 * 
-	 * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
-	 * AttributeSet)
-	 */
-	public MinusStickChart(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    }
+
+    @Override
+    protected void calcValueRangeFormatForAxis() {
+
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @param context
+     *
+     * @see cn.limc.androidcharts.view.GridChart#GridChart(Context)
+     */
+    public MinusStickChart(Context context) {
+        super(context);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @param context
+     *
+     * @param attrs
+     *
+     * @param defStyle
+     *
+     * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
+     * AttributeSet, int)
+     */
+    public MinusStickChart(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @param context
+     *
+     * @param attrs
+     *
+     * @see cn.limc.androidcharts.view.GridChart#GridChart(Context,
+     * AttributeSet)
+     */
+    public MinusStickChart(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
 //	/*
 //	 * (non-Javadoc)

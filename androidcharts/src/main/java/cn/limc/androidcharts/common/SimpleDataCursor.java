@@ -22,144 +22,145 @@
 
 package cn.limc.androidcharts.common;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/18 16:00:16 
- *  
+ * @author limc
+ * @version v1.0 2014/06/18 16:00:16
  */
 public class SimpleDataCursor implements IDataCursor {
 
-	protected int minDisplayNumber = MIN_DISPLAY_NUM;
-	protected int maxDisplayNumber = MAX_DISPLAY_NUM;
+    protected int minDisplayNumber = MIN_DISPLAY_NUM;
+    protected int maxDisplayNumber = MAX_DISPLAY_NUM;
 
-	private byte[] synlock = new byte[]{};
-	
-	/** 
-	 * <p>Constructor of SimpleDataCursor</p>
-	 * <p>SimpleDataCursor类对象的构造函数</p>
-	 * <p>SimpleDataCursorのコンストラクター</p>
-	 * 
-	 */
-	public SimpleDataCursor() {
-		// TODO Auto-generated constructor stub
-	}
+    private final byte[] synlock = new byte[]{};
 
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.view.IDataCursor#getDisplayFrom()
-	 */
-	public int getDisplayFrom() {
-		return 0;
-	}
+    /**
+     * <p>Constructor of SimpleDataCursor</p>
+     * <p>SimpleDataCursor类对象的构造函数</p>
+     * <p>SimpleDataCursorのコンストラクター</p>
+     */
+    public SimpleDataCursor() {
+        // TODO Auto-generated constructor stub
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.view.IDataCursor#displayNumber() 
-	 */
-	public int getDisplayNumber() {
-		return maxDisplayNumber;
-	}
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.view.IDataCursor#getDisplayFrom()
+     */
+    public int getDisplayFrom() {
+        return 0;
+    }
 
-	public int getDataDisplayNumber() {
-		return maxDisplayNumber;
-	}
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.view.IDataCursor#displayNumber()
+     */
+    public int getDisplayNumber() {
+        return maxDisplayNumber;
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.view.IDataCursor#displayTo() 
-	 */
-	public int getDisplayTo() {
-		return maxDisplayNumber;
-	}
+    public int getDataDisplayNumber() {
+        return maxDisplayNumber;
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @param displayFrom 
-	 * @see cn.limc.androidcharts.common.IDataCursor#setDisplayFrom(int) 
-	 */
-	public void setDisplayFrom(int displayFrom) {
-	}
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.view.IDataCursor#displayTo()
+     */
+    public int getDisplayTo() {
+        return maxDisplayNumber;
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @param displayNumber 
-	 * @see cn.limc.androidcharts.common.IDataCursor#setDisplayNumber(int) 
-	 */
-	public void setDisplayNumber(int displayNumber) {
-	}
+    /* (non-Javadoc)
+     *
+     * @param displayFrom
+     * @see cn.limc.androidcharts.common.IDataCursor#setDisplayFrom(int)
+     */
+    public void setDisplayFrom(int displayFrom) {
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @param displayTo 
-	 * @see cn.limc.androidcharts.common.IDataCursor#setDisplayTo(int) 
-	 */
-	public void setDisplayTo(int displayTo) {
-		// TODO Auto-generated method stub
-		
-	}
+    /* (non-Javadoc)
+     *
+     * @param displayNumber
+     * @see cn.limc.androidcharts.common.IDataCursor#setDisplayNumber(int)
+     */
+    public void setDisplayNumber(int displayNumber) {
+    }
 
-	public boolean forward(int step){
-		return  true;
-	}
-	public boolean backward(int step){
-		return  true;
-	}
-	public boolean stretch(int step){
-		return  true;
-	}
-	public boolean shrink(int step){
-		return  true;
-	}
+    /* (non-Javadoc)
+     *
+     * @param displayTo
+     * @see cn.limc.androidcharts.common.IDataCursor#setDisplayTo(int)
+     */
+    public void setDisplayTo(int displayTo) {
+        // TODO Auto-generated method stub
 
-	/* (non-Javadoc)
+    }
+
+    public boolean forward(int step) {
+        return true;
+    }
+
+    public boolean backward(int step) {
+        return true;
+    }
+
+    public boolean stretch(int step) {
+        return true;
+    }
+
+    public boolean shrink(int step) {
+        return true;
+    }
+
+    /* (non-Javadoc)
          *
          * @return
          * @see cn.limc.androidcharts.common.IDataCursor#getMinDisplayNumber()
          */
-	public int getMinDisplayNumber() {
-		return minDisplayNumber;
-	}
+    public int getMinDisplayNumber() {
+        return minDisplayNumber;
+    }
 
-	/* (non-Javadoc)
-	 *
-	 * @param minDisplayNumber
-	 * @see cn.limc.androidcharts.common.IDataCursor#setMinDisplayNumber(int)
-	 */
-	public void setMinDisplayNumber(int minDisplayNumber) {
-		synchronized (synlock){
-			if (minDisplayNumber >=0 && minDisplayNumber <= this.maxDisplayNumber){
-				this.minDisplayNumber = minDisplayNumber;
-			}
-		}
+    /* (non-Javadoc)
+     *
+     * @param minDisplayNumber
+     * @see cn.limc.androidcharts.common.IDataCursor#setMinDisplayNumber(int)
+     */
+    public void setMinDisplayNumber(int minDisplayNumber) {
+        synchronized (synlock) {
+            if (minDisplayNumber >= 0 && minDisplayNumber <= this.maxDisplayNumber) {
+                this.minDisplayNumber = minDisplayNumber;
+            }
+        }
 
-	}
+    }
 
-	/* (non-Javadoc)
-	 *
-	 * @return
-	 * @see cn.limc.androidcharts.common.IDataCursor#getMaxDisplayNumber()
-	 */
-	public int getMaxDisplayNumber() {
-		return maxDisplayNumber;
-	}
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.common.IDataCursor#getMaxDisplayNumber()
+     */
+    public int getMaxDisplayNumber() {
+        return maxDisplayNumber;
+    }
 
-	/* (non-Javadoc)
-	 *
-	 * @param minDisplayNumber
-	 * @see cn.limc.androidcharts.common.IDataCursor#setMaxDisplayNumber(int)
-	 */
-	public void setMaxDisplayNumber(int maxDisplayNumber) {
-		synchronized (synlock) {
-			if (maxDisplayNumber >= 0  && maxDisplayNumber >= this.minDisplayNumber) {
-				this.maxDisplayNumber = maxDisplayNumber;
-			}
-		}
-	}
+    /* (non-Javadoc)
+     *
+     * @param minDisplayNumber
+     * @see cn.limc.androidcharts.common.IDataCursor#setMaxDisplayNumber(int)
+     */
+    public void setMaxDisplayNumber(int maxDisplayNumber) {
+        synchronized (synlock) {
+            if (maxDisplayNumber >= 0 && maxDisplayNumber >= this.minDisplayNumber) {
+                this.maxDisplayNumber = maxDisplayNumber;
+            }
+        }
+    }
 }

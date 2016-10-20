@@ -31,10 +31,9 @@ package cn.limc.androidcharts.entity;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/03/18 14:00:46
- * 
  */
 public interface IEntity {
 

@@ -23,20 +23,19 @@
 package cn.limc.androidcharts.axis;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
+
 import cn.limc.androidcharts.view.GridChart;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/24 19:43:01 
- *  
+ * @author limc
+ * @version v1.0 2014/06/24 19:43:01
  */
 public class VerticalAxis extends Axis {
-    
+
     /**
      * <p>
      * default margin of the axis to the left border
@@ -49,37 +48,39 @@ public class VerticalAxis extends Axis {
      * </p>
      */
     public static final float DEFAULT_WIDTH = 50f;
-    
-	protected float width = DEFAULT_WIDTH;
-	
-	/** 
-	 * <p>Constructor of VerticalAxis</p>
-	 * <p>VerticalAxis类对象的构造函数</p>
-	 * <p>VerticalAxisのコンストラクター</p>
-	 *
-	 * @param position 
-	 */
-	public VerticalAxis(GridChart inChart, int position) {
-		super(inChart,position);
-	}
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.common.IQuadrant#getQuadrantWidth() 
-	 */
-	public float getWidth() {
-		return width;
-	}
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.common.IQuadrant#getQuadrantHeight() 
-	 */
-	public float getHeight() {
-		return inChart.getHeight() - 2 * inChart.getBorderWidth();
-	}
-	
-	 /**
+
+    protected float width = DEFAULT_WIDTH;
+
+    /**
+     * <p>Constructor of VerticalAxis</p>
+     * <p>VerticalAxis类对象的构造函数</p>
+     * <p>VerticalAxisのコンストラクター</p>
+     *
+     * @param position
+     */
+    public VerticalAxis(GridChart inChart, int position) {
+        super(inChart, position);
+    }
+
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.common.IQuadrant#getQuadrantWidth()
+     */
+    public float getWidth() {
+        return width;
+    }
+
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.common.IQuadrant#getQuadrantHeight()
+     */
+    public float getHeight() {
+        return inChart.getHeight() - 2 * inChart.getBorderWidth();
+    }
+
+    /**
      * <p>
      * draw Y Axis
      * </p>
@@ -89,7 +90,7 @@ public class VerticalAxis extends Axis {
      * <p>
      * 绘制Y轴
      * </p>
-     * 
+     *
      * @param canvas
      */
     public void draw(Canvas canvas) {

@@ -34,92 +34,86 @@ import android.view.MotionEvent;
  * <p>
  * cn
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2014/06/23 16:48:07
- * 
  */
 public class SlipGestureDetector<T extends ISlipable> extends ZoomGestureDetector<IZoomable> {
-	protected PointF startPointA;
-	protected PointF startPointB;
-	
-	private OnSlipGestureListener onSlipGestureListener;
+    protected PointF startPointA;
+    protected PointF startPointB;
 
-	public SlipGestureDetector(ISlipable slipable){
-		super(slipable);
-		if (slipable != null) {
-			this.onSlipGestureListener = slipable.getOnSlipGestureListener();
-		}
-	}
+    public SlipGestureDetector(ISlipable slipable) {
+        super(slipable);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @param event
-	 * 
-	 * @return
-	 * 
-	 * @see
-	 * cn.limc.androidcharts.event.IGestureDetector#onTouchEvent(android.view
-	 * .MotionEvent)
-	 */
-	public boolean onTouchEvent(MotionEvent event) {
-		switch (event.getAction() & MotionEvent.ACTION_MASK) {
-		// 设置拖拉模式
-		case MotionEvent.ACTION_DOWN:
-			break;
-		case MotionEvent.ACTION_UP:
-			startPointA = null;
-			startPointB = null;
-			break;
-		case MotionEvent.ACTION_POINTER_UP:
-			startPointA = null;
-			startPointB = null;
-		case MotionEvent.ACTION_POINTER_DOWN:
-			olddistance = calcDistance(event);
-			if (olddistance > MIN_DISTANCE) {
-				touchMode = TOUCH_MODE_MULTI;
-				startPointA = new PointF(event.getX(0), event.getY(0));
-				startPointB = new PointF(event.getX(1), event.getY(1));
-			}
-			return true;
-			//break;
-		case MotionEvent.ACTION_MOVE:
-			if (touchMode == TOUCH_MODE_MULTI) {
-				newdistance = calcDistance(event);
-				if (newdistance > MIN_DISTANCE) {
-					if (startPointA.x >= event.getX(0)
-							&& startPointB.x >= event.getX(1)) {
-						if (onSlipGestureListener != null) {
-							onSlipGestureListener.onMoveRight((ISlipable)instance,event);
-						}
-					} else if (startPointA.x <= event.getX(0)
-							&& startPointB.x <= event.getX(1)) {
-						if (onSlipGestureListener != null) {
-							onSlipGestureListener.onMoveLeft((ISlipable)instance,event);
-						}
-					} else {
-						if (Math.abs(newdistance - olddistance) > MIN_DISTANCE) {
-							if (onZoomGestureListener != null) {
-								if (newdistance > olddistance) {
-									onZoomGestureListener.onZoomIn((IZoomable)instance,event);
-								} else {
-									onZoomGestureListener.onZoomOut((IZoomable)instance,event);
-								}
-							}
-							// reset distance
-							olddistance = newdistance;
-						}
-					}
-					startPointA = new PointF(event.getX(0), event.getY(0));
-					startPointB = new PointF(event.getX(1), event.getY(1));
+    /*
+     * (non-Javadoc)
+     *
+     * @param event
+     *
+     * @return
+     *
+     * @see
+     * cn.limc.androidcharts.event.IGestureDetector#onTouchEvent(android.view
+     * .MotionEvent)
+     */
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+            // 设置拖拉模式
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_UP:
+                startPointA = null;
+                startPointB = null;
+                break;
+            case MotionEvent.ACTION_POINTER_UP:
+                startPointA = null;
+                startPointB = null;
+            case MotionEvent.ACTION_POINTER_DOWN:
+                olddistance = calcDistance(event);
+                if (olddistance > MIN_DISTANCE) {
+                    touchMode = TOUCH_MODE_MULTI;
+                    startPointA = new PointF(event.getX(0), event.getY(0));
+                    startPointB = new PointF(event.getX(1), event.getY(1));
+                }
+                return true;
+            //break;
+            case MotionEvent.ACTION_MOVE:
+                if (touchMode == TOUCH_MODE_MULTI) {
+                    newdistance = calcDistance(event);
+                    if (newdistance > MIN_DISTANCE) {
+                        if (startPointA.x >= event.getX(0)
+                                && startPointB.x >= event.getX(1)) {
+                            if (((T) instance).getOnSlipGestureListener() != null) {
+                                ((T) instance).getOnSlipGestureListener().onMoveRight((ISlipable) instance, event);
+                            }
+                        } else if (startPointA.x <= event.getX(0)
+                                && startPointB.x <= event.getX(1)) {
+                            if (((T) instance).getOnSlipGestureListener() != null) {
+                                ((T) instance).getOnSlipGestureListener().onMoveLeft((ISlipable) instance, event);
+                            }
+                        } else {
+                            if (Math.abs(newdistance - olddistance) > MIN_DISTANCE) {
+                                if (((T) instance).getOnZoomGestureListener() != null) {
+                                    if (newdistance > olddistance) {
+                                        ((T) instance).getOnZoomGestureListener().onZoomIn((IZoomable) instance, event);
+                                    } else {
+                                        ((T) instance).getOnZoomGestureListener().onZoomOut((IZoomable) instance, event);
+                                    }
+                                }
+                                // reset distance
+                                olddistance = newdistance;
+                            }
+                        }
+                        startPointA = new PointF(event.getX(0), event.getY(0));
+                        startPointB = new PointF(event.getX(1), event.getY(1));
 
-					return true;
-				}
-			}
-			break;
-		}
-		return super.onTouchEvent(event);
-	}
+                        return true;
+                    }
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
 
 }

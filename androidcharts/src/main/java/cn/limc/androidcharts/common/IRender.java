@@ -22,15 +22,14 @@
 
 package cn.limc.androidcharts.common;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/20 14:47:36 
- *  
+ * @author limc
+ * @version v1.0 2014/06/20 14:47:36
  */
-public interface IRender<CHART,DATA> {
-	void setUp();
+public interface IRender<CHART, DATA> {
+    void setUp();
 }

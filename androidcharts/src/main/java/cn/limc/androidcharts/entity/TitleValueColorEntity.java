@@ -31,107 +31,99 @@ package cn.limc.androidcharts.entity;
  * <p>
  * 支持显示标题的值的实体对象
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2011/05/29 12:19:06
  * @see TitleValueEntity
- * 
  */
 public class TitleValueColorEntity extends TitleValueEntity implements
-		IHasColor {
+        IHasColor {
 
-	/**
-	 * <p>
-	 * Color
-	 * </p>
-	 * <p>
-	 * 色
-	 * </p>
-	 * <p>
-	 * 颜色
-	 * </p>
-	 * 
-	 * @see Color
-	 */
-	private int color;
+    /**
+     * <p>
+     * Color
+     * </p>
+     * <p>
+     * 色
+     * </p>
+     * <p>
+     * 颜色
+     * </p>
+     *
+     * @see Color
+     */
+    private int color;
 
-	/**
-	 * 
-	 * <p>
-	 * Constructor of TitleValueColorEntity
-	 * </p>
-	 * <p>
-	 * TitleValueColorEntity类对象的构造函数
-	 * </p>
-	 * <p>
-	 * TitleValueColorEntityのコンストラクター
-	 * </p>
-	 * 
-	 * @param title
-	 *            <p>
-	 *            Title
-	 *            </p>
-	 *            <p>
-	 *            タイトル
-	 *            </p>
-	 *            <p>
-	 *            标题
-	 *            </p>
-	 * @param value
-	 *            <p>
-	 *            Value
-	 *            </p>
-	 *            <p>
-	 *            値
-	 *            </p>
-	 *            <p>
-	 *            值
-	 *            </p>
-	 * @param color
-	 *            <p>
-	 *            Color
-	 *            </p>
-	 *            <p>
-	 *            色
-	 *            </p>
-	 *            <p>
-	 *            颜色
-	 *            </p>
-	 */
-	public TitleValueColorEntity(String title, float value, int color) {
-		super(title, value);
-		this.color = color;
-	}
+    /**
+     * <p>
+     * Constructor of TitleValueColorEntity
+     * </p>
+     * <p>
+     * TitleValueColorEntity类对象的构造函数
+     * </p>
+     * <p>
+     * TitleValueColorEntityのコンストラクター
+     * </p>
+     *
+     * @param title <p>
+     *              Title
+     *              </p>
+     *              <p>
+     *              タイトル
+     *              </p>
+     *              <p>
+     *              标题
+     *              </p>
+     * @param value <p>
+     *              Value
+     *              </p>
+     *              <p>
+     *              値
+     *              </p>
+     *              <p>
+     *              值
+     *              </p>
+     * @param color <p>
+     *              Color
+     *              </p>
+     *              <p>
+     *              色
+     *              </p>
+     *              <p>
+     *              颜色
+     *              </p>
+     */
+    public TitleValueColorEntity(String title, float value, int color) {
+        super(title, value);
+        this.color = color;
+    }
 
-	/**
-	 * 
-	 * <p>
-	 * Constructor of TitleValueColorEntity
-	 * </p>
-	 * <p>
-	 * TitleValueColorEntity类对象的构造函数
-	 * </p>
-	 * <p>
-	 * TitleValueColorEntityのコンストラクター
-	 * </p>
-	 * 
-	 */
-	public TitleValueColorEntity() {
-		super();
-	}
+    /**
+     * <p>
+     * Constructor of TitleValueColorEntity
+     * </p>
+     * <p>
+     * TitleValueColorEntity类对象的构造函数
+     * </p>
+     * <p>
+     * TitleValueColorEntityのコンストラクター
+     * </p>
+     */
+    public TitleValueColorEntity() {
+        super();
+    }
 
-	/**
-	 * @return the color
-	 */
-	public int getColor() {
-		return color;
-	}
+    /**
+     * @return the color
+     */
+    public int getColor() {
+        return color;
+    }
 
-	/**
-	 * @param color
-	 *            the color to set
-	 */
-	public void setColor(int color) {
-		this.color = color;
-	}
+    /**
+     * @param color the color to set
+     */
+    public void setColor(int color) {
+        this.color = color;
+    }
 }

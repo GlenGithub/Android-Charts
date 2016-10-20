@@ -24,15 +24,14 @@ package cn.limc.androidcharts.event;
 
 import android.view.MotionEvent;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/23 16:43:53 
- *  
+ * @author limc
+ * @version v1.0 2014/06/23 16:43:53
  */
 public interface IGestureDetector {
-	public boolean onTouchEvent(MotionEvent event);
+    boolean onTouchEvent(MotionEvent event);
 }

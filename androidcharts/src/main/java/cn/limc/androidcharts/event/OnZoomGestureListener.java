@@ -21,27 +21,27 @@
 
 
 package cn.limc.androidcharts.event;
+
 import android.view.MotionEvent;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/23 15:53:23 
- *  
+ * @author limc
+ * @version v1.0 2014/06/23 15:53:23
  */
 public class OnZoomGestureListener {
-	public void onZoomIn(IZoomable zoomable, MotionEvent event){
-		if (zoomable != null) {
-			zoomable.zoomIn();
-		}
-	}
-	
-	public void onZoomOut(IZoomable zoomable, MotionEvent event){
-		if (zoomable != null) {
-			zoomable.zoomOut();
-		}
-	}
+    public void onZoomIn(IZoomable zoomable, MotionEvent event) {
+        if (zoomable != null) {
+            zoomable.zoomIn();
+        }
+    }
+
+    public void onZoomOut(IZoomable zoomable, MotionEvent event) {
+        if (zoomable != null) {
+            zoomable.zoomOut();
+        }
+    }
 }

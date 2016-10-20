@@ -31,163 +31,151 @@ package cn.limc.androidcharts.entity;
  * <p>
  * CCSStickChart保存柱条表示用的高低值的实体对象
  * </p>
- * 
+ *
  * @author limc
  * @version v1.0 2011/05/29 12:24:49
  */
 public class StickEntity implements IStickEntity {
 
-	/**
-	 * <p>
-	 * High Value
-	 * </p>
-	 * <p>
-	 * 高値
-	 * </p>
-	 * <p>
-	 * 最高值
-	 * </p>
-	 * 
-	 */
-	private double high;
+    /**
+     * <p>
+     * High Value
+     * </p>
+     * <p>
+     * 高値
+     * </p>
+     * <p>
+     * 最高值
+     * </p>
+     */
+    private double high;
 
-	/**
-	 * <p>
-	 * Low Value
-	 * </p>
-	 * <p>
-	 * 低値
-	 * </p>
-	 * <p>
-	 * 最低值
-	 * </p>
-	 * 
-	 */
-	private double low;
+    /**
+     * <p>
+     * Low Value
+     * </p>
+     * <p>
+     * 低値
+     * </p>
+     * <p>
+     * 最低值
+     * </p>
+     */
+    private double low;
 
-	/**
-	 * <p>
-	 * Date
-	 * </p>
-	 * <p>
-	 * 日付
-	 * </p>
-	 * <p>
-	 * 日期
-	 * </p>
-	 * 
-	 */
-	private long date;
+    /**
+     * <p>
+     * Date
+     * </p>
+     * <p>
+     * 日付
+     * </p>
+     * <p>
+     * 日期
+     * </p>
+     */
+    private long date;
 
-	/**
-	 * 
-	 * <p>
-	 * Constructor of StickEntity
-	 * </p>
-	 * <p>
-	 * StickEntity类对象的构造函数
-	 * </p>
-	 * <p>
-	 * StickEntityのコンストラクター
-	 * </p>
-	 * 
-	 * @param high
-	 *            <p>
-	 *            High Value
-	 *            </p>
-	 *            <p>
-	 *            高値
-	 *            </p>
-	 *            <p>
-	 *            最高价
-	 *            </p>
-	 * @param low
-	 *            <p>
-	 *            Low Value
-	 *            </p>
-	 *            <p>
-	 *            低値
-	 *            </p>
-	 *            <p>
-	 *            最低值
-	 *            </p>
-	 * @param date
-	 *            <p>
-	 *            Date
-	 *            </p>
-	 *            <p>
-	 *            日付
-	 *            </p>
-	 *            <p>
-	 *            日期
-	 *            </p>
-	 */
-	public StickEntity(double high, double low, long date) {
-		super();
-		this.high = high;
-		this.low = low;
-		this.date = date;
-	}
+    /**
+     * <p>
+     * Constructor of StickEntity
+     * </p>
+     * <p>
+     * StickEntity类对象的构造函数
+     * </p>
+     * <p>
+     * StickEntityのコンストラクター
+     * </p>
+     *
+     * @param high <p>
+     *             High Value
+     *             </p>
+     *             <p>
+     *             高値
+     *             </p>
+     *             <p>
+     *             最高价
+     *             </p>
+     * @param low  <p>
+     *             Low Value
+     *             </p>
+     *             <p>
+     *             低値
+     *             </p>
+     *             <p>
+     *             最低值
+     *             </p>
+     * @param date <p>
+     *             Date
+     *             </p>
+     *             <p>
+     *             日付
+     *             </p>
+     *             <p>
+     *             日期
+     *             </p>
+     */
+    public StickEntity(double high, double low, long date) {
+        super();
+        this.high = high;
+        this.low = low;
+        this.date = date;
+    }
 
-	/**
-	 * 
-	 * <p>
-	 * Constructor of StickEntity
-	 * </p>
-	 * <p>
-	 * StickEntity类对象的构造函数
-	 * </p>
-	 * <p>
-	 * StickEntityのコンストラクター
-	 * </p>
-	 * 
-	 */
-	public StickEntity() {
-		super();
-	}
+    /**
+     * <p>
+     * Constructor of StickEntity
+     * </p>
+     * <p>
+     * StickEntity类对象的构造函数
+     * </p>
+     * <p>
+     * StickEntityのコンストラクター
+     * </p>
+     */
+    public StickEntity() {
+        super();
+    }
 
-	/**
-	 * @return the high
-	 */
-	public double getHigh() {
-		return high;
-	}
+    /**
+     * @return the high
+     */
+    public double getHigh() {
+        return high;
+    }
 
-	/**
-	 * @param high
-	 *            the high to set
-	 */
-	public void setHigh(double high) {
-		this.high = high;
-	}
+    /**
+     * @param high the high to set
+     */
+    public void setHigh(double high) {
+        this.high = high;
+    }
 
-	/**
-	 * @return the low
-	 */
-	public double getLow() {
-		return low;
-	}
+    /**
+     * @return the low
+     */
+    public double getLow() {
+        return low;
+    }
 
-	/**
-	 * @param low
-	 *            the low to set
-	 */
-	public void setLow(double low) {
-		this.low = low;
-	}
+    /**
+     * @param low the low to set
+     */
+    public void setLow(double low) {
+        this.low = low;
+    }
 
-	/**
-	 * @return the date
-	 */
-	public long getDate() {
-		return date;
-	}
+    /**
+     * @return the date
+     */
+    public long getDate() {
+        return date;
+    }
 
-	/**
-	 * @param date
-	 *            the date to set
-	 */
-	public void setDate(long date) {
-		this.date = date;
-	}
+    /**
+     * @param date the date to set
+     */
+    public void setDate(long date) {
+        this.date = date;
+    }
 }
