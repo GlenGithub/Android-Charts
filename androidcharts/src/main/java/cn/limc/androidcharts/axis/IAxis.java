@@ -22,19 +22,18 @@
 
 package cn.limc.androidcharts.axis;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/24 17:17:55 
- *  
+ * @author limc
+ * @version v1.0 2014/06/24 17:17:55
  */
 public interface IAxis {
-	static final int AXIS_X_POSITION_BOTTOM = 1 << 0;
-	@Deprecated
-	static final int AXIS_X_POSITION_TOP = 1 << 1;
-	static final int AXIS_Y_POSITION_LEFT = 1 << 2;
-	static final int AXIS_Y_POSITION_RIGHT = 1 << 3;
+    static final int AXIS_X_POSITION_BOTTOM = 1 << 0;
+    @Deprecated
+    static final int AXIS_X_POSITION_TOP = 1 << 1;
+    static final int AXIS_Y_POSITION_LEFT = 1 << 2;
+    static final int AXIS_Y_POSITION_RIGHT = 1 << 3;
 }
