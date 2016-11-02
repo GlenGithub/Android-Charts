@@ -24,16 +24,12 @@ package cn.limc.androidcharts.axis;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+
 import cn.limc.androidcharts.view.GridChart;
 
-/** 
- * <p>en</p>
- * <p>jp</p>
- * <p>cn</p>
- *
- * @author limc 
- * @version v1.0 2014/06/24 19:58:57 
- *  
+/**
+ * @author limc
+ * @version v1.0 2014/06/24 19:58:57
  */
 public class HorizontalAxis extends Axis {
     /**
@@ -49,38 +45,42 @@ public class HorizontalAxis extends Axis {
      */
     public static final float DEFAULT_HEIGHT = 28f;
 
-	protected float height = DEFAULT_HEIGHT;
-	/** 
-	 * <p>Constructor of HorizontalAxis</p>
-	 * <p>HorizontalAxis类对象的构造函数</p>
-	 * <p>HorizontalAxisのコンストラクター</p>
-	 *
-	 * @param inChart
-	 * @param position 
-	 */
-	public HorizontalAxis(GridChart inChart, int position) {
-		super(inChart, position);
-	}
+    protected float height = DEFAULT_HEIGHT;
+    /**
+     * <p>Constructor of HorizontalAxis</p>
+     * <p>HorizontalAxis类对象的构造函数</p>
+     * <p>HorizontalAxisのコンストラクター</p>
+     *
+     * @param inChart
+     * @param position
+     */
+    public HorizontalAxis(GridChart inChart, int position) {
+        super(inChart, position);
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.common.IQuadrant#getWidth() 
-	 */
-	public float getWidth() {
-		return inChart.getWidth() - 2 * inChart.getBorderWidth();
-	}
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.common.IQuadrant#getWidth()
+     */
+    public float getWidth() {
+        return inChart.getWidth() - 2 * inChart.getBorderWidth();
+    }
 
-	/* (non-Javadoc)
-	 * 
-	 * @return 
-	 * @see cn.limc.androidcharts.common.IQuadrant#getHeight() 
-	 */
-	public float getHeight() {
-		return height;
-	}
-	
-	   /**
+    /* (non-Javadoc)
+     *
+     * @return
+     * @see cn.limc.androidcharts.common.IQuadrant#getHeight()
+     */
+    public float getHeight() {
+        return height;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    /**
      * <p>
      * draw X Axis
      * </p>
@@ -90,10 +90,10 @@ public class HorizontalAxis extends Axis {
      * <p>
      * 绘制X轴
      * </p>
-     * 
+     *
      * @param canvas
      */
-    public void draw(Canvas canvas) {  
+    public void draw(Canvas canvas) {
         float length = inChart.getWidth();
         float postY;
         if (position == AXIS_X_POSITION_BOTTOM) {
