@@ -22,19 +22,19 @@
 
 package cn.limc.androidcharts.common;
 
-/** 
+/**
  * <p>en</p>
  * <p>jp</p>
  * <p>cn</p>
  *
- * @author limc 
- * @version v1.0 2014/06/04 17:42:28 
- *  
+ * @author limc
+ * @version v1.0 2014/06/04 17:42:28
  */
-public interface IFlexableGrid extends IGrid{
-	static final int ALIGN_TYPE_CENTER = 0;
-	static final int ALIGN_TYPE_JUSTIFY = 1;
-	
-	float longitudePostOffset();
-	float longitudeOffset();
+public interface IFlexableGrid extends IGrid {
+    static final int ALIGN_TYPE_CENTER = 0;
+    static final int ALIGN_TYPE_JUSTIFY = 1;
+
+    float longitudePostOffset();
+
+    float longitudeOffset();
 }
