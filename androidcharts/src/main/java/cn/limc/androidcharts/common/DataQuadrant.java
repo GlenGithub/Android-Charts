@@ -27,16 +27,15 @@ import cn.limc.androidcharts.view.GridChart;
 /**
  * DataQuadrant
  * Description: <br>
- *   <p>add description here </p>
+ * <p>add description here </p>
  * Tags: <br>
- *   <p> </p>
+ * <p> </p>
  *
  * @author limc
- * @version v1.0 
- * 
- * History: <br>
- * 2014/09/01 limc create v1.0 <br>
- *
+ * @version v1.0
+ *          <p>
+ *          History: <br>
+ *          2014/09/01 limc create v1.0 <br>
  */
 public class DataQuadrant extends Quadrant {
 
@@ -67,10 +66,10 @@ public class DataQuadrant extends Quadrant {
 //        if (inChart.getAxisY().getPosition() == IAxis.AXIS_Y_POSITION_LEFT) {
 //            return 2 * inChart.getBorderWidth() + inChart.getAxisY().getWidth() + inChart.getAxisY().getLineWidth();
 //        } else {
-            return 2 * inChart.getBorderWidth();
+        return 2 * inChart.getBorderWidth();
 //        }
     }
-    
+
     public float getStartY() {
         return 2 * inChart.getBorderWidth();
     }
